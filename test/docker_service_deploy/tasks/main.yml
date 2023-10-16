@@ -1,0 +1,30 @@
+---
+- name: Ping hosts
+  ping:
+
+- name: Ensure base directory exists
+  file:
+    path: "{{ base_dir }}"
+    owner: "{{ service_user }}"
+    group: "{{ service_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Copy additional dirs
+  synchronize:
+    delete: yes
+    recursive: yes
+    checksum: yes
+    times: no
+    src: "{{ item }}"
+    dest: "{{ base_dir }}/"
+  loop: "{{ additional_dirs | default(omit) }}"
+
+- name: Deploy container
+  docker_container:
+    name: "{{ container_name }}"
+    recreate: yes
+    image: "{{ container_image }}"
+    ports: "{{ ports | default(omit) }}"
+    env_file: "{{ env_file | default(omit) }}"

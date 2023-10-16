@@ -1,0 +1,12 @@
+- name: Install MDATP
+  apt:
+    name: mdatp
+    state: "{{ mdatp_package_state }}"
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+- name: Install MDATP
+  dnf:
+    name: mdatp
+    state: "{{ mdatp_package_state }}"
+    enablerepo: packages-microsoft-prod
+  when: ansible_os_family == "RedHat"

@@ -1,0 +1,107 @@
+---
+- name: Create UIM tmp directories
+  file:
+    path: /opt/UIMtmp
+    state: directory
+    mode: "0777"
+
+- name: Copy UIM files
+  copy:
+    src: files/
+    dest: /opt/UIMtmp/
+    mode: "0777"
+
+- name: Unistall sudo
+  apt:
+    name: sudo
+    state: absent
+  when: ansible_facts['distribution'] == "Debian" or ansible_facts['distribution'] == "Ubuntu"
+ 
+- name: Update apt cache
+  apt:
+    update_cache: true  
+  when: ansible_facts['distribution'] == "Debian" or ansible_facts['distribution'] == "Ubuntu"
+
+- name: Update yum cache
+  yum:
+    update_cache: true
+  when: ansible_facts['distribution'] == "CentOS"
+  
+- name: Install UIM dependencies (CentOS)
+  yum:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - perl
+    - openldap-clients
+    - nss-pam-ldapd
+    - compat-openldap
+    - wget
+    - libsss_sudo
+    - policycoreutils-python
+  when: ansible_facts['distribution'] == "CentOS"
+
+- name: Install UIM dependencies (Debian)
+  apt:
+    name: "{{ item }}"
+    state: present
+  loop:
+    - nslcd
+    - sudo-ldap
+    - ldap-utils
+    - libpam-ldap
+  when: ansible_facts['distribution'] == "Debian" or ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install upcuimclnt (Debian)
+  apt:
+    deb: /opt/UIMtmp/upcuimclnt-4.0.1.noarch.deb
+  when: ansible_facts['distribution'] == "Debian" or ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install upcuimclnt (CentOS)
+  yum:
+    name: /opt/UIMtmp/upcuimclnt.noarch.rpm
+  when: ansible_facts['distribution'] == "CentOS"
+
+- name: Init upcuimclnt
+  shell:
+    cmd: /var/ldap/scripts/init_hostname.sh
+  register: init_hostname
+
+- name: init_hostname output
+  debug:
+    msg: "{{ init_hostname.stdout_lines }}"
+
+- name: Install Golang widget (Debian)
+  shell: 
+    cmd: /opt/UIMtmp/installer.sh
+  when: ansible_facts['distribution'] == "Debian" or ansible_facts['distribution'] == "Ubuntu"
+
+- name: Install Golang widget (CentOS)
+  yum:
+    name: /opt/UIMtmp/upcappclnt.x86_64.rpm
+  when: ansible_facts['distribution'] == "CentOS"
+
+- name: Put custom nsswitch file (CentOS)
+  copy:
+    remote_src: true
+    src: /opt/UIMtmp/nsswitch.conf.CENTOS
+    dest: /etc/nsswitch.conf
+    owner: root
+    group: root
+    mode: '644'
+  when: ansible_facts['distribution'] == "CentOS"
+
+- name: Put custom nsswitch file (Ubuntu)
+  copy:
+    remote_src: true
+    src: /opt/UIMtmp/nsswitch.conf.UBUNTU22
+    dest: /etc/nsswitch.conf
+    owner: root
+    group: root
+    mode: '644'
+  when: ansible_facts['distribution'] == "Ubuntu"
+
+- name: Cleanup tmp files
+  file:
+    path: /opt/UIMtmp
+    state: absent

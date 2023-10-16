@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "cisco",
+    "url": "/dashboards/f/_PIhKFeGk/cisco",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 3,
+    "schemaVersion": 17,
+    "title": "Cisco",
+    "uid": "_PIhKFeGk"
+  }
+}

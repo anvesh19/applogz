@@ -1,0 +1,24 @@
+---
+common_debian_packages:
+- curl
+- dnsutils
+- git
+- mc
+- netcat
+- net-tools
+- nload
+- python3
+- python3-pip
+- python3-venv
+- strace
+- tcpdump
+- telnet
+- tmux
+- vim
+- man
+- sqlite3
+- file
+- htop
+- rsync
+- bash-completion
+- jq

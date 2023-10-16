@@ -1,0 +1,24 @@
+---
+- name: running each time against ANY possible machine so we need to be careful when modifying any step
+  debug:
+    msg: "current host is {{ inventory_hostname }}"
+
+# all files checkouted to the localhost runner and we may compare it with remote host
+- name: Check if local directory exists in working directory
+  stat:
+    path: "{{ repo_workdir }}/{{ inventory_hostname }}"
+  delegate_to: localhost
+  register: dir_stat
+
+- name: dbg report that we have
+  debug:
+    msg: "Local directory exists: {{ dir_stat.stat.exists }}"
+  when: dir_stat.stat.exists
+
+- name: Upload data
+  become: true
+  copy:
+    src: "{{ repo_workdir }}/{{ inventory_hostname }}/"
+    dest: "/"
+    mode: preserve
+  when: dir_stat.stat.exists

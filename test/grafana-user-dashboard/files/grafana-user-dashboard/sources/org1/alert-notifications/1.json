@@ -1,0 +1,18 @@
+{
+  "id": 1,
+  "uid": "zChsAmI7k",
+  "name": "cbadita_ybanchev",
+  "type": "email",
+  "isDefault": false,
+  "sendReminder": false,
+  "disableResolveMessage": false,
+  "frequency": "",
+  "settings": {
+    "addresses": "cbadita.contractor@libertyglobal.com; ybanchev@libertyglobal.com",
+    "autoResolve": true,
+    "httpMethod": "POST",
+    "severity": "critical",
+    "uploadImage": false
+  },
+  "secureFields": {}
+}

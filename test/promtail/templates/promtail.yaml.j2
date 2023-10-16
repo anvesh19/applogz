@@ -1,0 +1,68 @@
+server: 
+  http_listen_port: 9080 
+ 
+positions: 
+  filename: {{ promtail_home_dir }}/tmp/positions.yaml 
+ 
+clients: 
+  - url: "{{ loki_api_endpoint }}" 
+ 
+scrape_configs: 
+- job_name: journald_logs
+  journal:
+    json: false 
+    max_age: 24h
+    labels:
+      host: {{ ansible_hostname }}
+      job: journald_logs
+  relabel_configs:
+    - action: drop
+      source_labels: [__journal__systemd_unit]
+      regex: session-.*
+
+    - source_labels: ['__journal__systemd_unit']
+      target_label: 'unit'
+
+  pipeline_stages:
+  - match:
+      selector: '{job="journald_logs"}'
+      stages:
+        - regex:
+            expression: '.* start worker [0-9]+ handling result from (?P<hostname>[0-9A-Za-z\_\-]+)'
+        - labels: 
+            hostname: {{ ansible_hostname }}
+        - metrics:
+            task_received:
+              type: Counter
+              description: "Tasks received"
+              source: {{ ansible_hostname }}
+              labels:
+                hostname:
+              config:
+                action: inc
+
+{% if 'nginx' in  ansible_facts.packages  %}
+  - match:
+      selector: '{job="nginx"}'
+      stages:
+        - regex:
+            expression: '(?P<vhost>[0-9A-Za-z_\.\-:]+) (?P<remote_addr>[0-9A-Za-z\.\-:]+) - (?P<remote_user>[0-9A-Za-z\.\-:]+) (?P<time_local>\[\d{2}\/\w{3}\/\d{4}:\d{2}:\d{2}:\d{2} \+\d{4}\]) "(?P<request_method>[A-Z]+) (?P<request_uri>\S+) (?P<http_version>HTTP\/[0-9\.]+)" (?P<status>\d{3}) (?P<bytes_sent>\d+) '
+        - labels: 
+            vhost:
+            request_method:
+            status:
+        - metrics:
+            http_requests:
+              type: Counter
+              description: "http request with labels"
+              labels:
+                hostname:
+                vhost:
+                request_method:
+                status:
+              config:
+                action: inc 
+{% endif %}
+
+limits_config:
+  readline_rate: 100000

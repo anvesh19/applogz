@@ -1,0 +1,6 @@
+[Unit]
+Description=Check static routes for changes and stores them in git
+
+[Service]
+ExecStart={{ static_route_handler_dir }}/bin/change-handler.sh
+SyslogIdentifier=%N

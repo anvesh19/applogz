@@ -1,0 +1,69 @@
+---
+- name: "Ensure apt-proxy"
+  copy:
+    content: |
+      Acquire::http::proxy "{{ proxy_env['http_proxy'] }}";
+      Acquire::https::proxy "{{ proxy_env['http_proxy'] }}";
+    dest: /etc/apt/apt.conf.d/02proxy
+    force: no
+    group: root
+    owner: root
+    mode: 0644
+
+- name: Ensure wget http-proxy
+  lineinfile:
+    path: /etc/wgetrc
+    state: present
+    regexp: "^http_proxy"
+    line: "http_proxy = {{ proxy_env['http_proxy'] }}"
+
+- name: Ensure wget ftp-proxy
+  lineinfile:
+    path: /etc/wgetrc
+    state: present
+    regexp: "^ftp_proxy"
+    line: "ftp_proxy = {{ proxy_env['http_proxy'] }}"
+
+- name: Enable wget proxy
+  lineinfile:
+    path: /etc/wgetrc
+    state: present
+    regexp: "^use_proxy"
+    line: "use_proxy = on"
+
+- name: "Setup resolv.conf"
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Copy /root/.bashrc"
+  copy:
+    src: bashrc
+    dest: /root/.bashrc
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Copy /root/.vimrc"
+  copy:
+    src: vimrc
+    dest: /root/.vimrc
+    owner: root
+    group: root
+    mode: 0644
+
+- name: "Set up motd"
+  template:
+    src: motd.j2
+    dest: /etc/motd
+  when: motd_information is defined
+
+- name: Install initial packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  loop: "{{ common_debian_packages }}"

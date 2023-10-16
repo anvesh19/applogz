@@ -1,0 +1,375 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "lg-chart-example",
+    "url": "/d/reWsnr17k/lg-chart-example",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 89,
+    "iteration": 1643211145618,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "LG Chart Datasource test",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 13,
+          "w": 23,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "options": {
+          "chartTitle": "",
+          "chartType": "column",
+          "seriesColor": [
+            {
+              "color": "#FA6400",
+              "name": "2_4G"
+            },
+            {
+              "color": "#1F60C4",
+              "name": "5G"
+            }
+          ],
+          "stacked": true,
+          "yAxisLabel": "Num Samples"
+        },
+        "pluginVersion": "7.4.2",
+        "title": "Panel Title",
+        "type": "lg-chart-panel"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "PL",
+            "value": "PL"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "country",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "PL",
+              "value": "PL"
+            },
+            {
+              "selected": false,
+              "text": "AT",
+              "value": "AT"
+            },
+            {
+              "selected": false,
+              "text": "CH",
+              "value": "CH"
+            },
+            {
+              "selected": false,
+              "text": "IE",
+              "value": "IE"
+            },
+            {
+              "selected": false,
+              "text": "NL",
+              "value": "NL"
+            },
+            {
+              "selected": false,
+              "text": "UK",
+              "value": "UK"
+            }
+          ],
+          "query": "PL,AT,CH,IE,NL,UK",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "MV1_Arris",
+            "value": "MV1_Arris"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "gateway",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "MV1_Arris",
+              "value": "MV1_Arris"
+            },
+            {
+              "selected": false,
+              "text": "MV1_Compal",
+              "value": "MV1_Compal"
+            },
+            {
+              "selected": false,
+              "text": "MV2_Arris",
+              "value": "MV2_Arris"
+            },
+            {
+              "selected": false,
+              "text": "Undefined",
+              "value": "Undefined"
+            },
+            {
+              "selected": false,
+              "text": "Unknown",
+              "value": "Unknown"
+            },
+            {
+              "selected": false,
+              "text": "Undefined_map",
+              "value": "Undefined_map"
+            }
+          ],
+          "query": "MV1_Arris, MV1_Compal, MV2_Arris,Undefined,Unknown, Undefined_map",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "Power_Pod",
+            "value": "Power_Pod"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "pod",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "Power_Pod",
+              "value": "Power_Pod"
+            },
+            {
+              "selected": false,
+              "text": "Super_Pod",
+              "value": "Super_Pod"
+            },
+            {
+              "selected": false,
+              "text": "Wifi6_Pod",
+              "value": "Wifi6_Pod"
+            },
+            {
+              "selected": false,
+              "text": "Mixed",
+              "value": "Mixed"
+            },
+            {
+              "selected": false,
+              "text": "No_pods_in_location",
+              "value": "No_pods_in_location"
+            }
+          ],
+          "query": "Power_Pod, Super_Pod, Wifi6_Pod, Mixed, No_pods_in_location,",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "PLC_and_Pod",
+            "value": "PLC_and_Pod"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "household",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "PLC_and_Pod",
+              "value": "PLC_and_Pod"
+            },
+            {
+              "selected": false,
+              "text": "Pod_only",
+              "value": "Pod_only"
+            },
+            {
+              "selected": false,
+              "text": "Unknown",
+              "value": "Unknown"
+            }
+          ],
+          "query": "PLC_and_Pod,Pod_only, Unknown",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": false,
+          "name": "firmware",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "All",
+              "value": "All"
+            },
+            {
+              "selected": false,
+              "text": "2_4_3-132-gf84a234-prod-cuillin",
+              "value": "2_4_3-132-gf84a234-prod-cuillin"
+            },
+            {
+              "selected": false,
+              "text": "_0_1-58-g0a9faba-prod-cuillin",
+              "value": "_0_1-58-g0a9faba-prod-cuillin"
+            },
+            {
+              "selected": false,
+              "text": "3_0_1-66-g1a05614-prod-cuillin",
+              "value": "3_0_1-66-g1a05614-prod-cuillin"
+            },
+            {
+              "selected": false,
+              "text": "3_4_1-60-g5c749c-prod-cuillin",
+              "value": "3_4_1-60-g5c749c-prod-cuillin"
+            }
+          ],
+          "query": "All,2_4_3-132-gf84a234-prod-cuillin,_0_1-58-g0a9faba-prod-cuillin,3_0_1-66-g1a05614-prod-cuillin,3_4_1-60-g5c749c-prod-cuillin,",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "relative",
+            "value": "relative"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "output_type",
+          "options": [
+            {
+              "selected": true,
+              "text": "relative",
+              "value": "relative"
+            },
+            {
+              "selected": false,
+              "text": "absolute",
+              "value": "absolute"
+            }
+          ],
+          "query": "relative,absolute",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-7d",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "lg-chart example",
+    "uid": "reWsnr17k"
+  }
+}

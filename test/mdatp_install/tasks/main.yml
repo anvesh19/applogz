@@ -1,0 +1,12 @@
+- import_tasks: check_os_version.yml
+- import_tasks: uninstall_mdatp.yml
+  when: mdatp_uninstall_first == true and mdatp_package_state != "absent"
+- import_tasks: onboarding_setup.yml
+  when: mdatp_package_state != "absent"
+- import_tasks: add_repo.yml
+  when: mdatp_package_state != "absent"
+- import_tasks: install_mdatp.yml
+- import_tasks: configure_proxy.yml
+  when: mdatp_package_state != "absent"
+- import_tasks: managed_config.yml
+  when: mdatp_package_state != "absent"

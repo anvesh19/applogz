@@ -1,0 +1,13 @@
+lacework_data_dir: /var/opt/lacework_proxy_scanner
+lacework_container_name: lacework_proxy_scanner
+lacework_docker_repo: lacework/lacework-proxy-scanner
+lacework_docker_tag: latest
+lacework_host_port: "8081"
+lacework_account_name: libertyglobal-mixed.fra
+docker_registry_domain: registry.sdil.aorta.net
+docker_registry_name: registry.sdil.aorta.net
+docker_registry_use_ssl: "true"
+lacework_COOL_OFF_AFTER_TAG_COUNT: "1"
+lacework_COOL_OFF_MILLISECONDS: "10"
+lacework_MAX_CONCURRENT_SCANS: "20"
+lacework_log_level: error

@@ -1,0 +1,11 @@
+dynatrace_oneagent_package_state: present
+dynatrace_oneagent_state: started
+
+# set download opts
+dynatrace_oneagent_dest_dir: /tmp/
+dynatrace_oneagent_script_source_dir: /tmp/
+dynatrace_oneagent_script_name:
+dynatrace_oneagent_install_script: "{{ dynatrace_oneagent_dest_dir }}{{ dynatrace_oneagent_script_name }}"
+
+# Default flags passed to installer
+dynatrace_oneagent_install_args:

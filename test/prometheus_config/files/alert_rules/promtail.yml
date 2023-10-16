@@ -1,0 +1,21 @@
+groups:
+- name: Promtail Monitoring
+  rules:
+  - alert: Promtail lost connectivity to Loki
+    expr: rate(promtail_batch_retries_total[5m]) > 0
+    for: 1m
+    labels:
+      severity: "info"
+      domain: "infra"
+    annotations:
+      summary: "Promtail on {{ $labels.instance }} experience connectivity issues."
+      description: "Promtail is trying to reach Loki ingester to send new data, however all retries failed."
+  - alert: No new batches
+    expr: rate(promtail_encoded_bytes_total[1h]) <= 0
+    for: 5m
+    labels:
+      severity: "info"
+      domain: "infra"
+    annotations:
+      summary: "No data to be sent to Loki on {{ $labels.instance }}."
+      description: "This is number of bytes encoded and ready to send. For last 60 minutes promtail didn't report any bytes as ready."

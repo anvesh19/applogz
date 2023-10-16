@@ -1,0 +1,4 @@
+---
+mdatp_package_state: latest
+mdatp_enforcement_level: real_time
+mdatp_uninstall_first: false

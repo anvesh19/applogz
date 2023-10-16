@@ -1,0 +1,49 @@
+---
+- name: Ensure systemd service file
+  template:
+    src: "{{ systemd_custom_service is defined |
+             ternary('systemd_service_custom.j2', 'systemd_service_common.j2') }}"
+    dest: "{{ systemd_units_dir }}/{{ systemd_service_name }}"
+
+- name: Ensure systemd timer file
+  template:
+    src: "{{ systemd_custom_timer is defined |
+             ternary('systemd_timer_custom.j2', 'systemd_timer_common.j2') }}"
+    dest: "{{ systemd_units_dir }}/{{ systemd_timer_name }}"
+  when: >
+    systemd_custom_timer is defined or
+    systemd_timer_oncalendar is defined
+  register: timer
+
+- name: Ensure service env file
+  template:
+    src: "systemd_env.j2"
+    dest: "{{ systemd_environment_file }}"
+  when: >
+    service_env_vars is defined and
+    service_env_vars|default({})|length>0
+
+- name: Run integration tests
+  shell: "{{ integration_tests.command }}"
+  args:
+    chdir: "{{ integration_tests.dir | default(omit) }}"
+  environment: "{{ integration_tests.environment | default(omit) }}"
+  when: integration_tests is defined
+
+- name: Restart services
+  systemd:
+    name: "{{ systemd_service_name }}"
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+  when: >
+    systemd_custom_timer is not defined and
+    systemd_timer_oncalendar is not defined
+
+- name: Ensure timers
+  systemd:
+    name: "{{ systemd_timer_name }}"
+    enabled: yes
+    daemon_reload: yes
+    state: restarted
+  when: timer.changed

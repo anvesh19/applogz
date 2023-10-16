@@ -1,0 +1,15 @@
+groups:
+  - name: endpoint monitoring
+    rules:
+      - alert: endpoint unreachable
+        expr: probe_success == 0
+        for: 5m
+        labels:
+          severity: warning
+          domain: web
+        annotations:
+          summary: "HTTP probe failed on {{$labels.instance}} endpoint"
+          description: |
+            Open {{$labels.instance}} URL in browser and check if it works.
+            Connect via SSH to the host where it is deployed and check docker container logs of this web-app or backend.
+            Check if there are any other unavailable endpoints on the dashboard https://prometheus-grafana.sdil.aorta.net/d/1QaLQKYVk/blackbox-exporter?orgId=1.

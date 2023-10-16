@@ -1,0 +1,26 @@
+---
+- name: Check if override directory exists
+  stat:
+    path: /etc/systemd/system/docker.service.d
+  register: override_dir
+
+- name: Create override directory
+  file:
+    path: /etc/systemd/system/docker.service.d
+    recurse: true
+    state: directory
+    mode: 0751
+    owner: root
+    group: root
+  when: override_dir.stat.exists == false
+
+- name: Ensure override.conf exists
+  template:
+    src: override.conf.j2
+    dest: /etc/systemd/system/docker.service.d/override.conf
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - systemd daemon-reload
+    - restart docker

@@ -1,0 +1,32 @@
+---
+argument_specs:
+  main:
+    short_description: The main entry point for the docker_service_deploy role.
+    options:
+      container_image:
+        required: true
+        description: "An image from which the container will be created"
+      container_name:
+        required: true
+        description: "A name of the new or existing container"
+      service_user:
+        default: observer
+        description: "A name of the owner of service directory"
+      service_group:
+        default: observer
+        description: "A name of the group of service directory"
+      base_dir:
+        type: "path"
+        description: "The service directory path, defaults to the /home/{service_user}"
+      environment_file:
+        type: "path"
+        description: "Path to the file containing environment variables for the container"
+      environment_file_dir:
+        type: "path"
+        description: "Path to the directory to store the environment_file"
+      ports:
+        type: "list"
+        description: "List of ports to publish from the container to the host"
+      volumes:
+        type: "list"
+        description: "List of volumes to mount within the container. Use docker CLI-style syntax: /host:/container[:mode]"

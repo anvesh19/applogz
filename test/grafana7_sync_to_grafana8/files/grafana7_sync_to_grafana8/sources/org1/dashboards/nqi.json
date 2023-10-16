@@ -1,0 +1,126 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "nqi",
+    "url": "/d/8iWltyM7k/nqi",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 40,
+    "iteration": 1628505919661,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "LG Field Tech View Datasource (AngularJS) ECX",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 20,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 2,
+        "pluginVersion": "7.4.2",
+        "targets": [
+          {
+            "data": "",
+            "hide": false,
+            "refId": "A",
+            "target": "select metric",
+            "type": "timeseries"
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "Panel Title",
+        "type": "lg-field-tech-view-panel-angularjs"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "label": null,
+          "name": "to",
+          "query": "null",
+          "skipUrlSync": false,
+          "type": "constant"
+        },
+        {
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "label": null,
+          "name": "cmts",
+          "query": "null",
+          "skipUrlSync": false,
+          "type": "constant"
+        },
+        {
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "label": null,
+          "name": "noderef",
+          "query": "null",
+          "skipUrlSync": false,
+          "type": "constant"
+        },
+        {
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "label": null,
+          "name": "nodeid",
+          "query": "null",
+          "skipUrlSync": false,
+          "type": "constant"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "NQI",
+    "uid": "8iWltyM7k"
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "id": 3,
+  "uid": "hJFEWbSnk",
+  "name": "daniel test",
+  "type": "email",
+  "isDefault": false,
+  "sendReminder": false,
+  "disableResolveMessage": false,
+  "frequency": "",
+  "settings": {
+    "addresses": "dilles.contractor@libertyglobal.com",
+    "autoResolve": true,
+    "httpMethod": "POST",
+    "severity": "critical",
+    "uploadImage": false
+  },
+  "secureFields": {}
+}

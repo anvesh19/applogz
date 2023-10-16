@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "cisco-xr",
+    "url": "/dashboards/f/p-QJ85d7k/cisco-xr",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 58,
+    "schemaVersion": 17,
+    "title": "Cisco (XR)",
+    "uid": "p-QJ85d7k"
+  }
+}

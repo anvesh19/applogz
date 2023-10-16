@@ -1,0 +1,12 @@
+---
+- name: check if oneagent is installed | linux
+  stat:
+    path: "{{ dynatrace_oneagent_install_artifact }}"
+  register: dynatrace_oneagent_state_file_linux
+  when: ansible_system|lower == "linux"
+
+- name: copy dynatrace oneagent | linux
+  copy:
+    src: "{{ dynatrace_oneagent_script_source_dir }}{{ dynatrace_oneagent_script_name }}"
+    dest: "{{ dynatrace_oneagent_install_script }}"
+  when: not dynatrace_oneagent_state_file_linux.stat.exists

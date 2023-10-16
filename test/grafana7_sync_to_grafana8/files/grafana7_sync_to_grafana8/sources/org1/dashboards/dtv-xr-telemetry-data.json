@@ -1,0 +1,6501 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "dtv-xr-telemetry-data",
+    "url": "/d/CP7Y8Il7k/dtv-xr-telemetry-data",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 119,
+    "iteration": 1652267327209,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 78,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "cisco1",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 11,
+              "w": 24,
+              "x": 0,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 49,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_node_name:$tag_np_name - $tag_interface_name",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "np_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "interface_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_np_fast_drops",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "counter_value"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "NP Fast Drop Statistics - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "NP Drops",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 76,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 10,
+              "w": 24,
+              "x": 0,
+              "y": 19
+            },
+            "hiddenSeries": false,
+            "id": 73,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_np_name - $tag_node_name - $tag_counter_name",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "np_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "counter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_np_counters",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "counter_value"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "np_name",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node_name",
+                    "operator": "=~",
+                    "value": "/^$LineCard$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "counter_name",
+                    "operator": "=~",
+                    "value": "/^$NP_Counters$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "NP Counter Value - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:4850",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:4851",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 10,
+              "w": 24,
+              "x": 0,
+              "y": 29
+            },
+            "hiddenSeries": false,
+            "id": 74,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_np_name - $tag_node_name - $tag_counter_name",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "np_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "counter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_np_counters",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "rate"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "np_name",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node_name",
+                    "operator": "=~",
+                    "value": "/^$LineCard$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "counter_name",
+                    "operator": "=~",
+                    "value": "/^$NP_Counters$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "NP Counters Rate - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:4850",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:4851",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "NP Counters",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 2
+        },
+        "id": 43,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 12,
+              "w": 24,
+              "x": 0,
+              "y": 3
+            },
+            "hiddenSeries": false,
+            "id": 45,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_np_name - $tag_node_name",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "np_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_np_load_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT last(\"utilization\") FROM \"autogen\".\"xr_np_load_stats\" WHERE (\"source\" =~ /^$Hostname$/ AND \"node_name\" =~ /^$LineCard$/ AND \"np_name\" =~ /^$NP_ID$/) AND $timeFilter GROUP BY time($__interval), \"node_name\", \"np_name\", \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "utilization"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node_name",
+                    "operator": "=~",
+                    "value": "/^$LineCard$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "np_name",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "NP Load - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 11,
+              "w": 24,
+              "x": 0,
+              "y": 15
+            },
+            "hiddenSeries": false,
+            "id": 47,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_np_name - $tag_node_name",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "np_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_np_load_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "packet_per_second_rate"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node_name",
+                    "operator": "=~",
+                    "value": "/^$LineCard$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "np_name",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "NP Packets -  $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "NP Load",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 3
+        },
+        "id": 84,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 8,
+              "w": 24,
+              "x": 0,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 82,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_node_name - $tag_counter_name - $tag_type",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "counter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "type"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_fabric_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "counter"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "mean"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "type",
+                    "operator": "=~",
+                    "value": "/^$FabricType$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Fabric Stats - $Hostname - Counter $FabricCounters  |  Type $FabricType",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:57",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:58",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": null,
+                  "filterable": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 9
+            },
+            "id": 81,
+            "options": {
+              "showHeader": true
+            },
+            "pluginVersion": "7.4.2",
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_node_name - $tag_counter_name - $tag_type",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "type"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "counter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "limit": "1",
+                "measurement": "xr_fabric_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "table",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "counter_name"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Fabric Stats - $Hostname - Counter $FabricCounters",
+            "type": "table"
+          }
+        ],
+        "title": "Fabric Stats",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 4
+        },
+        "id": 12,
+        "panels": [
+          {
+            "cacheTimeout": null,
+            "datasource": "Test",
+            "description": "# show platform software status control-processor brief",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {},
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 5,
+              "x": 0,
+              "y": 4
+            },
+            "id": 22,
+            "interval": "",
+            "links": [],
+            "options": {
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "showThresholdLabels": false,
+              "showThresholdMarkers": true,
+              "text": {}
+            },
+            "pluginVersion": "7.4.2",
+            "targets": [
+              {
+                "alias": "$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_cpu_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "total_cpu_five_minute"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Total"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "CPU Utilization - $Hostname",
+            "type": "gauge"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 19,
+              "x": 5,
+              "y": 4
+            },
+            "hiddenSeries": false,
+            "id": 8,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source: 5min",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_cpu_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"total_cpu_five_minute\") FROM \"xr_cpu_stats\" WHERE (\"source\" =~ /^$Hostname$/) AND $timeFilter GROUP BY time($__interval), \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "total_cpu_five_minute"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "CPU Utilization - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:75",
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:76",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 8,
+              "w": 24,
+              "x": 0,
+              "y": 13
+            },
+            "hiddenSeries": false,
+            "id": 14,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_process_name: 5 min",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "process_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_cpu_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"total_cpu_five_minute\") FROM \"xr_cpu_stats\" WHERE (\"source\" =~ /^$Hostname$/) AND $timeFilter GROUP BY time($__interval), \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "process_cpu_5m"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Process CPU Utilization - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:75",
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:76",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "CPU Utilization",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 5
+        },
+        "id": 18,
+        "panels": [
+          {
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {},
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 3,
+              "x": 0,
+              "y": 5
+            },
+            "id": 16,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "text": {},
+              "textMode": "auto"
+            },
+            "pluginVersion": "7.4.2",
+            "targets": [
+              {
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_memory_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "memory_state"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Memory State - $Hostname",
+            "type": "stat"
+          },
+          {
+            "aliasColors": {},
+            "breakPoint": "50%",
+            "cacheTimeout": null,
+            "combine": {
+              "label": "Others",
+              "threshold": 0
+            },
+            "datasource": "Test",
+            "description": "# show platform software status control-processor brief",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fontSize": "80%",
+            "format": "deckbytes",
+            "gridPos": {
+              "h": 7,
+              "w": 3,
+              "x": 3,
+              "y": 5
+            },
+            "id": 20,
+            "interval": "",
+            "legend": {
+              "show": true,
+              "values": true
+            },
+            "legendType": "Under graph",
+            "links": [],
+            "nullPointMode": "connected",
+            "pieType": "pie",
+            "pluginVersion": "7.4.2",
+            "strokeWidth": "1",
+            "targets": [
+              {
+                "alias": "$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_memory_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "physical_memory"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Total"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "free_memory"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Free"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Memory Utilization - $Hostname",
+            "type": "grafana-piechart-panel",
+            "valueName": "current"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 7,
+              "w": 18,
+              "x": 6,
+              "y": 5
+            },
+            "hiddenSeries": false,
+            "id": 10,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source: $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_memory_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "free_memory"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Free"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "physical_memory"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Total"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Memory Utilization - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:474",
+                "format": "deckbytes",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:475",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Memory Utilization",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 6
+        },
+        "id": 24,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {},
+                "links": []
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 6
+            },
+            "hiddenSeries": false,
+            "id": 26,
+            "interval": "",
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "paceLength": 10,
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_interface_name: $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "interface_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_if_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "bytes_received"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "IN_bytes"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "bytes_sent"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "OUT_bytes"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "interface_name",
+                    "operator": "=~",
+                    "value": "/^$interfaces$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Interface Traffic - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:728",
+                "format": "binBps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:729",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {},
+                "links": []
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 15
+            },
+            "hiddenSeries": false,
+            "id": 33,
+            "interval": "",
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "paceLength": 10,
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_interface_name: $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "interface_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_if_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "input_drops"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "Input Drops"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "input_errors"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "Input Errors"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "output_drops"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "Output Drops"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "output_errors"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "Output Errors"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "crc_errors"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        "Output Errors"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "interface_name",
+                    "operator": "=~",
+                    "value": "/^$interfaces$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Interface Errors - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:728",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:729",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Interface Statistics",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 7
+        },
+        "id": 39,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 11,
+              "w": 24,
+              "x": 0,
+              "y": 7
+            },
+            "hiddenSeries": false,
+            "id": 41,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_node_name$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "node_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "/^$device$/"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_fib_stats",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "*"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    },
+                    {
+                      "params": [
+                        ":"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "FIB Statistics - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "FIB Statistics",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 8
+        },
+        "id": 53,
+        "panels": [
+          {
+            "aliasColors": {},
+            "breakPoint": "50%",
+            "cacheTimeout": null,
+            "combine": {
+              "label": "Others",
+              "threshold": 0
+            },
+            "datasource": "Test",
+            "description": "# show platform software status control-processor brief",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fontSize": "80%",
+            "format": "watt",
+            "gridPos": {
+              "h": 7,
+              "w": 3,
+              "x": 0,
+              "y": 8
+            },
+            "id": 69,
+            "interval": "",
+            "legend": {
+              "show": true,
+              "values": true
+            },
+            "legendType": "Under graph",
+            "links": [],
+            "nullPointMode": "connected",
+            "pieType": "pie",
+            "pluginVersion": "7.4.2",
+            "strokeWidth": "1",
+            "targets": [
+              {
+                "alias": "$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_pem",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "usable_power_capacity"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Capacity"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "system_power_used"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Used"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "System Power Statistics - $Hostname",
+            "type": "grafana-piechart-panel",
+            "valueName": "current"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 7,
+              "w": 20,
+              "x": 3,
+              "y": 8
+            },
+            "hiddenSeries": false,
+            "id": 51,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source -- $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "/^$device$/"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "pem"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_pem",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "usable_power_capacity"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "capacity"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "system_power_input"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "input"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "system_power_protected"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "protected"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "system_power_reserved"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "reserved"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "system_power_used"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "used"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "System Power Statistics - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "watt",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {},
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 7,
+              "w": 24,
+              "x": 0,
+              "y": 15
+            },
+            "id": 57,
+            "options": {
+              "colorMode": "value",
+              "graphMode": "area",
+              "justifyMode": "auto",
+              "orientation": "auto",
+              "reduceOptions": {
+                "calcs": [
+                  "lastNotNull"
+                ],
+                "fields": "",
+                "values": false
+              },
+              "text": {},
+              "textMode": "auto"
+            },
+            "pluginVersion": "7.4.2",
+            "targets": [
+              {
+                "alias": "$tag_source - $col - Location: $tag_location",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "pem"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_pem",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "pem_status"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "PEM Status"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Memory State - $Hostname",
+            "type": "stat"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 8,
+              "w": 24,
+              "x": 0,
+              "y": 22
+            },
+            "hiddenSeries": false,
+            "id": 59,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [
+              {
+                "$$hashKey": "object:5819",
+                "alias": "0/PT0:PM0:current1",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:5820",
+                "alias": "0/PT0:PM1:current1",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:5821",
+                "alias": "0/PT0:PM2:current1",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:5822",
+                "alias": "0/PT1:PM0:current1",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:5823",
+                "alias": "0/PT1:PM1:current1",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:5824",
+                "alias": "0/PT1:PM2:current1",
+                "yaxis": 2
+              }
+            ],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_location:$tag_pem_location:$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "pem_location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_pem",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "pem_input_current1"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "current1"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "pem_input_current2"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "current2"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "pem_input_voltage1"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "voltage1"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "pem_input_voltage2"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "voltage2"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "PEM Input Statistics - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "volt",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "amp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 8,
+              "w": 24,
+              "x": 0,
+              "y": 30
+            },
+            "hiddenSeries": false,
+            "id": 61,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [
+              {
+                "$$hashKey": "object:7619",
+                "alias": "0/PT0:PM0:current",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:7620",
+                "alias": "0/PT0:PM1:current",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:7621",
+                "alias": "0/PT0:PM2:current",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:7622",
+                "alias": "0/PT1:PM0:current",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:7623",
+                "alias": "0/PT1:PM1:current",
+                "yaxis": 2
+              },
+              {
+                "$$hashKey": "object:7654",
+                "alias": "0/PT1:PM2:current",
+                "yaxis": 2
+              }
+            ],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_location:$tag_pem_location:$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "pem_location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "/^$device$/"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_pem",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "pem_current_output"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "current"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "pem_voltage_output"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "voltage"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "PEM Output Statistics - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "volt",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "amp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": null,
+                  "filterable": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": []
+            },
+            "gridPos": {
+              "h": 10,
+              "w": 24,
+              "x": 0,
+              "y": 38
+            },
+            "id": 63,
+            "options": {
+              "frameIndex": 2,
+              "showHeader": true
+            },
+            "pluginVersion": "7.4.2",
+            "targets": [
+              {
+                "alias": "$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "limit": "1",
+                "measurement": "xr_sysadmin_env_ui_fan",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT last(\"fan_speed\") AS \"fan_speed\" FROM \"autogen\".\"xr_chassis_stats\" WHERE (\"source\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"location\" fill(null) LIMIT 1",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "table",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "fans_speed/value"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [
+                        "fan_speed"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "location",
+                    "operator": "=~",
+                    "value": "/^$Location$/"
+                  }
+                ]
+              }
+            ],
+            "timeFrom": null,
+            "timeShift": null,
+            "title": "Fans Rotation - $Hostname - Location $Location",
+            "type": "table"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 10,
+              "w": 24,
+              "x": 0,
+              "y": 48
+            },
+            "hiddenSeries": false,
+            "id": 65,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - Sensor Name - $tag_sensor - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "sensor"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_temp_sensor",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "sensor_temp"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Temperature"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "location",
+                    "operator": "=~",
+                    "value": "/^$Location$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Temperature Statistics - $Hostname Location $Location",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "celsius",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "amp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 12,
+              "x": 0,
+              "y": 58
+            },
+            "hiddenSeries": false,
+            "id": 66,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - Sensor Name - $tag_sensor - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "sensor"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_temp_sensor",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "critical_hi"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Critical High Thold"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "critical_lo"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Critical Low Thold"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "location",
+                    "operator": "=~",
+                    "value": "/^$Location$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Temperature Critical Thold Values - $Hostname Location $Location",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "celsius",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "amp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 12,
+              "x": 12,
+              "y": 58
+            },
+            "hiddenSeries": false,
+            "id": 67,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - Sensor Name - $tag_sensor - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "sensor"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_temp_sensor",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "major_hi"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Major High Thold"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "major_lo"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Major Low Thold"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "location",
+                    "operator": "=~",
+                    "value": "/^$Location$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Temperature Major Thold Values - $Hostname Location $Location",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "celsius",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "amp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Chassis Statistics (Power/Sensors/Temperature)",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 9
+        },
+        "id": 32,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "color": {},
+                "custom": {},
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": []
+                }
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 11,
+              "w": 24,
+              "x": 0,
+              "y": 9
+            },
+            "hiddenSeries": false,
+            "id": 30,
+            "interval": "",
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "paceLength": 10,
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_name:$tag_number:bias",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "/^$Hostname$/"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_if_optics",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT non_negative_derivative(last(/error|drop/), 10s) FROM \"autogen\".\"xr_if_stats\" WHERE (\"source\" =~ /^$device$/ AND \"interface_name\" =~ /^$interfaces$/) AND $timeFilter GROUP BY time($__interval), \"interface_name\", \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "laser_bias_current_milli_amps"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " / 1000"
+                      ],
+                      "type": "math"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "name",
+                    "operator": "=~",
+                    "value": "/^$Port$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Controller-Optics Laser Port - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:3545",
+                "format": "mamp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:3546",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 20
+            },
+            "hiddenSeries": false,
+            "id": 28,
+            "interval": "",
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "paceLength": 10,
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_name:$tag_number:$col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_if_optics",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT non_negative_derivative(last(/error|drop/), 10s) FROM \"autogen\".\"xr_if_stats\" WHERE (\"source\" =~ /^$device$/ AND \"interface_name\" =~ /^$interfaces$/) AND $timeFilter GROUP BY time($__interval), \"interface_name\", \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "receive_power"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " / 1000"
+                      ],
+                      "type": "math"
+                    },
+                    {
+                      "params": [
+                        "rx"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "transmit_power"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " / 1000"
+                      ],
+                      "type": "math"
+                    },
+                    {
+                      "params": [
+                        "tx"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "name",
+                    "operator": "=~",
+                    "value": "/^$Port$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Controller Optical Levels -  $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:3545",
+                "format": "dBm",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:3546",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 10,
+              "w": 24,
+              "x": 0,
+              "y": 29
+            },
+            "hiddenSeries": false,
+            "id": 35,
+            "interval": "",
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "paceLength": 10,
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_name:$tag_number Temp",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "/^$device$/"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_if_optics2",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT non_negative_derivative(last(/error|drop/), 10s) FROM \"autogen\".\"xr_if_stats\" WHERE (\"source\" =~ /^$device$/ AND \"interface_name\" =~ /^$interfaces$/) AND $timeFilter GROUP BY time($__interval), \"interface_name\", \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "temperature"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " / 100"
+                      ],
+                      "type": "math"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "name",
+                    "operator": "=~",
+                    "value": "/^$Port$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Controller-Optics Temperature - $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:3545",
+                "format": "celsius",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:3546",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 39
+            },
+            "hiddenSeries": false,
+            "id": 37,
+            "interval": "",
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "links": [],
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "paceLength": 10,
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_name:$tag_number Voltage",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "/^$device$/"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "xr_if_optics2",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "query": "SELECT non_negative_derivative(last(/error|drop/), 10s) FROM \"autogen\".\"xr_if_stats\" WHERE (\"source\" =~ /^$device$/ AND \"interface_name\" =~ /^$interfaces$/) AND $timeFilter GROUP BY time($__interval), \"interface_name\", \"source\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "voltage"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " / 100"
+                      ],
+                      "type": "math"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "name",
+                    "operator": "=~",
+                    "value": "/^$Port$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Controller-Optics Voltage -  $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:3545",
+                "format": "volt",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:3546",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Test",
+            "description": "",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 48
+            },
+            "hiddenSeries": false,
+            "id": 71,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": false,
+              "hideEmpty": true,
+              "hideZero": true,
+              "max": false,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "null",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_source - $tag_sensor",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "location"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "sensor"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "source"
+                    ],
+                    "type": "tag"
+                  }
+                ],
+                "measurement": "xr_sysadmin_env_ui_voltage_sensor",
+                "orderByTime": "ASC",
+                "policy": "autogen",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "temperature_value"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "location",
+                    "operator": "=",
+                    "value": "0/0"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "Sensor Voltage Statistics $Hostname",
+            "tooltip": {
+              "shared": true,
+              "sort": 2,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:350",
+                "format": "mvolt",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              },
+              {
+                "$$hashKey": "object:351",
+                "format": "amp",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": "0",
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Controller - Laser & Optical & Temperature & Voltage Levels",
+        "type": "row"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values from xr_if_stats with key=source",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "Hostname",
+          "options": [],
+          "query": "show tag values from xr_if_stats with key=source",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values from xr_np_load_stats with key=node_name where source=~ /$Hostname/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "LineCard",
+          "options": [],
+          "query": "show tag values from xr_np_load_stats with key=node_name where source=~ /$Hostname/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values from xr_np_load_stats with key=np_name where(source=~ /$Hostname/ AND node_name=~ /$LineCard/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "NPID",
+          "multi": true,
+          "name": "NP_ID",
+          "options": [],
+          "query": "show tag values from xr_np_load_stats with key=np_name where(source=~ /$Hostname/ AND node_name=~ /$LineCard/)",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values from xr_cpu_stats with key=process_name",
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "includeAll": true,
+          "label": "CPU Process Name",
+          "multi": true,
+          "name": "CPU_Process",
+          "options": [],
+          "query": "show tag values from xr_cpu_stats with key=process_name",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values with key = \"interface_name\" where source=~ /^$Hostname/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Interfaces",
+          "multi": true,
+          "name": "interfaces",
+          "options": [],
+          "query": "show tag values with key = \"interface_name\" where source=~ /^$Hostname/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "Optics0/0/0/0"
+            ],
+            "value": [
+              "Optics0/0/0/0"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values with key = \"name\" where \"name\" =~ /Optics/;",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Controller",
+          "multi": true,
+          "name": "Port",
+          "options": [],
+          "query": "show tag values with key = \"name\" where \"name\" =~ /Optics/;",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values from xr_sysadmin_env_ui_temp_sensor with key=location where source=~ /$Hostname/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "Location",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "0/0",
+              "value": "0/0"
+            },
+            {
+              "selected": false,
+              "text": "0/1",
+              "value": "0/1"
+            },
+            {
+              "selected": false,
+              "text": "0/2",
+              "value": "0/2"
+            },
+            {
+              "selected": false,
+              "text": "0/FC0",
+              "value": "0/FC0"
+            },
+            {
+              "selected": false,
+              "text": "0/FC1",
+              "value": "0/FC1"
+            },
+            {
+              "selected": false,
+              "text": "0/FC2",
+              "value": "0/FC2"
+            },
+            {
+              "selected": false,
+              "text": "0/FC3",
+              "value": "0/FC3"
+            },
+            {
+              "selected": false,
+              "text": "0/FC4",
+              "value": "0/FC4"
+            },
+            {
+              "selected": false,
+              "text": "0/FT0",
+              "value": "0/FT0"
+            },
+            {
+              "selected": false,
+              "text": "0/FT1",
+              "value": "0/FT1"
+            },
+            {
+              "selected": false,
+              "text": "0/PT0-PM0",
+              "value": "0/PT0-PM0"
+            },
+            {
+              "selected": false,
+              "text": "0/PT0-PM1",
+              "value": "0/PT0-PM1"
+            },
+            {
+              "selected": false,
+              "text": "0/PT0-PM2",
+              "value": "0/PT0-PM2"
+            },
+            {
+              "selected": false,
+              "text": "0/PT0-PM3",
+              "value": "0/PT0-PM3"
+            },
+            {
+              "selected": false,
+              "text": "0/PT1-PM0",
+              "value": "0/PT1-PM0"
+            },
+            {
+              "selected": false,
+              "text": "0/PT1-PM1",
+              "value": "0/PT1-PM1"
+            },
+            {
+              "selected": false,
+              "text": "0/PT1-PM2",
+              "value": "0/PT1-PM2"
+            },
+            {
+              "selected": false,
+              "text": "0/RSP0",
+              "value": "0/RSP0"
+            },
+            {
+              "selected": false,
+              "text": "0/RSP1",
+              "value": "0/RSP1"
+            }
+          ],
+          "query": "show tag values from xr_sysadmin_env_ui_temp_sensor with key=location where source=~ /$Hostname/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "Test",
+          "definition": "show tag values from xr_np_counters with key=counter_name",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "NP_Counters",
+          "options": [],
+          "query": "show tag values from xr_np_counters with key=counter_name",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Test",
+          "definition": "show tag values from \"xr_fabric_stats\" with key = \"counter_name\" where (\"source\" =~ /^$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Fabric Counters",
+          "multi": true,
+          "name": "FabricCounters",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "BW if1",
+              "value": "BW if1"
+            },
+            {
+              "selected": false,
+              "text": "DropGrantsRfifoError",
+              "value": "DropGrantsRfifoError"
+            },
+            {
+              "selected": false,
+              "text": "Egress Err Pkts to CPU",
+              "value": "Egress Err Pkts to CPU"
+            },
+            {
+              "selected": false,
+              "text": "Fia_Offline",
+              "value": "Fia_Offline"
+            },
+            {
+              "selected": false,
+              "text": "Ingress Drop Pkts",
+              "value": "Ingress Drop Pkts"
+            },
+            {
+              "selected": false,
+              "text": "MCMAX",
+              "value": "MCMAX"
+            },
+            {
+              "selected": false,
+              "text": "Mc dest based drop",
+              "value": "Mc dest based drop"
+            },
+            {
+              "selected": false,
+              "text": "Mc rsc drp",
+              "value": "Mc rsc drp"
+            },
+            {
+              "selected": false,
+              "text": "Mc vl3 src1 buffer full drp",
+              "value": "Mc vl3 src1 buffer full drp"
+            },
+            {
+              "selected": false,
+              "text": "RL over/under flow cnt",
+              "value": "RL over/under flow cnt"
+            },
+            {
+              "selected": false,
+              "text": "Total drop: ",
+              "value": "Total drop: "
+            },
+            {
+              "selected": false,
+              "text": "VQI",
+              "value": "VQI"
+            },
+            {
+              "selected": false,
+              "text": "VRL Drp",
+              "value": "VRL Drp"
+            },
+            {
+              "selected": false,
+              "text": "VRL MBECounterInexpiryFIFO",
+              "value": "VRL MBECounterInexpiryFIFO"
+            },
+            {
+              "selected": false,
+              "text": "XFI link-0",
+              "value": "XFI link-0"
+            },
+            {
+              "selected": false,
+              "text": "arb  link-1",
+              "value": "arb  link-1"
+            },
+            {
+              "selected": false,
+              "text": "ir sop err",
+              "value": "ir sop err"
+            },
+            {
+              "selected": false,
+              "text": "ni crc32 corrupt",
+              "value": "ni crc32 corrupt"
+            },
+            {
+              "selected": false,
+              "text": "sp1 prot err",
+              "value": "sp1 prot err"
+            },
+            {
+              "selected": false,
+              "text": "xbar link-2",
+              "value": "xbar link-2"
+            },
+            {
+              "selected": false,
+              "text": "xbar link-3",
+              "value": "xbar link-3"
+            }
+          ],
+          "query": "show tag values from \"xr_fabric_stats\" with key = \"counter_name\" where (\"source\" =~ /^$Hostname/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "bandwidth-0",
+            "value": "bandwidth-0"
+          },
+          "datasource": "Test",
+          "definition": "show tag values from \"xr_fabric_stats\" with key = \"type\" where (\"source\" =~ /^$Hostname/ AND \"counter_name\" =~/$FabricCounters/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Fabric Type",
+          "multi": true,
+          "name": "FabricType",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-0",
+              "value": "bandwidth-0"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-1",
+              "value": "bandwidth-1"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-2",
+              "value": "bandwidth-2"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-3",
+              "value": "bandwidth-3"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-4",
+              "value": "bandwidth-4"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-5",
+              "value": "bandwidth-5"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-6",
+              "value": "bandwidth-6"
+            },
+            {
+              "selected": false,
+              "text": "bandwidth-7",
+              "value": "bandwidth-7"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-0",
+              "value": "bridge_ddr-0"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-1",
+              "value": "bridge_ddr-1"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-2",
+              "value": "bridge_ddr-2"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-3",
+              "value": "bridge_ddr-3"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-4",
+              "value": "bridge_ddr-4"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-5",
+              "value": "bridge_ddr-5"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-6",
+              "value": "bridge_ddr-6"
+            },
+            {
+              "selected": false,
+              "text": "bridge_ddr-7",
+              "value": "bridge_ddr-7"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-0",
+              "value": "bridge_eg-0"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-1",
+              "value": "bridge_eg-1"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-2",
+              "value": "bridge_eg-2"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-3",
+              "value": "bridge_eg-3"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-4",
+              "value": "bridge_eg-4"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-5",
+              "value": "bridge_eg-5"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-6",
+              "value": "bridge_eg-6"
+            },
+            {
+              "selected": false,
+              "text": "bridge_eg-7",
+              "value": "bridge_eg-7"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-0",
+              "value": "bridge_fc-0"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-1",
+              "value": "bridge_fc-1"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-2",
+              "value": "bridge_fc-2"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-3",
+              "value": "bridge_fc-3"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-4",
+              "value": "bridge_fc-4"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-5",
+              "value": "bridge_fc-5"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-6",
+              "value": "bridge_fc-6"
+            },
+            {
+              "selected": false,
+              "text": "bridge_fc-7",
+              "value": "bridge_fc-7"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-0",
+              "value": "bridge_in-0"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-1",
+              "value": "bridge_in-1"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-2",
+              "value": "bridge_in-2"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-3",
+              "value": "bridge_in-3"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-4",
+              "value": "bridge_in-4"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-5",
+              "value": "bridge_in-5"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-6",
+              "value": "bridge_in-6"
+            },
+            {
+              "selected": false,
+              "text": "bridge_in-7",
+              "value": "bridge_in-7"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-0",
+              "value": "bridge_sync-0"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-1",
+              "value": "bridge_sync-1"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-2",
+              "value": "bridge_sync-2"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-3",
+              "value": "bridge_sync-3"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-4",
+              "value": "bridge_sync-4"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-5",
+              "value": "bridge_sync-5"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-6",
+              "value": "bridge_sync-6"
+            },
+            {
+              "selected": false,
+              "text": "bridge_sync-7",
+              "value": "bridge_sync-7"
+            },
+            {
+              "selected": false,
+              "text": "count-0",
+              "value": "count-0"
+            },
+            {
+              "selected": false,
+              "text": "count-1",
+              "value": "count-1"
+            },
+            {
+              "selected": false,
+              "text": "count-2",
+              "value": "count-2"
+            },
+            {
+              "selected": false,
+              "text": "count-3",
+              "value": "count-3"
+            },
+            {
+              "selected": false,
+              "text": "count-4",
+              "value": "count-4"
+            },
+            {
+              "selected": false,
+              "text": "count-5",
+              "value": "count-5"
+            },
+            {
+              "selected": false,
+              "text": "count-6",
+              "value": "count-6"
+            },
+            {
+              "selected": false,
+              "text": "count-7",
+              "value": "count-7"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-0",
+              "value": "eg_drop-0"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-1",
+              "value": "eg_drop-1"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-2",
+              "value": "eg_drop-2"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-3",
+              "value": "eg_drop-3"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-4",
+              "value": "eg_drop-4"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-5",
+              "value": "eg_drop-5"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-6",
+              "value": "eg_drop-6"
+            },
+            {
+              "selected": false,
+              "text": "eg_drop-7",
+              "value": "eg_drop-7"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-0",
+              "value": "eg_error-0"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-1",
+              "value": "eg_error-1"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-2",
+              "value": "eg_error-2"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-3",
+              "value": "eg_error-3"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-4",
+              "value": "eg_error-4"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-5",
+              "value": "eg_error-5"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-6",
+              "value": "eg_error-6"
+            },
+            {
+              "selected": false,
+              "text": "eg_error-7",
+              "value": "eg_error-7"
+            },
+            {
+              "selected": false,
+              "text": "events-0",
+              "value": "events-0"
+            },
+            {
+              "selected": false,
+              "text": "events-1",
+              "value": "events-1"
+            },
+            {
+              "selected": false,
+              "text": "events-2",
+              "value": "events-2"
+            },
+            {
+              "selected": false,
+              "text": "events-3",
+              "value": "events-3"
+            },
+            {
+              "selected": false,
+              "text": "events-4",
+              "value": "events-4"
+            },
+            {
+              "selected": false,
+              "text": "events-5",
+              "value": "events-5"
+            },
+            {
+              "selected": false,
+              "text": "events-6",
+              "value": "events-6"
+            },
+            {
+              "selected": false,
+              "text": "events-7",
+              "value": "events-7"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-0",
+              "value": "imux_voq_a-0"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-1",
+              "value": "imux_voq_a-1"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-2",
+              "value": "imux_voq_a-2"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-3",
+              "value": "imux_voq_a-3"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-4",
+              "value": "imux_voq_a-4"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-5",
+              "value": "imux_voq_a-5"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-6",
+              "value": "imux_voq_a-6"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_a-7",
+              "value": "imux_voq_a-7"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-0",
+              "value": "imux_voq_b-0"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-1",
+              "value": "imux_voq_b-1"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-2",
+              "value": "imux_voq_b-2"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-3",
+              "value": "imux_voq_b-3"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-4",
+              "value": "imux_voq_b-4"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-5",
+              "value": "imux_voq_b-5"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-6",
+              "value": "imux_voq_b-6"
+            },
+            {
+              "selected": false,
+              "text": "imux_voq_b-7",
+              "value": "imux_voq_b-7"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-0",
+              "value": "in_drop-0"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-1",
+              "value": "in_drop-1"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-2",
+              "value": "in_drop-2"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-3",
+              "value": "in_drop-3"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-4",
+              "value": "in_drop-4"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-5",
+              "value": "in_drop-5"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-6",
+              "value": "in_drop-6"
+            },
+            {
+              "selected": false,
+              "text": "in_drop-7",
+              "value": "in_drop-7"
+            },
+            {
+              "selected": false,
+              "text": "in_error-0",
+              "value": "in_error-0"
+            },
+            {
+              "selected": false,
+              "text": "in_error-1",
+              "value": "in_error-1"
+            },
+            {
+              "selected": false,
+              "text": "in_error-2",
+              "value": "in_error-2"
+            },
+            {
+              "selected": false,
+              "text": "in_error-3",
+              "value": "in_error-3"
+            },
+            {
+              "selected": false,
+              "text": "in_error-4",
+              "value": "in_error-4"
+            },
+            {
+              "selected": false,
+              "text": "in_error-5",
+              "value": "in_error-5"
+            },
+            {
+              "selected": false,
+              "text": "in_error-6",
+              "value": "in_error-6"
+            },
+            {
+              "selected": false,
+              "text": "in_error-7",
+              "value": "in_error-7"
+            },
+            {
+              "selected": false,
+              "text": "link-0",
+              "value": "link-0"
+            },
+            {
+              "selected": false,
+              "text": "link-1",
+              "value": "link-1"
+            },
+            {
+              "selected": false,
+              "text": "link-2",
+              "value": "link-2"
+            },
+            {
+              "selected": false,
+              "text": "link-3",
+              "value": "link-3"
+            },
+            {
+              "selected": false,
+              "text": "link-4",
+              "value": "link-4"
+            },
+            {
+              "selected": false,
+              "text": "link-5",
+              "value": "link-5"
+            },
+            {
+              "selected": false,
+              "text": "link-6",
+              "value": "link-6"
+            },
+            {
+              "selected": false,
+              "text": "link-7",
+              "value": "link-7"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-0",
+              "value": "q_stats_a-0"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-1",
+              "value": "q_stats_a-1"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-2",
+              "value": "q_stats_a-2"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-3",
+              "value": "q_stats_a-3"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-4",
+              "value": "q_stats_a-4"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-5",
+              "value": "q_stats_a-5"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-6",
+              "value": "q_stats_a-6"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_a-7",
+              "value": "q_stats_a-7"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-0",
+              "value": "q_stats_b-0"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-1",
+              "value": "q_stats_b-1"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-2",
+              "value": "q_stats_b-2"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-3",
+              "value": "q_stats_b-3"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-4",
+              "value": "q_stats_b-4"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-5",
+              "value": "q_stats_b-5"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-6",
+              "value": "q_stats_b-6"
+            },
+            {
+              "selected": false,
+              "text": "q_stats_b-7",
+              "value": "q_stats_b-7"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-0",
+              "value": "seq_to_ooo-0"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-1",
+              "value": "seq_to_ooo-1"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-2",
+              "value": "seq_to_ooo-2"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-3",
+              "value": "seq_to_ooo-3"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-4",
+              "value": "seq_to_ooo-4"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-5",
+              "value": "seq_to_ooo-5"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-6",
+              "value": "seq_to_ooo-6"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_ooo-7",
+              "value": "seq_to_ooo-7"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-0",
+              "value": "seq_to_to-0"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-1",
+              "value": "seq_to_to-1"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-2",
+              "value": "seq_to_to-2"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-3",
+              "value": "seq_to_to-3"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-4",
+              "value": "seq_to_to-4"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-5",
+              "value": "seq_to_to-5"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-6",
+              "value": "seq_to_to-6"
+            },
+            {
+              "selected": false,
+              "text": "seq_to_to-7",
+              "value": "seq_to_to-7"
+            }
+          ],
+          "query": "show tag values from \"xr_fabric_stats\" with key = \"type\" where (\"source\" =~ /^$Hostname/ AND \"counter_name\" =~/$FabricCounters/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "DTV XR Telemetry Data",
+    "uid": "CP7Y8Il7k"
+  }
+}

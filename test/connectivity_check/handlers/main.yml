@@ -1,0 +1,7 @@
+---
+- name: Restart connectivity_check timer
+  systemd:
+    name: connectivity_check.timer
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

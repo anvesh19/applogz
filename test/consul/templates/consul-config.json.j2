@@ -1,0 +1,19 @@
+{
+    "datacenter": "{{ consul_datacenter }}",
+    "encrypt": "MvlITkAT9Dsqxe+MGX3Sjw==",
+    "data_dir": "{{ consul_data_dir }}/var",
+    "log_level": "INFO",
+{% if consul_server is defined and consul_server is sameas true %}
+    "server": true,
+    "bootstrap_expect": 3,
+{% else %}
+    "server": false,
+{% endif %}
+{% if groups["consul_servers"] is defined %}
+    "retry_join": [ {% for host in groups['consul_servers'] %}"{{hostvars[host]['ansible_host']}}"{% if not loop.last %}, {% endif %}{% endfor %} ],
+{% elif consul_servers is defined and consul_servers|length > 0 %}
+    "retry_join": [ {% for server, address in consul_servers.items() %}"{{ address }}"{% if not loop.last %}, {% endif %}{% endfor %} ],
+{% endif %}
+    "bind_addr": "{{ ansible_host }}",
+    "client_addr": "0.0.0.0"
+}

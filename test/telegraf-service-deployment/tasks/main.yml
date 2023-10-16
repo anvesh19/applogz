@@ -1,0 +1,261 @@
+---
+- name: Installing software for external source telegraf
+  become: true
+  package:
+    name: '{{ item }}'
+    state: present
+  loop:
+    - wget
+    - curl
+    - gnupg2
+    - lsb-release
+    - ca-certificates
+    - apt-transport-https
+    - software-properties-common
+    - rsync
+
+- name: Install influx key
+  become: true
+  apt_key:
+    id: '{{ influx_apt_key }}'
+    url: '{{ influx_apt_url }}'
+    state: present
+
+- name: Install Telegraf package
+  become: true
+  package:
+    name: telegraf
+    state: present
+
+- name: Make sure that telegraf user exist
+  become: true
+  user:
+    name: '{{ telegraf_user }}'
+    create_home: false
+    state: present
+
+- name: Lookup for telegrafs services
+  service_facts:
+
+- name: Create temp subconfigs directory
+  become: true
+  tempfile:
+    state: directory
+    suffix: tgconfd
+  register: tgconfd
+
+- name: Ensure telegraf.d subdir structure exist
+  become: true
+  file:
+    path: '{{ tgconfd.path }}/{{ item.path }}'
+    state: directory
+  with_community.general.filetree: '{{ telegraf_subconfig_templates_dir }}'
+  when: item.state == 'directory'
+
+- debug:
+    msg: current hostname is '{{ inventory_hostname }}'
+
+- name: Wipe all the stuff in configuration directory
+  become: true
+  file:
+    path: "{{ telegraf_config_dir }}"
+    state: absent
+
+- name: Wipe all custom things
+  become: true
+  file:
+    path: "{{ telegraf_custom_dir }}"
+    state: absent
+
+- name: Make sure that config directory exist
+  become: true
+  file:
+    path: "{{ telegraf_config_dir }}"
+    state: directory
+    owner: '{{ telegraf_user }}'
+    group: root
+    mode: '0755'
+
+- name: Make sure that subconfig directory exist
+  become: true
+  file:
+    path: "{{ telegraf_config_dir }}/{{ telegraf_subconfig_dir }}"
+    state: directory
+    owner: '{{ telegraf_user }}'
+    group: root
+    mode: '0755'
+
+- name: Make sure that custom files directory exist
+  become: true
+  file:
+    path: "{{ telegraf_custom_dir }}"
+    state: directory
+    owner: "{{ telegraf_user }}"
+    group: root
+
+- name: Render custom stuff files recursively
+  become: true
+  template:
+    src: '{{ item.root }}/{{ item.path }}'
+    dest: '{{ telegraf_custom_dir }}/{{ item.path }}'
+  with_community.general.filetree: '{{ telegraf_custom_files_dir }}'
+  when: item.state == 'file'
+
+- name: Render subconfiguration files recursively from templates
+  become: true
+  template:
+    src: '{{ item.root }}/{{ item.path }}'
+    dest: '{{ tgconfd.path }}/{{ item.path }}'
+  with_community.general.filetree: '{{ telegraf_subconfig_templates_dir }}'
+  when: item.state == 'file'
+
+# step 1: template all subconfigs to temp dir
+# step 2: move all configs, which is started similar to current host to their position in tree
+# step 3: search with regexp and delete all other configs
+# step 4: move all configs which are stay to their position in tree
+
+- name: Lookup for prefix-only subconfigs for this server
+  become: true
+  find:
+    paths: '{{ tgconfd.path }}'
+    file_type: file
+    recurse: true
+    use_regex: true
+    patterns:
+      - '{{ inventory_hostname }}(.*)$'
+  register: prefix_subconfigs
+
+- name: Prepare prefix-only files list
+  set_fact:
+    prefix_files: "{{ prefix_files|default([]) + [{'path': item.path,
+                      'parent': item.path |
+                      regex_replace(tgconfd.path + '\\/([A-Za-z_\\-0-9]+)\\/[A-Za-z_\\-0-9]+.conf', '\\1')}]
+
+                }}"
+  loop: "{{ prefix_subconfigs.files }}"
+
+- name: Create vendor subdirectories under the telegraf.d
+  become: true
+  file:
+    path: "{{ telegraf_config_dir }}/{{ telegraf_subconfig_dir }}/{{ item.parent }}"
+    state: directory
+    owner: "{{ telegraf_user }}"
+    group: root
+    recurse: yes
+  loop: "{{ prefix_files }}"
+  when: prefix_files is defined
+
+- name: Copy matched subconfig files to the destination
+  become: true
+  copy:
+    src: "{{ item.path }}"
+    dest: "{{ telegraf_config_dir }}/{{ telegraf_subconfig_dir }}/{{ item.parent }}"
+    remote_src: true
+    force: true
+  loop: "{{ prefix_files }}"
+  when: prefix_files is defined
+
+- name: Remove copied subconfigs
+  become: true
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ prefix_subconfigs.files }}"
+
+- name: Purge all other files with valid prefixes from this server
+  become: true
+  find:
+    paths: '{{ tgconfd.path }}'
+    file_type: file
+    use_regex: true
+    recurse: true
+    patterns:
+      - '(v|p)(nl|at)-(brf|ecx|vie)-(prd|dev)-(\w+[0-9][0-9])(.*)$'
+  register: prefix_other
+
+- name: Remove matched subconfigs
+  become: true
+  file:
+    path: '{{ item.path }}'
+    state: absent
+  with_items: "{{ prefix_other.files }}"
+
+- name: Copy all other generic subconfigs to a subconfiguration directory
+  become: true
+  synchronize:
+    src: '{{ tgconfd.path }}/'
+    dest: '{{ telegraf_config_dir }}/{{ telegraf_subconfig_dir }}'
+  delegate_to: "{{ inventory_hostname }}"
+
+- name: Delete temp directory
+  become: true
+  file:
+    state: absent
+    dest: '{{ tgconfd.path }}'
+
+- name: Render telegraf configurations file
+  become: true
+  template:
+    src: '{{ item.root }}/{{ item.path }}'
+    dest: '{{ telegraf_config_dir }}'
+    owner: root
+    group: root
+    mode: 0644
+  with_community.general.filetree: '{{ telegraf_config_templates_dir }}'
+  when:
+    - item.state == 'file'
+
+- name: Enumerate total configurations
+  become: true
+  find:
+    paths: '{{ telegraf_config_dir }}/'
+    file_type: file
+    patterns:
+      - "*.conf"
+  register: main_configs_files
+
+- name: Ensure that subconfig dir with correct permissions
+  become: true
+  file:
+    path: "{{ telegraf_config_dir }}/{{ telegraf_subconfig_dir }}"
+    state: directory
+    owner: '{{ telegraf_user }}'
+    group: root
+    mode: '0755'
+
+- name: Update systemd control configuration
+  become: true
+  template:
+    src: 'telegrafs.target.j2'
+    dest: '/etc/systemd/system/telegrafs.target'
+    owner: root
+    group: root
+    mode: 0644
+  vars:
+    main_configs: "{{ main_configs_files.files }}"
+
+- name: Update systemd service configuration
+  become: true
+  template:
+    src: 'telegraf@.service.j2'
+    dest: '/etc/systemd/system/telegraf@.service'
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Reload systemd
+  become: true
+  systemd:
+    daemon_reload: true
+
+- name: Enable and start Telegraf service
+  become: true
+  systemd:
+    name: telegrafs.target
+    state: restarted
+    enabled: true
+
+- name: Check if we good with service
+  become: true
+  command: systemctl is-active telegrafs.target
+

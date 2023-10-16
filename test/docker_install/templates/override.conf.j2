@@ -1,0 +1,4 @@
+[Service]
+Environment="NO_PROXY={{ docker_no_proxy_env_value | default('') }}"
+Environment="HTTP_PROXY={{ docker_http_proxy_env_value | default('') }}"
+Environment="HTTPS_PROXY={{ docker_https_proxy_env_value | default('') }}"

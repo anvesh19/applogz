@@ -1,0 +1,12 @@
+[Unit]
+Description={{ base_package_name|default('A service') }} {{ package_version|default(omit) }} Timer
+
+[Timer]
+{% if systemd_custom_timer is iterable %}
+{% for option in systemd_custom_timer %}
+{{ option }}
+{% endfor %}
+{% endif%}
+
+[Install]
+WantedBy=multi-user.target

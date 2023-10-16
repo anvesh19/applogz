@@ -1,0 +1,12 @@
+---
+- name: Configure WORKER services
+  copy:
+    src: "monsoon_worker.service"
+    dest: "{{ worker.service_path }}/monsoon_worker.service"
+  notify: reload systemctl
+
+- name: Configure PROXYCHAIN
+  copy:
+    src: "proxychains.conf"
+    dest: "/etc/proxychains.conf"
+  notify: reload service

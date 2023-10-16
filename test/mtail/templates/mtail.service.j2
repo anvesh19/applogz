@@ -1,0 +1,18 @@
+[Unit]
+Description=Prometheus mtail
+After=local-fs.target network-online.target network.target
+Wants=local-fs.target network-online.target network.target
+
+[Service]
+Type=simple
+Restart=on-failure
+Environment=GOMAXPROCS=1
+ExecStart=/usr/local/bin/mtail --logs /var/log/syslog  --progs /etc/mtail/
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%N
+User={{ mtail_owner }}
+Group=adm
+
+[Install]
+WantedBy=multi-user.target

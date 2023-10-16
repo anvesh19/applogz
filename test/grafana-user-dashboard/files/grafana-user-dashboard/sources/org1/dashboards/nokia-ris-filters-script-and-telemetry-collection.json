@@ -1,0 +1,3154 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "nokia-ris-filters-script-and-telemetry-collection",
+    "url": "/d/5-0aMXwnk/nokia-ris-filters-script-and-telemetry-collection",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 117,
+    "iteration": 1652690075936,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 30,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB snmp_metrics",
+            "decimals": 0,
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 14,
+              "w": 24,
+              "x": 0,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 16,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "hideEmpty": true,
+              "hideZero": false,
+              "max": false,
+              "min": false,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$col  - Entry ID: $tag_entry - Origin: $tag_origin - Src:$tag_src - Dest:$tag_dest - Protocol:$tag_protocol",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "entry"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "dest"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "origin"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "protocol"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "src"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "policy",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"ingress_matches_in_pkts\"), last(\"egress_matches_in_pkts\") FROM \"policy\" WHERE (\"hostname\" =~ /^$Hostname$/ AND \"entry\" =~ /^$Entry_ID$/ AND \"name\" =~ /^$Filter$/ AND \"origin\" =~ /^$Origin$/ AND \"src\" = '0.0.0.0/0_any') AND $timeFilter GROUP BY time($__interval), \"entry\", \"dest\", \"hostname\", \"name\", \"origin\", \"protocol\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "ingress_matches_in_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Ingress"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "egress_matches_in_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Egress"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "origin",
+                    "operator": "=~",
+                    "value": "/^$Origin$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "src",
+                    "operator": "=~",
+                    "value": "/^$Source$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "dest",
+                    "operator": "=~",
+                    "value": "/^$Destination$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "protocol",
+                    "operator": "=~",
+                    "value": "/^$Protocol$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress|Egress Hit [Difference] - $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:45",
+                "decimals": 0,
+                "format": "pkts",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:46",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB snmp_metrics",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 14,
+              "w": 12,
+              "x": 0,
+              "y": 15
+            },
+            "hiddenSeries": false,
+            "id": 28,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$col  - Entry ID: $tag_entry - Origin: $tag_origin - Src:$tag_src - Dest:$tag_dest - Protocol:$tag_protocol",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "entry"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "dest"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "origin"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "protocol"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "src"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "policy",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"ingress_matches_in_pkts\"), last(\"egress_matches_in_pkts\") FROM \"policy\" WHERE (\"hostname\" =~ /^$Hostname$/ AND \"entry\" =~ /^$Entry_ID$/ AND \"name\" =~ /^$Filter$/ AND \"origin\" =~ /^$Origin$/ AND \"src\" = '0.0.0.0/0_any') AND $timeFilter GROUP BY time($__interval), \"entry\", \"dest\", \"hostname\", \"name\", \"origin\", \"protocol\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "ing_rate_limiter_dropped_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Dropped Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ing_rate_limiter_forwarded_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Forwarded Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ing_rate_limiter_offered_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Offered Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "origin",
+                    "operator": "=~",
+                    "value": "/^$Origin$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "protocol",
+                    "operator": "=~",
+                    "value": "/^$Protocol$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "src",
+                    "operator": "=~",
+                    "value": "/^$Source$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "dest",
+                    "operator": "=~",
+                    "value": "/^$Destination$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress Rate Limiter [Difference]- $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:45",
+                "decimals": 0,
+                "format": "pkts",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:46",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB snmp_metrics",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 14,
+              "w": 12,
+              "x": 12,
+              "y": 15
+            },
+            "hiddenSeries": false,
+            "id": 26,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$col  - Entry ID: $tag_entry - Origin: $tag_origin - Src:$tag_src - Dest:$tag_dest - Protocol:$tag_protocol",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "entry"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "dest"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "origin"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "protocol"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "src"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "policy",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"ingress_matches_in_pkts\"), last(\"egress_matches_in_pkts\") FROM \"policy\" WHERE (\"hostname\" =~ /^$Hostname$/ AND \"entry\" =~ /^$Entry_ID$/ AND \"name\" =~ /^$Filter$/ AND \"origin\" =~ /^$Origin$/ AND \"src\" = '0.0.0.0/0_any') AND $timeFilter GROUP BY time($__interval), \"entry\", \"dest\", \"hostname\", \"name\", \"origin\", \"protocol\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "egr_rate_limiter_dropped_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Dropped Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "egr_rate_limiter_forwarded_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Forwarded Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "egr_rate_limiter_offered_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Offered Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "origin",
+                    "operator": "=~",
+                    "value": "/^$Origin$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "protocol",
+                    "operator": "=~",
+                    "value": "/^$Protocol$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "src",
+                    "operator": "=~",
+                    "value": "/^$Source$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "dest",
+                    "operator": "=~",
+                    "value": "/^$Destination$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Egress Rate Limiter [Difference] - $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:45",
+                "decimals": 0,
+                "format": "pkts",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:46",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "[Script - Difference] Ingress|Egress Hit/Rate",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 21,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB snmp_metrics",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 2
+            },
+            "hiddenSeries": false,
+            "id": 19,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$col  - Entry ID: $tag_entry - Origin: $tag_origin - Src:$tag_src - Dest:$tag_dest - Protocol:$tag_protocol",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "entry"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "dest"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "origin"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "protocol"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "src"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "policy",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"ingress_matches_in_pkts\"), last(\"egress_matches_in_pkts\") FROM \"policy\" WHERE (\"hostname\" =~ /^$Hostname$/ AND \"entry\" =~ /^$Entry_ID$/ AND \"name\" =~ /^$Filter$/ AND \"origin\" =~ /^$Origin$/ AND \"src\" = '0.0.0.0/0_any') AND $timeFilter GROUP BY time($__interval), \"entry\", \"dest\", \"hostname\", \"name\", \"origin\", \"protocol\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "ingress_matches_in_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Ingress"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "egress_matches_in_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Egress"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "origin",
+                    "operator": "=~",
+                    "value": "/^$Origin$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "src",
+                    "operator": "=~",
+                    "value": "/^$Source$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "dest",
+                    "operator": "=~",
+                    "value": "/^$Destination$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "protocol",
+                    "operator": "=~",
+                    "value": "/^$Protocol$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress|Egress Hit - $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:45",
+                "decimals": 0,
+                "format": "pkts",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:46",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB snmp_metrics",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 14,
+              "w": 12,
+              "x": 0,
+              "y": 17
+            },
+            "hiddenSeries": false,
+            "id": 24,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$col  - Entry ID: $tag_entry - Origin: $tag_origin - Src:$tag_src - Dest:$tag_dest - Protocol:$tag_protocol",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "entry"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "dest"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "origin"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "protocol"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "src"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "policy",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"ingress_matches_in_pkts\"), last(\"egress_matches_in_pkts\") FROM \"policy\" WHERE (\"hostname\" =~ /^$Hostname$/ AND \"entry\" =~ /^$Entry_ID$/ AND \"name\" =~ /^$Filter$/ AND \"origin\" =~ /^$Origin$/ AND \"src\" = '0.0.0.0/0_any') AND $timeFilter GROUP BY time($__interval), \"entry\", \"dest\", \"hostname\", \"name\", \"origin\", \"protocol\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "ing_rate_limiter_dropped_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Dropped Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ing_rate_limiter_forwarded_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Forwarded Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ing_rate_limiter_offered_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Offered Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "origin",
+                    "operator": "=~",
+                    "value": "/^$Origin$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "protocol",
+                    "operator": "=~",
+                    "value": "/^$Protocol$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "src",
+                    "operator": "=~",
+                    "value": "/^$Source$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "dest",
+                    "operator": "=~",
+                    "value": "/^$Destination$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress Rate Limiter - $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:45",
+                "decimals": 0,
+                "format": "pkts",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:46",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "InfluxDB snmp_metrics",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 14,
+              "w": 12,
+              "x": 12,
+              "y": 17
+            },
+            "hiddenSeries": false,
+            "id": 23,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$col  - Entry ID: $tag_entry - Origin: $tag_origin - Src:$tag_src - Dest:$tag_dest - Protocol:$tag_protocol",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "entry"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "dest"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "origin"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "protocol"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "src"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "policy",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"ingress_matches_in_pkts\"), last(\"egress_matches_in_pkts\") FROM \"policy\" WHERE (\"hostname\" =~ /^$Hostname$/ AND \"entry\" =~ /^$Entry_ID$/ AND \"name\" =~ /^$Filter$/ AND \"origin\" =~ /^$Origin$/ AND \"src\" = '0.0.0.0/0_any') AND $timeFilter GROUP BY time($__interval), \"entry\", \"dest\", \"hostname\", \"name\", \"origin\", \"protocol\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "egr_rate_limiter_dropped_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Dropped Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "egr_rate_limiter_forwarded_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Forwarded Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "egr_rate_limiter_offered_pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Offered Packets"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "origin",
+                    "operator": "=~",
+                    "value": "/^$Origin$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "protocol",
+                    "operator": "=~",
+                    "value": "/^$Protocol$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "src",
+                    "operator": "=~",
+                    "value": "/^$Source$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "dest",
+                    "operator": "=~",
+                    "value": "/^$Destination$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Egress Rate Limiter - $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:45",
+                "decimals": 0,
+                "format": "pkts",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:46",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "[Script] Ingress|Egress Hit/Rate",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 2
+        },
+        "id": 14,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "nokia1",
+            "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 1,
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 3
+            },
+            "hiddenSeries": false,
+            "id": 9,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "hideEmpty": false,
+              "hideZero": false,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "filter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "slot_number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "entry_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "sros_ip_filter_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "card_egress_hit_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Egress_hit_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_ingress_hit_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Ingress_hit_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=",
+                    "value": "ch-zrh03b-ri1"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "filter_name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry_id",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress/Egress Hit [Difference] for filter  $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:85",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:86",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "nokia1",
+            "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 16,
+              "w": 12,
+              "x": 0,
+              "y": 18
+            },
+            "hiddenSeries": false,
+            "id": 11,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "filter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "slot_number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "entry_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "sros_ip_filter_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "card_ingress_rate_limiter_dropped_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Ingress Dropped_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_ingress_rate_limiter_forwarded_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Ingress Forwarded_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_ingress_rate_limiter_offered_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Ingress Offered_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=",
+                    "value": "ch-zrh03b-ri1"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "filter_name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry_id",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress Rate Limiter for filter [Difference] $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:85",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:86",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "nokia1",
+            "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 16,
+              "w": 12,
+              "x": 12,
+              "y": 18
+            },
+            "hiddenSeries": false,
+            "id": 12,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "filter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "slot_number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "entry_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "sros_ip_filter_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"card/egress_rate_limiter/dropped_pkt\") AS \"Egress Dropped_pkt\", last(\"card/egress_rate_limiter/forwarded_pkt\") AS \"Egress Forwarded_pkt\", last(\"card/egress_rate_limiter/offered_pkt\") AS \"Egress Offered_pkt\" FROM \"sros_ip_filter_stats\" WHERE (\"source\" = 'ch-zrh03b-ri1' AND \"filter_name\" =~ /^$Filter$/) AND $timeFilter GROUP BY time($__interval), \"filter_name\", \"slot_number\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "card_egress_rate_limiter_dropped_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Egress Dropped_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_egress_rate_limiter_forwarded_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Egress Forwarded_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_egress_rate_limiter_offered_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [],
+                      "type": "non_negative_difference"
+                    },
+                    {
+                      "params": [
+                        "Egress Offered_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=",
+                    "value": "ch-zrh03b-ri1"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "filter_name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry_id",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Egress Rate Limiter [Difference] for filter  $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:85",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:86",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Telemetry Data [Difference]",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 3
+        },
+        "id": 32,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "nokia1",
+            "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 1,
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 4
+            },
+            "hiddenSeries": false,
+            "id": 33,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "hideEmpty": false,
+              "hideZero": false,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "filter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "slot_number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "entry_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "sros_ip_filter_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "card_egress_hit_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Egress_hit_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_ingress_hit_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Ingress_hit_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=",
+                    "value": "ch-zrh03b-ri1"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "filter_name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry_id",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress/Egress Hit [Difference] for filter  $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:85",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:86",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "nokia1",
+            "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 16,
+              "w": 12,
+              "x": 0,
+              "y": 19
+            },
+            "hiddenSeries": false,
+            "id": 34,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "filter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "slot_number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "entry_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "sros_ip_filter_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "card_ingress_rate_limiter_dropped_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Ingress Dropped_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_ingress_rate_limiter_forwarded_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Ingress Forwarded_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_ingress_rate_limiter_offered_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Ingress Offered_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=",
+                    "value": "ch-zrh03b-ri1"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "filter_name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry_id",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Ingress Rate Limiter for filter [Difference] $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:85",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:86",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "nokia1",
+            "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 16,
+              "w": 12,
+              "x": 12,
+              "y": 19
+            },
+            "hiddenSeries": false,
+            "id": 35,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "filter_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "slot_number"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "entry_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "sros_ip_filter_stats",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT last(\"card/egress_rate_limiter/dropped_pkt\") AS \"Egress Dropped_pkt\", last(\"card/egress_rate_limiter/forwarded_pkt\") AS \"Egress Forwarded_pkt\", last(\"card/egress_rate_limiter/offered_pkt\") AS \"Egress Offered_pkt\" FROM \"sros_ip_filter_stats\" WHERE (\"source\" = 'ch-zrh03b-ri1' AND \"filter_name\" =~ /^$Filter$/) AND $timeFilter GROUP BY time($__interval), \"filter_name\", \"slot_number\" fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "card_egress_rate_limiter_dropped_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Egress Dropped_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_egress_rate_limiter_forwarded_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Egress Forwarded_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "card_egress_rate_limiter_offered_pkt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Egress Offered_pkt"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "source",
+                    "operator": "=",
+                    "value": "ch-zrh03b-ri1"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "filter_name",
+                    "operator": "=~",
+                    "value": "/^$Filter$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "entry_id",
+                    "operator": "=~",
+                    "value": "/^$Entry_ID$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "source",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Egress Rate Limiter [Difference] for filter  $Filter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:85",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:86",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Telemetry Data",
+        "type": "row"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "ch-zrh03b-ri1",
+            "value": "ch-zrh03b-ri1"
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname",
+          "multi": false,
+          "name": "Hostname",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"hostname\"",
+          "refresh": 1,
+          "regex": "/.*-ri.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "IX-V4-Sunrise-in",
+            "value": "IX-V4-Sunrise-in"
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"name\" where(\"hostname\"=~ /$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "Filter",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"name\" where(\"hostname\"=~ /$Hostname/)",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "10"
+            ],
+            "value": [
+              "10"
+            ]
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"entry\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Entry ID",
+          "multi": true,
+          "name": "Entry_ID",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"entry\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/)",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"origin\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Origin",
+          "multi": true,
+          "name": "Origin",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"origin\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/)",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"src\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/ AND \"entry\" =~ /^$Entry_ID$/ )",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "Source",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"src\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/ AND \"entry\" =~ /^$Entry_ID$/ )",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"dest\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/ AND \"entry\" =~ /^$Entry_ID$/ )",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "Destination",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"dest\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/ AND \"entry\" =~ /^$Entry_ID$/ )",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "Undefined",
+            "value": "Undefined"
+          },
+          "datasource": "InfluxDB snmp_metrics",
+          "definition": "show tag values from \"policy\" with key=\"protocol\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/ AND \"entry\" =~ /^$Entry_ID$/ )",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "Protocol",
+          "options": [],
+          "query": "show tag values from \"policy\" with key=\"protocol\" where(\"name\"='$Filter' AND \"hostname\"=~ /$Hostname/ AND \"entry\" =~ /^$Entry_ID$/ )",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Nokia RIs Filters - Script  & Telemetry Collection",
+    "uid": "5-0aMXwnk"
+  }
+}

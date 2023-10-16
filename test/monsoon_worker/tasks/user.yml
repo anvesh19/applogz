@@ -1,0 +1,10 @@
+---
+- name: Ensure group "monsoon" exists
+  group:
+    name: monsoon
+    state: present
+
+- name: Ensure user "monsoon" exists
+  user:
+    name: monsoon
+    group: monsoon

@@ -1,0 +1,38 @@
+set nohlsearch
+
+colo peachpuff
+syntax on
+set expandtab
+set tabstop=4
+set shiftwidth=4
+set autoindent
+
+set showtabline=0 " don't show tabline
+
+hi StatusLine ctermbg=0 cterm=none
+
+if has("statusline")
+    set statusline =            " clear
+    set statusline+=%r          " read only flag '[RO]'
+    set statusline+=%h          " help flag '[Help]'
+    set statusline+=%=          " left/right separation point
+    set statusline+=%l          " line/lines
+    set statusline+=\ \ \ \ \
+endif
+
+if &diff
+    syntax off
+    highlight DiffAdd    cterm=none ctermfg=2 ctermbg=17 gui=none guifg=bg guibg=Red
+    highlight DiffDelete cterm=none ctermfg=2 ctermbg=17 gui=none guifg=bg guibg=Red
+    highlight DiffChange cterm=none ctermfg=2 ctermbg=17 gui=none guifg=bg guibg=Red
+    highlight DiffText   cterm=none ctermfg=2 ctermbg=88 gui=none guifg=bg guibg=Red
+
+    hi Folded   ctermfg=darkgrey ctermbg=NONE
+    hi FoldColumn   ctermfg=darkgrey ctermbg=NONE
+endif
+
+set list
+set listchars=tab:>-
+
+autocmd InsertEnter * set paste
+autocmd CursorMoved * set nopaste

@@ -1,0 +1,25 @@
+---
+- name: Ensure gpg
+  apt:
+    pkg: gpg
+    state: present
+    update_cache: yes
+
+- name: Add gpg key
+  apt_key:
+    url: "https://apt.releases.hashicorp.com/gpg"
+    state: present
+    keyring: "/usr/share/keyrings/hashicorp-archive-keyring.gpg"
+  environment:
+    https_proxy: "{{ http_proxy }}"
+
+- name: Copy vault repository
+  template:
+    src: hashicorp.list.j2
+    dest: /etc/apt/sources.list.d/hashicorp.list
+
+- name: Install vault
+  apt:
+    pkg: vault
+    state: present
+    update_cache: yes

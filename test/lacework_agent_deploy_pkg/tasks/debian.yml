@@ -1,0 +1,18 @@
+- name: Check if Debian version is valid
+  ansible.builtin.assert:
+    that: ansible_facts['distribution_version'] is version('9', '>=')
+- name: Add apt signing key
+  ansible.builtin.apt_key:
+    keyserver: hkp://keyserver.ubuntu.com:80
+    id: EE0CC692
+    state: present
+- name: Add lacework repository into source list
+  ansible.builtin.apt_repository:
+    repo: "deb [arch=amd64] https://packages.lacework.net/latest/DEB/{{ ansible_distribution | lower }} {{ ansible_distribution_release }} main"
+    filename: lacework
+    state: present
+    update_cache: true
+- name: Install lacework datacollector
+  ansible.builtin.apt:
+    name: lacework
+    state: "{{ lacework_agent_pkg_state }}"

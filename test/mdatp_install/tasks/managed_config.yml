@@ -1,0 +1,23 @@
+- name: Checking config directory
+  stat:
+    path: /etc/systemd/system/mdatp.service.d
+  register: config_dir
+
+- name: Create config directory
+  file:
+    path: /etc/opt/microsoft/mdatp/managed/
+    recurse: true
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  when: config_dir.stat.exists == false
+
+- name: Put mdatp_managed.json into /etc/opt/microsoft/mdatp
+  template:
+    src: mdatp_managed.json.j2
+    dest: /etc/opt/microsoft/mdatp/managed/mdatp_managed.json
+    mode: 0600
+    owner: root
+    group: root
+  notify: Restart mdatp

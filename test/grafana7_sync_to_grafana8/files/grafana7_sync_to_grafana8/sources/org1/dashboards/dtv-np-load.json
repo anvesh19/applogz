@@ -1,0 +1,1226 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "dtv-np-load",
+    "url": "/d/8toOuWf7k/dtv-np-load",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 96,
+    "iteration": 1646743298583,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 17,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 4,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node_id - $tag_node_packet_id",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_packet_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_load_all",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "load_perc"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_id",
+                "operator": "=~",
+                "value": "/^$Slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_packet_id",
+                "operator": "=~",
+                "value": "/^$NP_ID$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - NP  Load Percentage",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:8571",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:8572",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 17,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 6,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node_id - $tag_node_packet_id",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_packet_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_load_all",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "load_perc"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_id",
+                "operator": "=~",
+                "value": "/^$Slot2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_packet_id",
+                "operator": "=~",
+                "value": "/^$NP_ID2$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname2 - NP  Load Percentage",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:8571",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:8572",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 18,
+          "w": 12,
+          "x": 0,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 5,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node_id - $tag_node_packet_id",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_packet_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_load_all",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "packet_rate"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_id",
+                "operator": "=~",
+                "value": "/^$Slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_packet_id",
+                "operator": "=~",
+                "value": "/^$NP_ID$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - NP  Load PPS",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:8571",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:8572",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 18,
+          "w": 12,
+          "x": 12,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 7,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node_id - $tag_node_packet_id",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node_packet_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_load_all",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "packet_rate"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_id",
+                "operator": "=~",
+                "value": "/^$Slot2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node_packet_id",
+                "operator": "=~",
+                "value": "/^$NP_ID2$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname2 - NP  Load PPS",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:8571",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:8572",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "pl-waw10a-ra1"
+            ],
+            "value": [
+              "pl-waw10a-ra1"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_load_all with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname_1",
+          "multi": false,
+          "name": "Hostname",
+          "options": [
+            {
+              "selected": true,
+              "text": "dmuotf030",
+              "value": "dmuotf030"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra50",
+              "value": "nl-ams02e-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra60",
+              "value": "nl-ams02e-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra50",
+              "value": "nl-hlm01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra60",
+              "value": "nl-hlm01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra50",
+              "value": "nl-mnd01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra60",
+              "value": "nl-mnd01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra50",
+              "value": "nl-tbg01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra60",
+              "value": "nl-tbg01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra1",
+              "value": "pl-waw10a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra2",
+              "value": "pl-waw10a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra201",
+              "value": "pl-waw10a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra202",
+              "value": "pl-waw10a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr103-new",
+              "value": "slr-tr0004-cr103-new"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr104-new",
+              "value": "slr-tr0004-cr104-new"
+            }
+          ],
+          "query": "show tag values from asr9k_np_load_all with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_load_all with key=\"node_id\" where(hostname=~ /$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Slot_1",
+          "multi": true,
+          "name": "Slot",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "0/0/CPU0",
+              "value": "0/0/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/2/CPU0",
+              "value": "0/2/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/4/CPU0",
+              "value": "0/4/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/5/CPU0",
+              "value": "0/5/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/6/CPU0",
+              "value": "0/6/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/7/CPU0",
+              "value": "0/7/CPU0"
+            }
+          ],
+          "query": "show tag values from asr9k_np_load_all with key=\"node_id\" where(hostname=~ /$Hostname/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "NP1",
+              "NP2"
+            ],
+            "value": [
+              "NP1",
+              "NP2"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_load_all with key=\"node_packet_id\" where(hostname=~ /$Hostname/ AND node_id=~ /$Slot/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "NP_ID_1",
+          "multi": true,
+          "name": "NP_ID",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "NP0",
+              "value": "NP0"
+            },
+            {
+              "selected": true,
+              "text": "NP1",
+              "value": "NP1"
+            },
+            {
+              "selected": true,
+              "text": "NP2",
+              "value": "NP2"
+            },
+            {
+              "selected": false,
+              "text": "NP3",
+              "value": "NP3"
+            },
+            {
+              "selected": false,
+              "text": "NP4",
+              "value": "NP4"
+            },
+            {
+              "selected": false,
+              "text": "NP5",
+              "value": "NP5"
+            },
+            {
+              "selected": false,
+              "text": "NP6",
+              "value": "NP6"
+            },
+            {
+              "selected": false,
+              "text": "NP7",
+              "value": "NP7"
+            }
+          ],
+          "query": "show tag values from asr9k_np_load_all with key=\"node_packet_id\" where(hostname=~ /$Hostname/ AND node_id=~ /$Slot/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "nl-ams02e-ra50",
+            "value": "nl-ams02e-ra50"
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_load_all with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname_2",
+          "multi": false,
+          "name": "Hostname2",
+          "options": [
+            {
+              "selected": false,
+              "text": "dmuotf030",
+              "value": "dmuotf030"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra50",
+              "value": "nl-ams02e-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra60",
+              "value": "nl-ams02e-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra50",
+              "value": "nl-hlm01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra60",
+              "value": "nl-hlm01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra50",
+              "value": "nl-mnd01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra60",
+              "value": "nl-mnd01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra50",
+              "value": "nl-tbg01a-ra50"
+            },
+            {
+              "selected": true,
+              "text": "nl-tbg01a-ra60",
+              "value": "nl-tbg01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra1",
+              "value": "pl-waw10a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra2",
+              "value": "pl-waw10a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra201",
+              "value": "pl-waw10a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra202",
+              "value": "pl-waw10a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr103-new",
+              "value": "slr-tr0004-cr103-new"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr104-new",
+              "value": "slr-tr0004-cr104-new"
+            }
+          ],
+          "query": "show tag values from asr9k_np_load_all with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "0/0/CPU0",
+            "value": "0/0/CPU0"
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_load_all with key=\"node_id\" where(hostname=~ /$Hostname2/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Slot_2",
+          "multi": true,
+          "name": "Slot2",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "0/0/CPU0",
+              "value": "0/0/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/1/CPU0",
+              "value": "0/1/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/2/CPU0",
+              "value": "0/2/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/3/CPU0",
+              "value": "0/3/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/4/CPU0",
+              "value": "0/4/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/5/CPU0",
+              "value": "0/5/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/7/CPU0",
+              "value": "0/7/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/9/CPU0",
+              "value": "0/9/CPU0"
+            }
+          ],
+          "query": "show tag values from asr9k_np_load_all with key=\"node_id\" where(hostname=~ /$Hostname2/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "NP0",
+            "value": "NP0"
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_load_all with key=\"node_packet_id\" where(hostname=~ /$Hostname2/ AND node_id=~ /$Slot2/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "NP_ID_2",
+          "multi": true,
+          "name": "NP_ID2",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "NP0",
+              "value": "NP0"
+            },
+            {
+              "selected": false,
+              "text": "NP1",
+              "value": "NP1"
+            },
+            {
+              "selected": false,
+              "text": "NP2",
+              "value": "NP2"
+            },
+            {
+              "selected": false,
+              "text": "NP3",
+              "value": "NP3"
+            },
+            {
+              "selected": false,
+              "text": "NP4",
+              "value": "NP4"
+            },
+            {
+              "selected": false,
+              "text": "NP5",
+              "value": "NP5"
+            },
+            {
+              "selected": false,
+              "text": "NP6",
+              "value": "NP6"
+            },
+            {
+              "selected": false,
+              "text": "NP7",
+              "value": "NP7"
+            }
+          ],
+          "query": "show tag values from asr9k_np_load_all with key=\"node_packet_id\" where(hostname=~ /$Hostname2/ AND node_id=~ /$Slot2/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "DTV NP Load",
+    "uid": "8toOuWf7k"
+  }
+}

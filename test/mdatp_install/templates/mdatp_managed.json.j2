@@ -1,0 +1,78 @@
+{
+   "antivirusEngine":{
+      "enforcementLevel":"{{ mdatp_enforcement_level }}",
+      "behaviorMonitoring": "enabled",
+      "scanAfterDefinitionUpdate":false,
+      "scanArchives":true,
+      "maximumOnDemandScanThreads":2,
+      "exclusionsMergePolicy":"admin_only",
+      "exclusions":[
+         {
+            "$type":"excludedPath",
+            "isDirectory":true,
+            "path":"/opt/splunk"
+         },
+         {
+            "$type":"excludedPath",
+            "isDirectory":true,
+            "path":"/opt/splunk/var/lib/splunk"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/opt/splunkforwarder/bin/splunk"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/opt/splunkforwarder/bin/splunkd"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/opt/splunkforwarder/bin/splunkmon"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/u01/appl/splunk/bin/splunk"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/u01/appl/splunk/bin/splunkd"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/u01/appl/splunk/bin/splunkmon"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/opt/splunk/bin/splunk"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/opt/splunk/bin/splunkd"
+         },
+         {
+            "$type":"excludedFileName",
+            "name":"/opt/splunk/bin/splunkmon"
+         }
+      ],
+      "enableFileHashComputation": true,
+      "scanResultsRetentionDays": "90",
+      "threatTypeSettingsMergePolicy":"admin_only",
+      "threatTypeSettings":[
+         {
+            "key":"potentially_unwanted_application",
+            "value":"block"
+         },
+         {
+            "key":"archive_bomb",
+            "value":"audit"
+         }
+      ]
+   },
+   "cloudService":{
+      "enabled":true,
+      "diagnosticLevel":"optional",
+      "automaticSampleSubmissionConsent":"none",
+      "automaticDefinitionUpdateEnabled":true,
+      "cloudBlockLevel": "normal"
+   }
+}

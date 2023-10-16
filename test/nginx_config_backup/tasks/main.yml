@@ -1,0 +1,18 @@
+---
+- name: Copy nginx_backup service
+  copy:
+    src: nginx_backup.service
+    dest: /etc/systemd/system/nginx_backup.service
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart nginx_backup timer
+
+- name: Copy nginx_backup timer
+  copy:
+    src: nginx_backup.timer
+    dest: /etc/systemd/system/nginx_backup.timer
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart nginx_backup timer

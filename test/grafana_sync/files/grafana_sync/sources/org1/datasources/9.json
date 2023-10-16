@@ -1,0 +1,24 @@
+{
+  "id": 9,
+  "uid": "92TRaxdVz",
+  "orgId": 1,
+  "name": "Prometheus-kbw",
+  "type": "prometheus",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://prometheus-kbw.sdil.aorta.net/prometheus",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "httpMethod": "POST",
+    "tlsAuth": false,
+    "tlsSkipVerify": true
+  },
+  "secureJsonFields": {},
+  "version": 10,
+  "readOnly": false
+}

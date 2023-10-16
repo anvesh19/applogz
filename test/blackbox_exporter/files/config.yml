@@ -1,0 +1,60 @@
+modules:
+  ditto_config_http_2xx:
+    prober: http
+    timeout: 15s
+    http:
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      valid_status_codes: [] # defaults to 2xx
+      method: GET
+      follow_redirects: true
+      fail_if_body_not_matches_regexp:
+        - "country"
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+
+  ditto_config_https_2xx:
+    prober: http
+    timeout: 15s
+    http:
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      valid_status_codes: [] # defaults to 2xx
+      method: GET
+      follow_redirects: true
+      fail_if_not_ssl: true
+      fail_if_body_not_matches_regexp:
+        - "country"
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+
+  ditto_config_https_2xx_proxy:
+    prober: http
+    timeout: 15s
+    http:
+      proxy_url: "http://172.31.141.196:3128"
+      skip_resolve_phase_with_proxy: true
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      valid_status_codes: [] # defaults to 2xx
+      method: GET
+      follow_redirects: true
+      fail_if_not_ssl: true
+      fail_if_body_not_matches_regexp:
+        - "country"
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+
+  ditto_config_http_2xx_proxy:
+    prober: http
+    timeout: 15s
+    http:
+      proxy_url: "http://172.31.141.196:3128"
+      skip_resolve_phase_with_proxy: true
+      valid_http_versions: ["HTTP/1.1", "HTTP/2.0"]
+      valid_status_codes: [] # defaults to 2xx
+      method: GET
+      follow_redirects: true
+      fail_if_body_not_matches_regexp:
+        - "country"
+      preferred_ip_protocol: "ip4" # defaults to "ip6"
+      ip_protocol_fallback: false  # no fallback to "ip6"
+
+

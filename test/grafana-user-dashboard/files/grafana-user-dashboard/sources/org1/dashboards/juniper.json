@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "juniper",
+    "url": "/dashboards/f/2uJ7cFeGz/juniper",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 8,
+    "schemaVersion": 17,
+    "title": "Juniper",
+    "uid": "2uJ7cFeGz"
+  }
+}

@@ -1,0 +1,16 @@
+[Unit]
+Description=consul agent
+Requires=network-online.target
+After=network-online.target
+
+[Service]
+Restart=on-failure
+User=consul
+Group=consul
+ExecStart=/usr/local/consul/bin/consul agent -config-dir=/usr/local/consul/etc -enable-script-checks=true -ui
+ExecReload=/usr/local/consul/bin/consul reload
+KillMode=process
+LimitNOFILE=65536
+
+[Install]
+WantedBy=multi-user.target

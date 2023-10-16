@@ -1,0 +1,6 @@
+---
+- import_tasks: common_packages.yml
+- import_tasks: user.yml
+- import_tasks: monsoon_home.yml
+- import_tasks: python.yml
+- import_tasks: services.yml

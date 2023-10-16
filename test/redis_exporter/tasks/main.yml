@@ -1,0 +1,59 @@
+---
+- name: Create prometheus user
+  user:
+    name: prometheus
+    createhome: no
+    shell: /usr/sbin/nologin
+
+- name: Create config directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: prometheus
+    group: prometheus
+    mode: 0755
+  with_items:
+    - "/usr/local/prometheus"
+    - "/usr/local/prometheus/metrics"
+  register: config_directory
+
+- name: Install redis_exporter
+  block:
+    - name: Download binary
+      get_url:
+        url: "{{ redis_exporter_download_url }}"
+        dest: /usr/local/prometheus/
+
+    - name: Extract tgz
+      unarchive:
+        src: "/usr/local/prometheus/redis_exporter-v{{ redis_exporter_version }}.linux-amd64.tar.gz"
+        dest: /usr/local/prometheus/
+        remote_src: yes
+
+    - name: Copy to binary path
+      copy:
+        src: "/usr/local/prometheus/redis_exporter-v{{ redis_exporter_version }}.linux-amd64/redis_exporter"
+        dest: /usr/local/bin/
+        owner: prometheus
+        group: prometheus
+        mode: 0744
+        remote_src: yes
+      notify: Restart redis_exporter service
+
+    - name: Cleanup
+      file:
+        path: "{{ item }}"
+        state: absent
+      with_items:
+        - "/usr/local/prometheus/redis_exporter-v{{ redis_exporter_version }}.linux-amd64.tar.gz"
+        - "/usr/local/prometheus/redis_exporter-v{{ redis_exporter_version }}.linux-amd64"
+ # when: config_directory.changed
+
+- name: Copy systemd service
+  template:
+    src: redis_exporter.service.j2
+    dest: /etc/systemd/system/redis_exporter.service
+    owner: prometheus
+    group: prometheus
+    mode: 0644
+  notify: Restart redis_exporter service

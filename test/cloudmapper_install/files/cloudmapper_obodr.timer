@@ -1,0 +1,11 @@
+[Unit]
+Description=Script that execute cloudmapper which will collect AWS data and copy on place what is using that data 
+
+[Timer]
+OnCalendar=*-*-* 07:00:00
+
+Persistent=true
+Unit=cloudmapper_obodr.service
+
+[Install]
+WantedBy=multi-user.target

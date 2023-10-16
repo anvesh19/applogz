@@ -1,0 +1,4 @@
+---
+jdk_version: 11
+http_proxy: "http://172.31.141.196:3128"
+neo4j_version: "1:4.4.8"

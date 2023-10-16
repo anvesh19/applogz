@@ -1,0 +1,1 @@
+lacework_docker_image: "{{ lacework_docker_repo }}:{{ lacework_docker_tag }}"

@@ -1,0 +1,12 @@
+[Unit]
+Description={{ item.description if 'description' in item else base_package_name|default('A timer') }}
+
+[Timer]
+{% if 'timer_options' in item and item.timer_options is iterable %}
+{% for option in item.timer_options %}
+{{ option }}
+{% endfor %}
+{% endif%}
+
+[Install]
+WantedBy=multi-user.target

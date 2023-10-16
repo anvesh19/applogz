@@ -1,0 +1,842 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "npu-memory-evo",
+    "url": "/d/lPEr1oyGz/npu-memory-evo",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 8,
+    "folderTitle": "Juniper",
+    "folderUrl": "/dashboards/f/2uJ7cFeGz/juniper",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 17,
+    "iteration": 1628663357111,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "[[tag_/components/component/@name]]:[[tag_/components/component/properties/property/@name]]",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "/components/component/@name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/components/component/properties/property/@name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "device"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "jti_npu_memory_evo",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "/components/component/properties/property/state/value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "/components/component/@name",
+                "operator": "=~",
+                "value": "/^$fpc_npu$/"
+              },
+              {
+                "condition": "AND",
+                "key": "/components/component/properties/property/@name",
+                "operator": "=~",
+                "value": "/^$size$/"
+              }
+            ]
+          },
+          {
+            "alias": "[[tag_/components/component/@name]]:[[tag_/components/component/properties/property/@name]]",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "/components/component/@name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/components/component/properties/property/@name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "device"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "jti_npu_memory_evo",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "/components/component/properties/property/state/value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "/components/component/@name",
+                "operator": "=~",
+                "value": "/^$fpc_npu$/"
+              },
+              {
+                "condition": "AND",
+                "key": "/components/component/properties/property/@name",
+                "operator": "=~",
+                "value": "/^$allocated$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Memory Detailed Utilization $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:413",
+            "format": "kbytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:414",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "pl-poz02a-rc1",
+            "value": "pl-poz02a-rc1"
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values with key = device",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "device",
+          "options": [],
+          "query": "show tag values with key = device",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "FPC0:NPU0"
+            ],
+            "value": [
+              "FPC0:NPU0"
+            ]
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values with key = \"/components/component/@name\" where device =~ /^$device$/;",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": true,
+          "name": "fpc_npu",
+          "options": [],
+          "query": "show tag values with key = \"/components/component/@name\" where device =~ /^$device$/;",
+          "refresh": 1,
+          "regex": "/(FPC[0-9]+?(:)NPU[0-9]+?(.[0-9])?)/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "mem-util-beta-0-bank-0-size",
+            "value": "mem-util-beta-0-bank-0-size"
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values with key = \"/components/component/properties/property/@name\" where \"/components/component/properties/property/@name\" =~ /size$/ and device =~ /^$device$/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "size",
+          "options": [
+            {
+              "selected": true,
+              "text": "mem-util-beta-0-bank-0-size",
+              "value": "mem-util-beta-0-bank-0-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-1-size",
+              "value": "mem-util-beta-0-bank-1-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-2-size",
+              "value": "mem-util-beta-0-bank-2-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-3-size",
+              "value": "mem-util-beta-0-bank-3-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-4-size",
+              "value": "mem-util-beta-0-bank-4-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-5-size",
+              "value": "mem-util-beta-0-bank-5-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-6-size",
+              "value": "mem-util-beta-0-bank-6-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-0-size",
+              "value": "mem-util-beta-1-bank-0-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-1-size",
+              "value": "mem-util-beta-1-bank-1-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-2-size",
+              "value": "mem-util-beta-1-bank-2-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-3-size",
+              "value": "mem-util-beta-1-bank-3-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-4-size",
+              "value": "mem-util-beta-1-bank-4-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-5-size",
+              "value": "mem-util-beta-1-bank-5-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-6-size",
+              "value": "mem-util-beta-1-bank-6-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-epp-const-mem-size",
+              "value": "mem-util-epp-const-mem-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-epp-private-desc-size",
+              "value": "mem-util-epp-private-desc-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-epp-public-desc-size",
+              "value": "mem-util-epp-public-desc-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-0-size",
+              "value": "mem-util-fcv-blk-0-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-1-size",
+              "value": "mem-util-fcv-blk-1-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-2-size",
+              "value": "mem-util-fcv-blk-2-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-3-size",
+              "value": "mem-util-fcv-blk-3-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-action-entries-size",
+              "value": "mem-util-flt-action-entries-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-0-bft-0-size",
+              "value": "mem-util-flt-alpha-0-bft-0-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-0-kht-size",
+              "value": "mem-util-flt-alpha-0-kht-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-0-plt-size",
+              "value": "mem-util-flt-alpha-0-plt-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-1-bft-0-size",
+              "value": "mem-util-flt-alpha-1-bft-0-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-1-kht-size",
+              "value": "mem-util-flt-alpha-1-kht-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-1-plt-size",
+              "value": "mem-util-flt-alpha-1-plt-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-phyfilter-size",
+              "value": "mem-util-flt-phyfilter-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-scv-size",
+              "value": "mem-util-flt-scv-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-tcam-size",
+              "value": "mem-util-flt-tcam-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-vfilter-size",
+              "value": "mem-util-flt-vfilter-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-jnh-mm-global-size",
+              "value": "mem-util-jnh-mm-global-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-jnh-mm-private-size",
+              "value": "mem-util-jnh-mm-private-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-dlu-idb-size",
+              "value": "mem-util-kht-dlu-idb-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-epp-mapid-size",
+              "value": "mem-util-kht-epp-mapid-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-l2domain-size",
+              "value": "mem-util-kht-l2domain-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-slu-my-mac-size",
+              "value": "mem-util-kht-slu-my-mac-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-mce-rep-table-size",
+              "value": "mem-util-mce-rep-table-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-plct-size",
+              "value": "mem-util-plct-size"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-policer-id-size",
+              "value": "mem-util-policer-id-size"
+            }
+          ],
+          "query": "show tag values with key = \"/components/component/properties/property/@name\" where \"/components/component/properties/property/@name\" =~ /size$/ and device =~ /^$device$/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "mem-util-beta-0-bank-0-allocated",
+            "value": "mem-util-beta-0-bank-0-allocated"
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values with key = \"/components/component/properties/property/@name\" where \"/components/component/properties/property/@name\" =~ /allocated$/ and device =~ /^$device$/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "allocated",
+          "options": [
+            {
+              "selected": true,
+              "text": "mem-util-beta-0-bank-0-allocated",
+              "value": "mem-util-beta-0-bank-0-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-1-allocated",
+              "value": "mem-util-beta-0-bank-1-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-2-allocated",
+              "value": "mem-util-beta-0-bank-2-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-3-allocated",
+              "value": "mem-util-beta-0-bank-3-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-4-allocated",
+              "value": "mem-util-beta-0-bank-4-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-5-allocated",
+              "value": "mem-util-beta-0-bank-5-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-0-bank-6-allocated",
+              "value": "mem-util-beta-0-bank-6-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-0-allocated",
+              "value": "mem-util-beta-1-bank-0-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-1-allocated",
+              "value": "mem-util-beta-1-bank-1-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-2-allocated",
+              "value": "mem-util-beta-1-bank-2-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-3-allocated",
+              "value": "mem-util-beta-1-bank-3-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-4-allocated",
+              "value": "mem-util-beta-1-bank-4-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-5-allocated",
+              "value": "mem-util-beta-1-bank-5-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-beta-1-bank-6-allocated",
+              "value": "mem-util-beta-1-bank-6-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-epp-const-mem-allocated",
+              "value": "mem-util-epp-const-mem-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-epp-private-desc-allocated",
+              "value": "mem-util-epp-private-desc-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-epp-public-desc-allocated",
+              "value": "mem-util-epp-public-desc-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-0-allocated",
+              "value": "mem-util-fcv-blk-0-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-1-allocated",
+              "value": "mem-util-fcv-blk-1-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-2-allocated",
+              "value": "mem-util-fcv-blk-2-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-fcv-blk-3-allocated",
+              "value": "mem-util-fcv-blk-3-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-action-entries-allocated",
+              "value": "mem-util-flt-action-entries-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-0-bft-0-allocated",
+              "value": "mem-util-flt-alpha-0-bft-0-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-0-kht-allocated",
+              "value": "mem-util-flt-alpha-0-kht-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-0-plt-allocated",
+              "value": "mem-util-flt-alpha-0-plt-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-1-bft-0-allocated",
+              "value": "mem-util-flt-alpha-1-bft-0-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-1-kht-allocated",
+              "value": "mem-util-flt-alpha-1-kht-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-alpha-1-plt-allocated",
+              "value": "mem-util-flt-alpha-1-plt-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-phyfilter-allocated",
+              "value": "mem-util-flt-phyfilter-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-scv-allocated",
+              "value": "mem-util-flt-scv-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-tcam-allocated",
+              "value": "mem-util-flt-tcam-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-flt-vfilter-allocated",
+              "value": "mem-util-flt-vfilter-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-jnh-mm-global-allocated",
+              "value": "mem-util-jnh-mm-global-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-jnh-mm-private-allocated",
+              "value": "mem-util-jnh-mm-private-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-dlu-idb-allocated",
+              "value": "mem-util-kht-dlu-idb-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-epp-mapid-allocated",
+              "value": "mem-util-kht-epp-mapid-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-l2domain-allocated",
+              "value": "mem-util-kht-l2domain-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-kht-slu-my-mac-allocated",
+              "value": "mem-util-kht-slu-my-mac-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-mce-rep-table-allocated",
+              "value": "mem-util-mce-rep-table-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-plct-allocated",
+              "value": "mem-util-plct-allocated"
+            },
+            {
+              "selected": false,
+              "text": "mem-util-policer-id-allocated",
+              "value": "mem-util-policer-id-allocated"
+            }
+          ],
+          "query": "show tag values with key = \"/components/component/properties/property/@name\" where \"/components/component/properties/property/@name\" =~ /allocated$/ and device =~ /^$device$/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "NPU Memory (EVO)",
+    "uid": "lPEr1oyGz"
+  }
+}

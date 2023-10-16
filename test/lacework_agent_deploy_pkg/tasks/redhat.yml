@@ -1,0 +1,15 @@
+- name: Check if CentOS version is valid
+  ansible.builtin.assert:
+    that: ansible_facts['distribution_version'] is version('6', '>=')
+- name: Configure the lacework repo
+  ansible.builtin.yum_repository:
+    name: packages-lacework-prod
+    description: packages-lacework-prod
+    baseurl: https://packages.lacework.net/latest/RPMS/x86_64/
+    gpgkey: https://packages.lacework.net/latest/keys/RPM-GPG-KEY-lacework
+    gpgcheck: true
+    enabled: true
+- name: Install lacework datacollector
+  ansible.builtin.yum:
+    name: lacework
+    state: "{{ lacework_agent_pkg_state }}"

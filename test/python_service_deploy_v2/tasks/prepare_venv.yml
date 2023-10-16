@@ -1,0 +1,48 @@
+---
+- name: Ensure Debian dependencies
+  apt:
+    name: "{{ item }}"
+    update_cache: yes
+  loop: "{{ debian_dependencies }}"
+  when: debian_dependencies is defined
+
+- name: Ensure service user
+  user:
+    name: "{{ service_user }}"
+    state: present
+    password: "{{ lookup('password', '/dev/null length=20') | password_hash('sha512') }}"
+    update_password: on_create
+
+- name: Ensure base directory exists
+  file:
+    path: "{{ base_dir }}"
+    owner: "{{ service_user }}"
+    group: "{{ service_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Ensure pip prerequisites
+  pip:
+    name: "{{ item }}"
+    virtualenv: "{{ venv_dir }}"
+    virtualenv_command: "{{ venv_command }}"
+    extra_args: "--upgrade"
+  loop: "{{ pip_dependencies }}"
+  when: pip_dependencies is defined
+
+- name: Ensure package
+  pip:
+    name: "{{ package_name }}"
+    extra_args: "{{ pip_extra_args | default(omit) }}"
+    virtualenv: "{{ venv_dir }}"
+    virtualenv_command: "{{ venv_command }}"
+
+- name: Ensure permitions
+  file:
+    path: "{{ base_dir }}"
+    owner: "{{ service_user }}"
+    group: "{{ service_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes

@@ -1,0 +1,73 @@
+---
+- name: Generate ECX Prometheus configuration based on the template
+  template:
+    src: configs/prometheus_ecx.yml.j2
+    dest: "{{ prometheus_config_dir_ecx }}/prometheus.yml"
+    owner: nobody
+    group: nogroup
+    mode: 0644
+  when: prometheus_dc == "ecx"
+  notify: Reload prometheus
+
+- name: Copy KBW Prometheus configuration
+  copy:
+    src: configs/prometheus_kbw.yml
+    dest: "{{ prometheus_config_dir_kbw }}/prometheus.yml"
+    owner: nobody
+    group: nogroup
+    mode: 0644
+  when: prometheus_dc == "kbw"
+  notify: Reload prometheus
+ 
+- name: Copy grafana config on ECX
+  template:
+    src: files/configs/grafana_ldap_ecx.yml
+    dest: "{{ grafana_config_dir_ecx }}/ldap.toml"
+    owner: 472
+    group: 472
+    mode: 0644
+  when: prometheus_dc == "ecx"
+
+- name: Copy grafana config on KBW
+  template:
+    src: files/configs/grafana_ldap_kbw.yml
+    dest: "{{ grafana_config_dir_kbw }}/ldap.toml"
+    owner: 472
+    group: 472
+    mode: 0644
+  when: prometheus_dc == "kbw"
+  
+- name: Copy alertmanager config on ECX
+  template:
+    src: configs/alertmanager_ecx.yml.j2
+    dest: "{{ alertmanager_config_dir_ecx }}/alertmanager.yml"
+    owner: root
+    group: root
+    mode: 0644
+  when: prometheus_dc == "ecx"
+  notify: Reload alertmanager
+
+- name: Copy alertmanager config on KBW
+  template:
+    src: configs/alertmanager_kbw.yml.j2
+    dest: "{{ alertmanager_config_dir_kbw }}/alertmanager.yml"
+    owner: root
+    group: root
+    mode: 0644
+  when: prometheus_dc == "kbw"
+  notify: Reload alertmanager
+
+- name: Copy alert_rules files on ECX
+  synchronize:
+    src: alert_rules/
+    dest: "{{ prometheus_config_dir_ecx }}/"
+  when: prometheus_dc == "ecx"
+  notify: Reload prometheus
+
+- name: Copy alert_rules files on KBW
+  synchronize:
+    src: alert_rules/
+    dest: "{{ prometheus_config_dir_kbw }}/"
+  when: prometheus_dc == "kbw"
+  notify: Reload prometheus
+  

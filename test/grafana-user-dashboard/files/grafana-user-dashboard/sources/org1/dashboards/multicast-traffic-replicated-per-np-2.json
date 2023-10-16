@@ -1,0 +1,1797 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "multicast-traffic-replicated-per-np-2",
+    "url": "/d/7pff76-nz/multicast-traffic-replicated-per-np-2",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 94,
+    "iteration": 1648206087942,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 13,
+        "panels": [],
+        "title": "$counters_for  is responsable of Ports: $NP_Port_Range",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 7,
+        "panels": [],
+        "title": "Stacked",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "bps multicast traffic that has been sent for replication and which has been received after replication for each NP Traffic Manager (TM) ASIC.\n\n\nPhysical limitation:\n\nTyphoon  40 Gbps\n\nTomahawk 158 Gbps. ",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 2
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_node $tag_counters_for $tag_counter $tag_counters_for",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "counter"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "counters_for"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_counters",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rate_pps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "*12000"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$hostname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counter",
+                "operator": "=~",
+                "value": "/MDF_LB_TM/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counters_for",
+                "operator": "=~",
+                "value": "/^$counters_for$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$hostname - bps multicast traffic for replication for each NP Traffic Manager (TM) ASIC.",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1113",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1114",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "bps multicast traffic that has been sent for replication and which has been received after replication for each NP Traffic Manager (TM) ASIC.\n\n\nPhysical limitation:\n\nTyphoon  40 Gbps\n\nTomahawk 158 Gbps. ",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": true,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_node $tag_counters_for $tag_counter $tag_counters_for",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "counter"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "counters_for"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_counters",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rate_pps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "*12000"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$hostname2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counter",
+                "operator": "=~",
+                "value": "/MDF_LB_TM/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counters_for",
+                "operator": "=~",
+                "value": "/^$counters_for$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$hostname2 - bps multicast traffic for replication for each NP Traffic Manager (TM) ASIC.",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1113",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1114",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "id": 5,
+        "panels": [],
+        "title": "Non-Stacked",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "bps multicast traffic that has been sent for replication and which has been received after replication for each NP Traffic Manager (TM) ASIC.\n\n\nPhysical limitation:\n\nTyphoon  40 Gbps\n\nTomahawk 158 Gbps. ",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 33
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_node $tag_counters_for $tag_counter $tag_counters_for",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "counter"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "counters_for"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_counters",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rate_pps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "*12000"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$hostname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counter",
+                "operator": "=~",
+                "value": "/MDF_LB_TM/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counters_for",
+                "operator": "=~",
+                "value": "/^$counters_for$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$hostname - bps multicast traffic for replication for each NP Traffic Manager (TM) ASIC.",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1113",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1114",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "bps multicast traffic that has been sent for replication and which has been received after replication for each NP Traffic Manager (TM) ASIC.\n\n\nPhysical limitation:\n\nTyphoon  40 Gbps\n\nTomahawk 158 Gbps. ",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 48
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_node $tag_counters_for $tag_counter $tag_counters_for",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "counter"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "counters_for"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_counters",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "rate_pps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "*12000"
+                  ],
+                  "type": "math"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$hostname2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counter",
+                "operator": "=~",
+                "value": "/MDF_LB_TM/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "counters_for",
+                "operator": "=~",
+                "value": "/^$counters_for$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$hostname2 - bps multicast traffic for replication for each NP Traffic Manager (TM) ASIC.",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1113",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1114",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "NP0"
+            ],
+            "value": [
+              "NP0"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_counters with key=\"counters_for\" where hostname =~ /$hostname/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "NP ID",
+          "multi": true,
+          "name": "counters_for",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "NP0",
+              "value": "NP0"
+            },
+            {
+              "selected": false,
+              "text": "NP1",
+              "value": "NP1"
+            },
+            {
+              "selected": false,
+              "text": "NP2",
+              "value": "NP2"
+            },
+            {
+              "selected": false,
+              "text": "NP3",
+              "value": "NP3"
+            },
+            {
+              "selected": false,
+              "text": "NP4",
+              "value": "NP4"
+            },
+            {
+              "selected": false,
+              "text": "NP5",
+              "value": "NP5"
+            },
+            {
+              "selected": false,
+              "text": "NP6",
+              "value": "NP6"
+            },
+            {
+              "selected": false,
+              "text": "NP7",
+              "value": "NP7"
+            }
+          ],
+          "query": "show tag values from asr9k_np_counters with key=\"counters_for\" where hostname =~ /$hostname/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "0/4/CPU0"
+            ],
+            "value": [
+              "0/4/CPU0"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_fabric_counters with key=\"node\" where hostname =$hostname",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Slot",
+          "multi": true,
+          "name": "slot",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "0/0/CPU0",
+              "value": "0/0/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/1/CPU0",
+              "value": "0/1/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/2/CPU0",
+              "value": "0/2/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/3/CPU0",
+              "value": "0/3/CPU0"
+            },
+            {
+              "selected": true,
+              "text": "0/4/CPU0",
+              "value": "0/4/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/5/CPU0",
+              "value": "0/5/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/6/CPU0",
+              "value": "0/6/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/7/CPU0",
+              "value": "0/7/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/8/CPU0",
+              "value": "0/8/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/9/CPU0",
+              "value": "0/9/CPU0"
+            }
+          ],
+          "query": "show tag values from asr9k_np_fabric_counters with key=\"node\" where hostname =$hostname",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "nl-tbg01a-ra50",
+            "value": "nl-tbg01a-ra50"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname_1",
+          "multi": false,
+          "name": "hostname",
+          "options": [
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra50",
+              "value": "nl-ams02e-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra60",
+              "value": "nl-ams02e-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-sc50",
+              "value": "nl-ams02e-sc50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-sc60",
+              "value": "nl-ams02e-sc60"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra15",
+              "value": "nl-ams02c-ra15"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra16",
+              "value": "nl-ams02c-ra16"
+            },
+            {
+              "selected": true,
+              "text": "nl-tbg01a-ra50",
+              "value": "nl-tbg01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra60",
+              "value": "nl-tbg01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra15",
+              "value": "tb-rc0001-ra15"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra16",
+              "value": "tb-rc0001-ra16"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-cs135-vs",
+              "value": "tb-rc0001-cs135-vs"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-cs136-vs",
+              "value": "tb-rc0001-cs136-vs"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr103-new",
+              "value": "slr-tr0004-cr103-new"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr104-new",
+              "value": "slr-tr0004-cr104-new"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra60",
+              "value": "nl-mnd01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra50",
+              "value": "nl-mnd01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra50",
+              "value": "nl-hlm01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra60",
+              "value": "nl-hlm01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra1",
+              "value": "pl-waw18a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra2",
+              "value": "pl-waw18a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra201",
+              "value": "pl-waw18a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra202",
+              "value": "pl-waw18a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd26",
+              "value": "pl-waw04a-rd26"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd27",
+              "value": "pl-waw04a-rd27"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ss201",
+              "value": "pl-waw18a-ss201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ss202",
+              "value": "pl-waw18a-ss202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl201",
+              "value": "pl-waw18a-sl201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl202",
+              "value": "pl-waw18a-sl202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl203",
+              "value": "pl-waw18a-sl203"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl204",
+              "value": "pl-waw18a-sl204"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-ram-c",
+              "value": "ie-dinc-ram-c"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-ram-d",
+              "value": "ie-dinc-ram-d"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-01",
+              "value": "ie-dinc-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-02",
+              "value": "ie-dinc-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-ram-a",
+              "value": "ie-dtal-ram-a"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-ram-b",
+              "value": "ie-dtal-ram-b"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-01",
+              "value": "ie-dtal-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-02",
+              "value": "ie-dtal-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf030",
+              "value": "dmuotf030"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf031",
+              "value": "dmuotf031"
+            },
+            {
+              "selected": false,
+              "text": "ch-mesotf096",
+              "value": "ch-mesotf096"
+            },
+            {
+              "selected": false,
+              "text": "ch-mesotf097",
+              "value": "ch-mesotf097"
+            },
+            {
+              "selected": false,
+              "text": "mlxotf901",
+              "value": "mlxotf901"
+            },
+            {
+              "selected": false,
+              "text": "mlxotf902",
+              "value": "mlxotf902"
+            },
+            {
+              "selected": false,
+              "text": "carnhf101",
+              "value": "carnhf101"
+            },
+            {
+              "selected": false,
+              "text": "carnhf202",
+              "value": "carnhf202"
+            },
+            {
+              "selected": false,
+              "text": "carbrn101",
+              "value": "carbrn101"
+            },
+            {
+              "selected": false,
+              "text": "carbrn202",
+              "value": "carbrn202"
+            },
+            {
+              "selected": false,
+              "text": "carzwd101",
+              "value": "carzwd101"
+            },
+            {
+              "selected": false,
+              "text": "carzwd202",
+              "value": "carzwd202"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-c",
+              "value": "at-vie-tc-dtv-asr9k-c"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-d",
+              "value": "at-vie-tc-dtv-asr9k-d"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-agg01",
+              "value": "at-vie-tc-n9k-agg01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-agg02",
+              "value": "at-vie-tc-n9k-agg02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge01",
+              "value": "at-vie-tc-n9k-edge01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge02",
+              "value": "at-vie-tc-n9k-edge02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge03",
+              "value": "at-vie-tc-n9k-edge03"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge04",
+              "value": "at-vie-tc-n9k-edge04"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-ilo01",
+              "value": "at-vie-tc-ilo01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-ilo02",
+              "value": "at-vie-tc-ilo02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-mgmt01",
+              "value": "at-vie-tc-mgmt01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-mgmt02",
+              "value": "at-vie-tc-mgmt02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge02",
+              "value": "at-vie-tc-n9k-edge02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-sk11-dtv-n7h6",
+              "value": "at-vie-sk11-dtv-n7h6"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-sk11-dtv-n7h7",
+              "value": "at-vie-sk11-dtv-n7h7"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra3",
+              "value": "nl-srk03a-ra3"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra4",
+              "value": "nl-srk03a-ra4"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra1",
+              "value": "pl-waw10a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra2",
+              "value": "pl-waw10a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra201",
+              "value": "pl-waw10a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra202",
+              "value": "pl-waw10a-ra202"
+            }
+          ],
+          "query": " nl-ams02e-ra50, nl-ams02e-ra60, nl-ams02e-sc50, nl-ams02e-sc60, nl-ams02c-ra15, nl-ams02c-ra16, nl-tbg01a-ra50, nl-tbg01a-ra60, tb-rc0001-ra15, tb-rc0001-ra16,tb-rc0001-cs135-vs, tb-rc0001-cs136-vs, slr-tr0004-cr103-new, slr-tr0004-cr104-new,nl-mnd01a-ra60,nl-mnd01a-ra50,nl-hlm01a-ra50,nl-hlm01a-ra60,pl-waw18a-ra1,pl-waw18a-ra2,pl-waw18a-ra201,pl-waw18a-ra202,pl-waw04a-rd26,pl-waw04a-rd27, pl-waw18a-ss201, pl-waw18a-ss202, pl-waw18a-sl201, pl-waw18a-sl202, pl-waw18a-sl203, pl-waw18a-sl204,ie-dinc-ram-c,ie-dinc-ram-d,ie-dinc-dtvasr-01,ie-dinc-dtvasr-02,ie-dtal-ram-a,ie-dtal-ram-b,ie-dtal-dtvasr-01,ie-dtal-dtvasr-02,dmuotf030, dmuotf031, ch-mesotf096, ch-mesotf097, mlxotf901, mlxotf902, carnhf101, carnhf202, carbrn101, carbrn202, carzwd101, carzwd202, at-vie-tc-dtv-asr9k-c, at-vie-tc-dtv-asr9k-d, at-vie-tc-n9k-agg01, at-vie-tc-n9k-agg02, at-vie-tc-n9k-edge01, at-vie-tc-n9k-edge02, at-vie-tc-n9k-edge03, at-vie-tc-n9k-edge04, at-vie-tc-ilo01, at-vie-tc-ilo02, at-vie-tc-mgmt01, at-vie-tc-mgmt02, at-vie-tc-n9k-edge02, at-vie-sk11-dtv-n7h6, at-vie-sk11-dtv-n7h7,nl-srk03a-ra3,nl-srk03a-ra4, pl-waw10a-ra1, pl-waw10a-ra2, pl-waw10a-ra201, pl-waw10a-ra202",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "nl-tbg01a-ra60",
+            "value": "nl-tbg01a-ra60"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname_2",
+          "multi": false,
+          "name": "hostname2",
+          "options": [
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra50",
+              "value": "nl-ams02e-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra60",
+              "value": "nl-ams02e-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-sc50",
+              "value": "nl-ams02e-sc50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-sc60",
+              "value": "nl-ams02e-sc60"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra15",
+              "value": "nl-ams02c-ra15"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra16",
+              "value": "nl-ams02c-ra16"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra50",
+              "value": "nl-tbg01a-ra50"
+            },
+            {
+              "selected": true,
+              "text": "nl-tbg01a-ra60",
+              "value": "nl-tbg01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra15",
+              "value": "tb-rc0001-ra15"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra16",
+              "value": "tb-rc0001-ra16"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-cs135-vs",
+              "value": "tb-rc0001-cs135-vs"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-cs136-vs",
+              "value": "tb-rc0001-cs136-vs"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr103-new",
+              "value": "slr-tr0004-cr103-new"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr104-new",
+              "value": "slr-tr0004-cr104-new"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra60",
+              "value": "nl-mnd01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra50",
+              "value": "nl-mnd01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra50",
+              "value": "nl-hlm01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra60",
+              "value": "nl-hlm01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra1",
+              "value": "pl-waw18a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra2",
+              "value": "pl-waw18a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra201",
+              "value": "pl-waw18a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra202",
+              "value": "pl-waw18a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd26",
+              "value": "pl-waw04a-rd26"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd27",
+              "value": "pl-waw04a-rd27"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ss201",
+              "value": "pl-waw18a-ss201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ss202",
+              "value": "pl-waw18a-ss202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl201",
+              "value": "pl-waw18a-sl201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl202",
+              "value": "pl-waw18a-sl202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl203",
+              "value": "pl-waw18a-sl203"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-sl204",
+              "value": "pl-waw18a-sl204"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-ram-c",
+              "value": "ie-dinc-ram-c"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-ram-d",
+              "value": "ie-dinc-ram-d"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-01",
+              "value": "ie-dinc-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-02",
+              "value": "ie-dinc-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-ram-a",
+              "value": "ie-dtal-ram-a"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-ram-b",
+              "value": "ie-dtal-ram-b"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-01",
+              "value": "ie-dtal-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-02",
+              "value": "ie-dtal-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf030",
+              "value": "dmuotf030"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf031",
+              "value": "dmuotf031"
+            },
+            {
+              "selected": false,
+              "text": "ch-mesotf096",
+              "value": "ch-mesotf096"
+            },
+            {
+              "selected": false,
+              "text": "ch-mesotf097",
+              "value": "ch-mesotf097"
+            },
+            {
+              "selected": false,
+              "text": "mlxotf901",
+              "value": "mlxotf901"
+            },
+            {
+              "selected": false,
+              "text": "mlxotf902",
+              "value": "mlxotf902"
+            },
+            {
+              "selected": false,
+              "text": "carnhf101",
+              "value": "carnhf101"
+            },
+            {
+              "selected": false,
+              "text": "carnhf202",
+              "value": "carnhf202"
+            },
+            {
+              "selected": false,
+              "text": "carbrn101",
+              "value": "carbrn101"
+            },
+            {
+              "selected": false,
+              "text": "carbrn202",
+              "value": "carbrn202"
+            },
+            {
+              "selected": false,
+              "text": "carzwd101",
+              "value": "carzwd101"
+            },
+            {
+              "selected": false,
+              "text": "carzwd202",
+              "value": "carzwd202"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-c",
+              "value": "at-vie-tc-dtv-asr9k-c"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-d",
+              "value": "at-vie-tc-dtv-asr9k-d"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-agg01",
+              "value": "at-vie-tc-n9k-agg01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-agg02",
+              "value": "at-vie-tc-n9k-agg02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge01",
+              "value": "at-vie-tc-n9k-edge01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge02",
+              "value": "at-vie-tc-n9k-edge02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge03",
+              "value": "at-vie-tc-n9k-edge03"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge04",
+              "value": "at-vie-tc-n9k-edge04"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-ilo01",
+              "value": "at-vie-tc-ilo01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-ilo02",
+              "value": "at-vie-tc-ilo02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-mgmt01",
+              "value": "at-vie-tc-mgmt01"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-mgmt02",
+              "value": "at-vie-tc-mgmt02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-n9k-edge02",
+              "value": "at-vie-tc-n9k-edge02"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-sk11-dtv-n7h6",
+              "value": "at-vie-sk11-dtv-n7h6"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-sk11-dtv-n7h7",
+              "value": "at-vie-sk11-dtv-n7h7"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra3",
+              "value": "nl-srk03a-ra3"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra4",
+              "value": "nl-srk03a-ra4"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra1",
+              "value": "pl-waw10a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra2",
+              "value": "pl-waw10a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra201",
+              "value": "pl-waw10a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra202",
+              "value": "pl-waw10a-ra202"
+            }
+          ],
+          "query": " nl-ams02e-ra50, nl-ams02e-ra60, nl-ams02e-sc50, nl-ams02e-sc60, nl-ams02c-ra15, nl-ams02c-ra16, nl-tbg01a-ra50, nl-tbg01a-ra60, tb-rc0001-ra15, tb-rc0001-ra16,tb-rc0001-cs135-vs, tb-rc0001-cs136-vs, slr-tr0004-cr103-new, slr-tr0004-cr104-new,nl-mnd01a-ra60,nl-mnd01a-ra50,nl-hlm01a-ra50,nl-hlm01a-ra60,pl-waw18a-ra1,pl-waw18a-ra2,pl-waw18a-ra201,pl-waw18a-ra202,pl-waw04a-rd26,pl-waw04a-rd27, pl-waw18a-ss201, pl-waw18a-ss202, pl-waw18a-sl201, pl-waw18a-sl202, pl-waw18a-sl203, pl-waw18a-sl204,ie-dinc-ram-c,ie-dinc-ram-d,ie-dinc-dtvasr-01,ie-dinc-dtvasr-02,ie-dtal-ram-a,ie-dtal-ram-b,ie-dtal-dtvasr-01,ie-dtal-dtvasr-02,dmuotf030, dmuotf031, ch-mesotf096, ch-mesotf097, mlxotf901, mlxotf902, carnhf101, carnhf202, carbrn101, carbrn202, carzwd101, carzwd202, at-vie-tc-dtv-asr9k-c, at-vie-tc-dtv-asr9k-d, at-vie-tc-n9k-agg01, at-vie-tc-n9k-agg02, at-vie-tc-n9k-edge01, at-vie-tc-n9k-edge02, at-vie-tc-n9k-edge03, at-vie-tc-n9k-edge04, at-vie-tc-ilo01, at-vie-tc-ilo02, at-vie-tc-mgmt01, at-vie-tc-mgmt02, at-vie-tc-n9k-edge02, at-vie-sk11-dtv-n7h6, at-vie-sk11-dtv-n7h7,nl-srk03a-ra3,nl-srk03a-ra4, pl-waw10a-ra1, pl-waw10a-ra2, pl-waw10a-ra201, pl-waw10a-ra202",
+          "queryValue": "tbg",
+          "skipUrlSync": false,
+          "type": "custom"
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "TenGigE0/4/0/0/0_-_TenGigE0/4/0/0/9__TenGigE0/4/0/1/0_-_TenGigE0/4/0/1/9",
+            "value": "TenGigE0/4/0/0/0_-_TenGigE0/4/0/0/9__TenGigE0/4/0/1/0_-_TenGigE0/4/0/1/9"
+          },
+          "datasource": "Observer np counters",
+          "definition": " show tag values from asr9k_np_counters with key=\"ports\" where (\"hostname\" =~ /$hostname/ AND \"node\" =~ /^$slot$/ AND \"counters_for\" =~ /^$counters_for$/)",
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "NP_Port_Range",
+          "options": [
+            {
+              "selected": true,
+              "text": "TenGigE0/4/0/0/0_-_TenGigE0/4/0/0/9__TenGigE0/4/0/1/0_-_TenGigE0/4/0/1/9",
+              "value": "TenGigE0/4/0/0/0_-_TenGigE0/4/0/0/9__TenGigE0/4/0/1/0_-_TenGigE0/4/0/1/9"
+            }
+          ],
+          "query": " show tag values from asr9k_np_counters with key=\"ports\" where (\"hostname\" =~ /$hostname/ AND \"node\" =~ /^$slot$/ AND \"counters_for\" =~ /^$counters_for$/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Multicast Traffic Replicated per NP #2",
+    "uid": "7pff76-nz"
+  }
+}

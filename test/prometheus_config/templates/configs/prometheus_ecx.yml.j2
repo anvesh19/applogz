@@ -1,0 +1,499 @@
+# my global config
+global:
+  scrape_interval:     15s
+  evaluation_interval: 20s
+  scrape_timeout: 15s
+  external_labels:
+      monitor: 'exporter-metrics'
+
+# Alertmanager configuration
+alerting:
+  alertmanagers:
+  - static_configs:
+    - targets:
+       - alertmanager:9093
+
+# Load rules once and periodically evaluate them according to the global 'evaluation_interval'.
+rule_files:
+  - /etc/prometheus/infra.yml
+  - /etc/prometheus/watchdog_poller.yml
+  - /etc/prometheus/failed_services.yml
+  - /etc/prometheus/collection_services.yaml
+  - /etc/prometheus/nginx_http_error_alert.yml
+  - /etc/prometheus/sli.yml
+  - /etc/prometheus/blackbox.yml
+  - /etc/prometheus/sli-deepmind.yml
+  - /etc/prometheus/sli-requests-availability.yml
+  - /etc/prometheus/sli-dsm-search.yml
+  - /etc/prometheus/sli-telemetry.yml
+  - /etc/prometheus/promtail.yml
+  - /etc/prometheus/sli-requests-latency.yml
+  - /etc/prometheus/sli-fixed-voice.yml
+  - /etc/prometheus/sli-telemetry-db.yml
+  - /etc/prometheus/sli-deepmind-store.yml
+  - /etc/prometheus/sli-telegraf.yml
+  - /etc/prometheus/sli-storage-time.yml
+  - /etc/prometheus/sli-odaf-response.yml
+  - /etc/prometheus/sli-vrops-freshness.yml 
+  - /etc/prometheus/sli-telemetry-consumer.yml
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+- job_name: 'Prometheus'
+  static_configs:
+    - targets:
+      - '127.0.0.1:9090'
+  metrics_path:
+     /prometheus/metrics
+
+- job_name: 'Cadvisor_Prod'
+  scrape_interval:  25s
+  dns_sd_configs:
+  - names:
+    - tasks.cadvisor
+    refresh_interval: 25s
+    type: A
+    port: 8080
+
+- job_name: 'Cadvisor_Dev'
+  scrape_interval: 5s
+  static_configs:
+    - targets:
+      - '172.16.188.80:8080'
+      - '172.16.188.81:8080'
+      - '172.16.188.82:8080'
+      - '172.23.101.216:9101'
+
+- job_name: 'Redis_exporter'
+  static_configs:
+    - targets:
+      - '172.16.188.74:9121'
+
+#- job_name: 'Snmp_metrics'
+#  scrape_interval: 10m
+#  scrape_timeout: 10m
+#  static_configs:
+#    - targets:
+#      - '172.16.188.95:8100'
+#  metrics_path:
+#     /api/v1/stats-prometheus
+
+- job_name: 'Watchdog_metrics'
+  scrape_interval: 5m
+  scrape_timeout: 5m
+  static_configs:
+    - targets:
+      - 'snmp-checkpoint-watchdog.sdil.aorta.net:8000'
+  metrics_path:
+     /api/v1/stats-prometheus
+
+- job_name: 'Watchdog_observer_metrics'
+  scrape_interval: 5m
+  scrape_timeout: 5m
+  static_configs:
+    - targets:
+      - 'snmp-observer-watchdog.sdil.aorta.net:8000'
+  metrics_path:
+     /api/v1/stats-prometheus
+
+- job_name: 'mtail_metrics'
+  scrape_interval: 30s
+  scrape_timeout: 30s
+  static_configs:
+    - targets:
+      - '172.16.188.95:3903'
+      - '172.16.188.76:3903'
+      - '172.16.188.90:3903'
+      - '172.16.188.88:3903'
+      - '172.23.101.221:3903'
+      - '172.16.114.11:3903'
+      - '172.16.114.12:3903'
+      - '172.16.114.13:3903'
+      - '172.16.188.85:3903'
+      - '172.16.188.91:3903'
+      - '172.16.188.74:3903'
+
+- job_name: 'sddc2_increase_frequency'
+  scrape_interval: 30s
+  scrape_timeout: 30s
+  static_configs:
+    - targets:
+      - '172.16.188.77:3903'
+      - '100.107.96.35:3903'
+      - '100.107.96.36:3903'
+      - '100.107.96.34:3903'
+      - '100.107.100.15:3903'
+      - '100.107.100.14:3903'
+      - '172.16.188.77:9100'
+      - '100.107.96.35:9100'
+      - '100.107.96.36:9100'
+      - '100.107.96.34:9100'
+      - '100.107.100.15:9100'
+      - '100.107.100.14:9100'
+
+
+ 
+  metrics_path:
+     /metrics
+
+- job_name: 'promtail'
+  scrape_interval: 30s
+  scrape_timeout: 30s
+  static_configs:
+    - targets:
+      - '172.16.114.160:9080'
+      - '172.23.101.216:9080'
+      - '172.23.101.217:9080'
+      - '172.16.114.11:9080'
+      - '172.16.114.12:9080'
+      - '172.16.114.13:9080'
+      - '172.16.188.81:9080'
+      - '172.16.188.82:9080'
+      - '172.16.188.66:9080'
+      - '172.16.188.67:9080'
+      - '172.16.188.68:9080'
+      - '172.16.188.69:9080'
+      - '172.16.188.70:9080'
+      - '172.16.188.71:9080'
+      - '172.16.188.72:9080'
+      - '172.16.188.74:9080'
+      - '172.16.188.75:9080'
+      - '172.16.188.76:9080'
+      - '172.16.188.78:9080'
+      - '172.16.188.80:9080'
+      - '172.16.188.83:9080'
+      - '172.16.188.85:9080'
+      - '172.16.188.86:9080'
+      - '172.16.188.87:9080'
+      - '172.16.188.88:9080'
+      - '172.16.188.90:9080'
+      - '172.16.188.95:9080'
+      - '172.16.188.96:9080'
+      - '172.16.188.97:9080'
+      - '172.16.188.98:9080'
+      - '172.16.188.99:9080'
+      - '172.23.101.218:9080'
+      - '172.23.101.221:9080'
+      - '172.23.101.223:9080'
+      - '172.23.101.224:9080'
+      - '172.23.101.227:9080'
+      - '172.23.101.228:9080'
+      - '172.23.101.229:9080'
+  metrics_path:
+     /metrics
+
+- job_name: 'lambdadb_vmwares'
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  static_configs:
+    - targets:
+      - '172.16.188.88:8888'
+      - '172.16.188.88:8123'
+      - '172.16.188.88:8128'
+      labels:
+        service: 'Lamdbadb'
+  metrics_path:
+     /metrics
+
+- job_name: 'telegraf_telemetry'
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  static_configs:
+    - targets:
+      - '172.16.188.85:9273'
+      - '172.16.188.85:9274'
+      - '172.16.188.85:9275'
+      - '172.16.114.13:9273'
+      - '172.16.114.13:9274'
+      - '172.16.114.13:9275'
+      - '172.16.114.13:9276'
+      - '172.16.114.157:9273'
+      - '172.16.114.157:9274'
+      - '172.16.114.157:9275'
+      - '172.16.114.157:9276'
+      - '172.16.114.157:9277'
+      - '172.16.114.157:9278' 
+      labels:
+        service: 'telegraf_telemetry'
+  metrics_path:
+     /metrics
+
+- job_name: 'c4c_awx_dev'
+  tls_config:
+    insecure_skip_verify: True
+  metrics_path: /api/v2/metrics/
+  scrape_interval: 1m
+  scrape_timeout: 30s
+  scheme: https
+  bearer_token: {{ dev_nap_awx_auth_token }}
+  static_configs:
+    - targets:
+      - awx.dev.sdil.aorta.net
+
+- job_name: 'c4c_awx_prod'
+  tls_config:
+    insecure_skip_verify: True
+  metrics_path: /api/v2/metrics/
+  scrape_interval: 1m
+  scrape_timeout: 30s
+  scheme: https
+  bearer_token: {{ prod_nap_awx_auth_token }}
+  static_configs:
+    - targets:
+      - awx.sdil.aorta.net
+
+- job_name: 'c4c_django'
+  metrics_path: /prometheus/metrics
+  scrape_interval: 4m
+  scrape_timeout: 3m
+  scheme: https
+  static_configs:
+    - targets:
+      - nap-django-admin.dev.sdil.aorta.net
+      - nap-django-admin.sdil.aorta.net
+
+- job_name: 'c4c_nm_api'
+  metrics_path: /api/metrics
+  scrape_interval: 15s
+  scheme: https
+  static_configs:
+    - targets:
+      - c4c-nm-api.dev.sdil.aorta.net
+      - c4c-nm-api.sdil.aorta.net
+
+- job_name: 'docker_metrics_swarm'
+  metrics_path: /metrics
+  scrape_interval: 15s
+  scheme: https
+  static_configs:
+    - targets:
+      - docker-metrics-swarm01.dev.sdil.aorta.net
+      - docker-metrics-swarm02.dev.sdil.aorta.net
+      - docker-metrics-swarm03.dev.sdil.aorta.net
+      - docker-metrics-swarm01.sdil.aorta.net
+      - docker-metrics-swarm02.sdil.aorta.net
+      - docker-metrics-swarm03.sdil.aorta.net
+
+- job_name: 'ExtServerMetrics'
+  static_configs:
+    - targets:
+      - '172.16.188.74:9100'
+      - '172.16.188.68:9100'
+      - '172.16.188.69:9100'
+      - '172.16.188.70:9100'
+      - '172.16.188.71:9100'
+      - '172.16.188.85:9100'
+      - '172.23.101.216:9100'
+      - '172.23.101.217:9100'
+      - '172.23.101.218:9100'
+      - '172.23.101.221:9100'
+      - '172.23.101.223:9100'
+      - '172.23.101.224:9100'
+      - '172.16.188.95:9100'
+      - '172.16.188.96:9100'
+      - '172.16.188.66:9100'
+      - '172.16.188.97:9100'
+      - '172.16.188.98:9100'
+      - '172.16.188.99:9100'
+      - '172.16.188.86:9100'
+      - '172.16.188.87:9100'
+      - '172.16.188.88:9100'
+      - '172.16.188.76:9100'
+      - '172.16.188.90:9100'
+      - '172.16.114.11:9100'
+      - '172.16.114.12:9100'
+      - '172.16.188.72:9100'
+      - '172.16.100.25:9100'
+      - '172.31.141.150:9100'
+      - '172.31.141.151:9100'
+      - '172.31.141.152:9100'
+      - '172.31.141.153:9100'
+      - '172.16.188.78:9100'
+      - '172.16.114.13:9100'
+      - '172.16.188.80:9100'
+      - '172.16.188.81:9100'
+      - '172.16.188.82:9100'
+      - '172.16.188.83:9100'
+      - '172.16.188.75:9100'
+      - '172.16.188.67:9100'
+      - '172.23.101.227:9100'
+      - '172.23.101.229:9100'
+      - '172.23.101.228:9100'
+      - '172.23.101.226:9100'
+      - '172.23.101.225:9100'
+      - '172.16.114.155:9100'
+      - '172.16.114.156:9100'
+      - '172.16.114.157:9100'
+      - '172.16.188.91:9100'
+      - '172.16.188.77:9100'
+      - '172.16.188.73:9100'
+
+- job_name: 'Ditto_servers'
+  static_configs:
+    - targets:
+      - '172.16.100.212:9100'
+      - '172.23.110.21:9100'
+      - '172.23.110.22:9100'
+      - '172.23.114.178:9100'
+      - '172.23.114.179:9100'
+      - '172.23.114.230:9100'
+      - '172.23.114.231:9100'
+      - '172.23.114.232:9100'
+      - '172.23.114.235:9100'
+      - '172.23.114.240:9100'
+      - '172.23.115.181:9100'
+      - '172.23.115.209:9100'
+      - '172.23.115.228:9100'
+      - '172.16.100.102:9100'
+      - '172.16.100.63:9100'
+      - '172.16.100.67:9100'
+      - '172.16.100.83:9100'
+      - '172.19.22.44:9100'
+      - '172.23.113.113:9100'
+      - '172.23.113.127:9100'
+      - '172.23.113.136:9100'
+      - '172.23.113.22:9100'
+      - '172.23.113.25:9100'
+      - '172.23.113.86:9100'
+      - '172.23.115.201:9100'
+
+- job_name: 'DockerSwarm'
+  static_configs:
+   - targets:
+     - '172.16.188.80:9323'
+     - '172.16.188.81:9323'
+     - '172.16.188.82:9323'
+     - '172.23.101.227:9323'
+     - '172.23.101.229:9323'
+     - '172.23.101.228:9323'
+
+- job_name: 'Influx_metrics'
+  static_configs:
+   - targets:
+     - '172.16.188.99:8086'
+     - '172.16.188.75:8087'
+
+- job_name: 'observer_v3_dev'
+  scheme: https
+  static_configs:
+    - targets:
+      - 'observer-api-v3.dev.sdil.aorta.net'
+  metrics_path:
+     /health/-/metrics
+  tls_config:
+     insecure_skip_verify: true
+
+- job_name: 'blackbox_ditto_config_http'
+  metrics_path: /probe
+  params:
+    module: [ditto_config_http_2xx]  # Look for a HTTP 200 response.
+  static_configs:
+    - targets:
+      - http://at-obo-ditto.appdev.io/config
+      - http://at-obo-preprod-ditto.appdev.io/config
+      - http://be-obo-ditto.appdev.io/config
+      - http://be-obo-dlar-ditto.appdev.io/config
+      - http://be-obo-ipvod-ditto.appdev.io/config
+      - http://be-obo-preprod-ditto.appdev.io/config
+      - http://ch-obo-avad-ditto.appdev.io/config
+      - http://ch-obo-beta-ditto.appdev.io/config
+      - http://ch-obo-ditto.appdev.io/config
+      - http://ch-obo-preprod-ditto.appdev.io/config
+      - http://ie-obo-7d-ditto.appdev.io/config
+      - http://ie-obo-ditto.appdev.io/config
+      - http://ie-obo-dlar-ditto.appdev.io/config
+      - http://ie-obo-ipvod-ditto.appdev.io/config
+      - http://ie-obo-preprod-ditto.appdev.io/config
+      - http://mt-obo-ditto.appdev.io/config
+      - http://mt3-obo-ditto.appdev.io/config
+      - http://nl-obo-beta-ditto.appdev.io/config
+      - http://nl-obo-ditto.appdev.io/config
+      - http://nl-obo-preprod-ditto.appdev.io/config
+      - http://pl-obo-ditto.appdev.io/config
+      - http://pl-obo-preprod-ditto.appdev.io/config
+      - http://uk-obo-7d-ditto.appdev.io/config
+      - http://uk-obo-ditto.appdev.io/config
+      - http://uk-obo-dlar-ditto.appdev.io/config
+      - http://uk-obo-ipvod-ditto.appdev.io/config
+      - http://uk-obo-preprod-ditto.appdev.io/config
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 172.23.101.223:9115  # The blackbox exporter's real hostname:port.
+
+- job_name: 'blackbox_ditto_config_https'
+  metrics_path: /probe
+  params:
+    module: [ditto_config_https_2xx]  # Look for a HTTP 200 response.
+  static_configs:
+    - targets:
+      - https://at-hzn4-pre.ditto.horizon.tv/config
+      - https://at-hzn4.ditto.horizon.tv/config
+      - https://be-hzn4-pre.ditto.horizon.tv/config
+      - https://be-hzn4.ditto.horizon.tv/config
+      - https://ch-hzn4-pre.ditto.horizon.tv/config
+      - https://ch-hzn4.ditto.horizon.tv/config
+      - https://ie-hzn4-pre.ditto.horizon.tv/config
+      - https://ie-hzn4.ditto.horizon.tv/config
+      - https://nl-hzn4-pre.ditto.horizon.tv/config
+      - https://nl-hzn4.ditto.horizon.tv/config
+      - https://pl-hzn4-pre.ditto.horizon.tv/config
+      - https://pl-hzn4.ditto.horizon.tv/config
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 172.23.101.223:9115  # The blackbox exporter's real hostname:port.
+
+- job_name: 'blackbox_ditto_config_proxy_https'
+  metrics_path: /probe
+  params:
+    module: [ditto_config_https_2xx_proxy]  # Look for a HTTP 200 response.
+  static_configs:
+    - targets:
+      - https://ditto-be.obo.lgi.red/config
+      - https://ditto-ch.obo.lgi.red/config
+      - https://ditto-ie.obo.lgi.red/config
+      - https://ditto-pl.obo.lgi.red/config
+      - https://ditto-pre-be.obo.lgi.red/config
+      - https://ditto-pre-ch.obo.lgi.red/config
+      - https://ditto-pre-pl.obo.lgi.red/config
+      - https://ditto-pre-sk.obo.lgi.red/config
+      - https://ditto-pre-uk.obo.lgi.red/config
+      - https://ditto-sk.obo.lgi.red/config
+      - https://ditto-uk.obo.lgi.red/config
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 172.23.101.223:9115  # The blackbox exporter's real hostname:port.
+
+- job_name: 'blackbox_ditto_config_proxy_http'
+  metrics_path: /probe
+  params:
+    module: [ditto_config_http_2xx_proxy]  # Look for a HTTP 200 response.
+  static_configs:
+    - targets:
+      - http://uk-bml-ditto.appdev.io/config
+  relabel_configs:
+    - source_labels: [__address__]
+      target_label: __param_target
+    - source_labels: [__param_target]
+      target_label: instance
+    - target_label: __address__
+      replacement: 172.23.101.223:9115  # The blackbox exporter's real hostname:port.
+
+- job_name: 'victoriametrics'
+  metrics_path: /metrics
+  scrape_interval: 15s
+  scheme: https
+  static_configs:
+    - targets:
+      - telemetry-victoriametrics.sdil.aorta.net

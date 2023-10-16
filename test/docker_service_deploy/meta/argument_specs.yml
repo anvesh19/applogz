@@ -1,0 +1,24 @@
+---
+argument_specs:
+  main:
+    short_description: The main entry point for the docker_service_deploy role.
+    options:
+      container_image:
+        required: true
+      container_name:
+        required: true
+      base_dir:
+        type: "path"
+        required: true
+      service_user:
+        required: true
+      service_group:
+        required: true
+      env_file:
+        type: "path"
+        required: false
+      ports:
+        type: "list"
+        required: false
+      additional_dirs:
+        type: "list"

@@ -1,0 +1,9 @@
+[Unit]
+Description=Script that will collect nginx configs and push in to the git repo
+
+[Service]
+ExecStart=/home/ansible/git/obs-infrastructure/roles/nginx_config_backup/files/nginx_backup.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=nginx_backup
+User=ansible

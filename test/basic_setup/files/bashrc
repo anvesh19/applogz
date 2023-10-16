@@ -1,0 +1,33 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+
+export LS_OPTIONS='--color=auto'
+eval "`dircolors`"
+alias ls='ls $LS_OPTIONS'
+alias l='ls -l $LS_OPTIONS'
+alias ll='ls -la $LS_OPTIONS'
+
+BGREEN='\[\033[1;32m\]'
+BRED='\[\033[1;31m\]'
+BBLUE='\[\033[1;34m\]'
+
+RED='\[\033[0;31m\]'
+GREEN='\[\033[0;32m\]'
+BLUE='\[\033[0;34m\]'
+
+NORMAL='\[\033[00m\]'
+
+HISTCONTROL=ignoreboth
+shopt -s histappend
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTTIMEFORMAT='%F %T '
+
+if [[ $(id -u) -eq 0 ]]; then
+    LOGIN_COLOR=${RED}
+else
+    LOGIN_COLOR=${NORMAL}
+fi
+
+PS1="${LOGIN_COLOR}\u${NORMAL}@\h ${BBLUE}\W \$${NORMAL} "
+
+export EDITOR=vim

@@ -1,0 +1,33 @@
+---
+prometheus_url:
+  ecx: https://prometheus.sdil.aorta.net/prometheus
+  kbw: https://prometheus-kbw.sdil.aorta.net/prometheus
+alertmanager_url:
+  ecx: https://prometheus-alertmanager.sdil.aorta.net
+  kbw: https://prometheus-alertmanager-kbw.sdil.aorta.net
+
+prometheus_config_dir_kbw: "/mnt/gfs/kbw_swarm/prometheus/prometheus/configs"
+grafana_config_dir_kbw: "/mnt/gfs/kbw_swarm/prometheus/grafana/configs"
+alertmanager_config_dir_kbw: "/mnt/gfs/kbw_swarm/prometheus/alertmanager/configs"
+
+prometheus_config_dir_ecx: "/var/opt/obs_prometheus/prometheus/configs"
+grafana_config_dir_ecx: "/var/opt/obs_prometheus/grafana/configs"
+alertmanager_config_dir_ecx: "/var/opt/obs_prometheus/alertmanager/configs"
+
+prod_nap_awx_auth_token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          38663266646338343437353363396565326132363765643535343038313034353633636665346632
+          3162613937316335353665303830356334393537626534350a613239393237353035633235373739
+          36356239666532393735383662316436343639313037376633643561343039643534393261383937
+          3735363931663563320a626536396630343030343234343961646436663765636363323439643765
+          36383437656438383961666134393965336530356364336632366439323330323665
+dev_nap_awx_auth_token: !vault |
+          $ANSIBLE_VAULT;1.1;AES256
+          64646133633836303134303631356363336366663165343937366236303630333361643734336530
+          6666646630643937343733333666313335316638663333650a656236343661663663383739633137
+          34306363656338656232616261643863363033656137616137363333303863626261363733623538
+          3963303236376161630a363363633038626661393938613137646130356262343235623630333739
+          32386232653862366164653133343765636130623264353033303465306636323264
+MSTEAMS_WEBHOOK_DEV: "{{ lookup('env', 'MSTEAMS_WEBHOOK_DEV') }}"
+MSTEAMS_WEBHOOK_TELEMETRY: "{{ lookup('env', 'MSTEAMS_WEBHOOK_TELEMETRY') }}"
+MSTEAMS_WEBHOOK_OBSCORE: "{{ lookup('env', 'MSTEAMS_WEBHOOK_OBSCORE') }}"

@@ -1,0 +1,3 @@
+---
+pip_extra_args: "--extra-index-url https://pypi.sdil.aorta.net/simple"
+systemd_units_dir: /etc/systemd/system

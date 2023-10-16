@@ -1,0 +1,8 @@
+---
+service_user: observer
+service_group: observer
+service_home: "/home/{{ service_user }}"
+service_env: prod
+
+base_dir: "{{ service_home }}/{{ service_env }}/{{ container_name }}"
+environment_file: "{{ base_dir }}/{{ container_name }}.env"

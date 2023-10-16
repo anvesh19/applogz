@@ -1,0 +1,5 @@
+---
+- import_tasks: install.yml
+  tags: [ vault, vault/install ]
+- import_tasks: config.yml
+  tags: [ vault, vault/config ]

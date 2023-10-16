@@ -1,0 +1,7 @@
+---
+- name: Restart nginx_backup timer
+  systemd:
+    name: nginx_backup.timer
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

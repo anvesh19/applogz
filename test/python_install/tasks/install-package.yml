@@ -1,0 +1,7 @@
+---
+
+- name: "Install python{{ python_version }} package for Debian {{ ansible_distribution_major_version }}"
+  apt:
+    deb: "https://obs-package-storage.dev.sdil.aorta.net/python{{ python_version }}-debian{{ ansible_distribution_major_version }}.deb"
+    state: present
+  when: ansible_distribution_major_version in ["8", "9", "10"]

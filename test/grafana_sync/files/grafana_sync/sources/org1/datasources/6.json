@@ -1,0 +1,20 @@
+{
+  "id": 6,
+  "uid": "000000006",
+  "orgId": 1,
+  "name": "Prometheus-1",
+  "type": "prometheus",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://prometheus:9090/prometheus",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {},
+  "version": 1,
+  "readOnly": false
+}

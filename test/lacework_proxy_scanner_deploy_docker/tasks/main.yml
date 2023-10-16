@@ -1,0 +1,60 @@
+- name: Check if docker is installed
+  ansible.builtin.command: "docker --version"
+  changed_when: false
+
+- name: Ensure base directory is present
+  become: true
+  ansible.builtin.file:
+    path: "{{ lacework_data_dir }}"
+    state: directory
+    mode: "644"
+
+- name: Ensure cache directory is present
+  become: true
+  ansible.builtin.file:
+    path: "{{ lacework_data_dir }}/cache"
+    state: directory
+    mode: "744"
+    owner: "1000"
+
+- name: Get token from Vault
+  ansible.builtin.set_fact:
+    lacework_access_token: >-
+      "{{ lookup('hashi_vault', 'secret=obs-devops/data/lacework/prod/proxy_scanner/registry_sdil_aorta_net token={{ access_token }} url=https://obs-vault.sdil.aorta.net').token }}"
+    cacheable: true
+  no_log: true
+
+- name: Ensure config file is present
+  become: true
+  ansible.builtin.template:
+    src: config.yml.j2
+    dest: "{{ lacework_data_dir }}/config.yml"
+    mode: "644"
+
+- name: Ensure docker pip module is installed
+  ansible.builtin.pip:
+    name: docker
+
+- name: Run Proxy Scanner container
+  docker_container:
+    name: "{{ lacework_container_name }}"
+    image: "{{ lacework_docker_image }}"
+    recreate: true
+    restart_policy: "unless-stopped"
+    ports:
+      - "{{ lacework_host_port }}:8080"
+    env:
+      COOL_OFF_AFTER_TAG_COUNT: "{{ lacework_COOL_OFF_AFTER_TAG_COUNT }}"
+      COOL_OFF_MILLISECONDS: "{{ lacework_COOL_OFF_MILLISECONDS }}"
+      MAX_CONCURRENT_SCANS: "{{ lacework_MAX_CONCURRENT_SCANS }}"
+      HTTPS_PROXY: "{{ proxy_env.https_proxy | default(omit) }}"
+      HTTP_PROXY: "{{ proxy_env.https_proxy | default(omit) }}"
+      NO_PROXY: "{{ no_proxy_prefix | default(omit) }}{{ proxy_env.no_proxy | default(omit) }}"
+      LOG_LEVEL: "{{ lacework_log_level | default(omit) }}"
+    mounts:
+      - type: bind
+        source: "{{ lacework_data_dir }}/cache"
+        target: "/opt/lacework/cache"
+    volumes:
+      - "{{ lacework_data_dir }}/config.yml:/opt/lacework/config/config.yml:ro"
+    network_mode: "{{ lacework_container_network | default(omit)}}"

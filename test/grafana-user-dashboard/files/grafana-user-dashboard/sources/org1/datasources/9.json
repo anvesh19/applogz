@@ -1,0 +1,27 @@
+{
+  "id": 9,
+  "uid": "6h2NXsM7k",
+  "orgId": 1,
+  "name": "LG Field Tech View Datasource (AngularJS) ECX",
+  "type": "lg-field-tech-view-datasource-angularjs",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://observer-api-nqi.dev.sdil.aorta.net/",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsAuthWithCACert": true,
+    "tlsSkipVerify": true
+  },
+  "secureJsonFields": {
+    "tlsCACert": true
+  },
+  "version": 15,
+  "readOnly": false
+}

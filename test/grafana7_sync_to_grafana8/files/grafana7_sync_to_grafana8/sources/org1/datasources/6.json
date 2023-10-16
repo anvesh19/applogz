@@ -1,0 +1,26 @@
+{
+  "id": 6,
+  "uid": "dpVFdK6Gk",
+  "orgId": 1,
+  "name": "cisco1",
+  "type": "influxdb",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://172.16.188.83:8086",
+  "password": "",
+  "user": "cisco",
+  "database": "cisco1",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsSkipVerify": true
+  },
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 2,
+  "readOnly": false
+}

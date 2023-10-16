@@ -1,0 +1,4012 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "dtv-np-drop-counters-l3_bvi_ing_no_uidb_drop-alerting",
+    "url": "/d/3dgFtWy7z/dtv-np-drop-counters-l3_bvi_ing_no_uidb_drop-alerting",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 112,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 7,
+        "panels": [],
+        "title": "NP Counters - Counter Selection - Difference",
+        "type": "row"
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "B",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "C",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "D",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "E",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "F",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "G",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "H",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "I",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "J",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "K",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "L",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "M",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "N",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "O",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "P",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "Q",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "R",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "S",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "T",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "or"
+              },
+              "query": {
+                "params": [
+                  "U",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "Counter L3_BVI_ING_NO_UIDB_DROP has 1:1 correlation with CC Errors recorded on Video Equipments. In case this counter is non-zero and recurrent should be checked with Video engineers if there is any degradation in traffic.",
+          "name": "L3_BVI_ING_NO_UIDB_DROP alert",
+          "noDataState": "ok",
+          "notifications": [
+            {
+              "uid": "zChsAmI7k"
+            }
+          ]
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "# show drops",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 13,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "hiddenSeries": false,
+        "id": 8,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-ams02e-ra50"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-ams02e-ra60"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-ams02c-ra15"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-ams02c-ra16"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-ams02c-ra16"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-tbg01a-ra50"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-tbg01a-ra60"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "tb-rc0001-ra15"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "I",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "tb-rc0001-ra16"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "J",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "tb-rc0001-cs135-vs"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "K",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "tb-rc0001-cs136-vs"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "L",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "slr-tr0004-cr103-new"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "M",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "slr-tr0004-cr104-new"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "N",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-mnd01a-ra60"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "O",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-mnd01a-ra50"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "P",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-hlm01a-ra50"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "Q",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-hlm01a-ra60"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "R",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw18a-ra1"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "S",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw18a-ra2"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "T",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw18a-ra201"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT non_negative_difference(last(\"drop_value\")) FROM \"asr9k_drops\" WHERE (\"hostname\" = 'nl-ams02e-ra60' AND \"drop_name\" = 'L3_BVI_ING_NO_UIDB_DROP') AND $timeFilter GROUP BY time($__interval), \"drop_name\", \"drops_of\", \"node\", \"hostname\" fill(null)",
+            "rawQuery": false,
+            "refId": "U",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw18a-ra202"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 4,
+            "visible": true
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "L3_BVI_ING_NO_UIDB_DROP - All routers Batch 1",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:3597",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:3598",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "alert": {
+          "alertRuleTags": {},
+          "conditions": [
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "A",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "B",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "C",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "D",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "E",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "F",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "G",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "H",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "I",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "J",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "K",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "K",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "L",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "M",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "N",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            },
+            {
+              "evaluator": {
+                "params": [
+                  4
+                ],
+                "type": "gt"
+              },
+              "operator": {
+                "type": "and"
+              },
+              "query": {
+                "params": [
+                  "O",
+                  "5m",
+                  "now"
+                ]
+              },
+              "reducer": {
+                "params": [],
+                "type": "last"
+              },
+              "type": "query"
+            }
+          ],
+          "executionErrorState": "keep_state",
+          "for": "5m",
+          "frequency": "1m",
+          "handler": 1,
+          "message": "Counter L3_BVI_ING_NO_UIDB_DROP has 1:1 correlation with CC Errors recorded on Video Equipments. In case this counter is non-zero and recurrent should be checked with Video engineers if there is any degradation in traffic.",
+          "name": "L3_BVI_ING_NO_UIDB_DROP - All routers Batch 2 alert",
+          "noDataState": "ok",
+          "notifications": [
+            {
+              "uid": "zChsAmI7k"
+            }
+          ]
+        },
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "# show drops",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 13,
+          "w": 24,
+          "x": 0,
+          "y": 14
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw10a-ra202"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw04a-rd27"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ie-dinc-dtvasr-01"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "D",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ie-dinc-dtvasr-02"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "E",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ie-dtal-dtvasr-01"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "F",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ie-dtal-dtvasr-02"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "G",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "dmuotf030"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "H",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "dmuotf031"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "I",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "at-vie-tc-dtv-asr9k-c"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "J",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "at-vie-tc-dtv-asr9k-d"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "K",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-srk03a-ra3"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "L",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "nl-srk03a-ra4"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "M",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw10a-ra1"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "N",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw10a-ra2"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - Slot: $tag_node - NP: $tag_drops_of  - $tag_drop_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "drop_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "drops_of"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "asr9k_drops",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "O",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "drop_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [],
+                  "type": "non_negative_difference"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "pl-waw10a-ra201"
+              },
+              {
+                "condition": "AND",
+                "key": "drop_name",
+                "operator": "=",
+                "value": "L3_BVI_ING_NO_UIDB_DROP"
+              }
+            ]
+          }
+        ],
+        "thresholds": [
+          {
+            "colorMode": "critical",
+            "fill": true,
+            "line": true,
+            "op": "gt",
+            "value": 4,
+            "visible": true
+          }
+        ],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "L3_BVI_ING_NO_UIDB_DROP - All routers Batch 2",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:3597",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:3598",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": []
+    },
+    "time": {
+      "from": "now-7d",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "DTV NP Drop Counters [L3_BVI_ING_NO_UIDB_DROP ] - Alerting",
+    "uid": "3dgFtWy7z"
+  }
+}

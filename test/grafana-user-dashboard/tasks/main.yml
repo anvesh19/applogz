@@ -1,0 +1,5 @@
+---
+- name: Grafana user dashboard backup
+  shell: |
+    cd /home/ansible/git/obs-infrastructure/roles/grafana-user-dashboard/files/
+    ./grafana7_sync.sh

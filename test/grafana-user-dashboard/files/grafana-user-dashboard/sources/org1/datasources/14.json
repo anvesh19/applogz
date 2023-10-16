@@ -1,0 +1,24 @@
+{
+  "id": 14,
+  "uid": "L5F5By0nz",
+  "orgId": 1,
+  "name": "Graphite Telemetry",
+  "type": "graphite",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://graphite-telemetry.ecx.odh.lgi.io",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": true,
+  "basicAuthUser": "grafana",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {
+    "basicAuthPassword": true
+  },
+  "version": 2,
+  "readOnly": false
+}

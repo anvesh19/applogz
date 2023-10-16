@@ -1,0 +1,8 @@
+---
+- name: Restart mtail service
+  become: true
+  systemd:
+    name: mtail
+    state: restarted
+    enabled: true
+    daemon_reload: true

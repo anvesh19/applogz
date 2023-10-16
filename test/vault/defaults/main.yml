@@ -1,0 +1,4 @@
+---
+http_proxy: "http://172.31.141.196:3128"
+vault_data_path: "/opt/vault/data"
+vault_port: 8443

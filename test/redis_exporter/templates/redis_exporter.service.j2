@@ -1,0 +1,22 @@
+[Unit]
+Description=Prometheus redis_exporter for redis metrics
+Documentation=https://github.com/oliver006/redis_exporter
+
+[Service]
+Restart=always
+Type=simple
+User=prometheus
+ExecReload=/bin/kill -HUP $MAINPID
+ExecStart=/usr/local/bin/redis_exporter \
+  --log-format=txt \
+  --namespace=redis \
+  --web.listen-address=:9121 \
+  --web.telemetry-path=/metrics
+
+TimeoutStopSec=20s
+SendSIGKILL=no
+SyslogIdentifier=redis_exporter
+
+
+[Install]
+WantedBy=multi-user.target

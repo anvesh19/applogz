@@ -1,0 +1,35 @@
+---
+- name: Ensure service user
+  user:
+    name: "{{ service_user }}"
+    state: present
+    password: "{{ lookup('password', '/dev/null length=20') | password_hash('sha512') }}"
+    update_password: on_create
+
+- name: Ensure base directory exists
+  file:
+    path: "{{ base_dir }}"
+    owner: "{{ service_user }}"
+    group: "{{ service_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+
+- name: Ensure env file directory exists
+  file:
+    path: "{{ environment_file_dir }}"
+    owner: "{{ service_user }}"
+    group: "{{ service_group }}"
+    mode: 0755
+    state: directory
+    recurse: yes
+  when: environment_file_dir is defined
+
+- name: Ensure service env file
+  template:
+    src: "env.j2"
+    dest: "{{ environment_file }}"
+
+- name: Define env_file variable
+  set_fact:
+    env_file: "{{ environment_file }}"

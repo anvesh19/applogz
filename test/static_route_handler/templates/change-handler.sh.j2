@@ -1,0 +1,73 @@
+#!/bin/bash
+
+# Setting up variables
+workdir={{ static_route_handler_dir }}
+hostname="$(hostname -s)"
+static_route_live_file="/etc/network/if-up.d/static-routes"
+static_route_git_file="${workdir}/static-routes/${hostname}/static-routes"
+tmp_file="${workdir}/static-routes.tmp"
+current_date="$(date +'%Y-%m-%d %T')"
+save_static_routes_as_permanent={{ save_static_routes_as_permanent }}
+
+function generate_temp_file {
+    ${workdir}/bin/generate-routes.sh > ${tmp_file}
+    if [[ "$?" -ne "0" ]]; then
+        echo "ERROR: generating temp file failed, exiting.."
+        exit 1
+    fi
+}
+
+function make_rules_permanent {
+    if [[ "${save_static_routes_as_permanent}" = "true" ]]; then
+        cat ${tmp_file} > ${static_route_live_file} && \
+        chmod +x ${static_route_live_file} && \
+        echo "INFO: Static routes are stored as permanent"
+    else
+        echo "INFO: Static routes are not stored as permanent due to config."
+    fi
+}
+
+function store_in_git {
+    cd ${workdir}/static-routes/${hostname}/
+    echo "INFO: Update git repository"
+    eval "$(ssh-agent -s)" && \
+    ssh-add -k {{ static_route_handler_dir }}/.ssh/id_rsa && \
+    git fetch && \
+    git checkout master && \
+    git pull && \
+    echo "INFO: Writing changes to git repository" && \
+    cat ${tmp_file} > ${static_route_git_file} && \
+    echo "INFO: Commit changes" && \
+    git add ${static_route_git_file} && \
+    git commit -m "static routes updated ${current_date}" && \
+    echo "INFO: Push changes to git repository" && \
+    git push
+    rm ${tmp_file}
+}
+
+function main () {
+    generate_temp_file
+
+    if [[ -z "$(grep "ip route add" ${tmp_file})" ]]; then
+        echo "INFO: There are no static routes applied, exiting.."
+
+    elif [[ ! -f ${static_route_live_file} ]]; then
+        store_in_git
+        echo "INFO: Static routes applied, but wasn't permanent at all. Pushed to git."
+        make_rules_permanent
+
+    else
+        if [[ ! -f "${static_route_git_file})" ]]; then
+            store_in_git
+            echo "INFO: Static routes are not changed but were missing in git. Pushed to git."
+        elif [[ -n "$(diff3 ${tmp_file} ${static_route_live_file} ${static_route_git_file})" ]]; then
+            store_in_git
+            echo "INFO: Static routes are changed. Pushed to git."
+            make_rules_permanent
+        else
+            echo "INFO: Static routes are not changed."
+        fi
+    fi
+}
+
+main "$@"

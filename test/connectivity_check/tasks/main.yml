@@ -1,0 +1,26 @@
+---
+- name: Copy script
+  template:
+    src: connectivity_check.j2
+    dest: /opt/connectivity_check.sh
+    owner: prometheus
+    group: prometheus
+    mode: 0765
+
+- name: Copy connectivity_check service
+  copy:
+    src: connectivity_check.service
+    dest: /etc/systemd/system/connectivity_check.service
+    owner: prometheus
+    group: prometheus
+    mode: 0644
+  notify: Restart connectivity_check timer
+
+- name: Copy connectivity_check timer
+  copy:
+    src: connectivity_check.timer
+    dest: /etc/systemd/system/connectivity_check.timer
+    owner: prometheus
+    group: prometheus
+    mode: 0644
+  notify: Restart connectivity_check timer

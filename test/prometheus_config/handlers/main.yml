@@ -1,0 +1,9 @@
+---
+- name: Reload prometheus
+  uri:
+    url: "{{ prometheus_url[prometheus_dc] }}/-/reload"
+    method: POST
+- name: Reload alertmanager
+  uri:
+    url: "{{ alertmanager_url[prometheus_dc] }}/-/reload"
+    method: POST

@@ -1,0 +1,20 @@
+[Unit]
+Description=monsoon worker daemon
+After=network.target
+
+[Service]
+User=monsoon
+Group=monsoon
+WorkingDirectory=/home/monsoon/git/monsoon/runit_parseit_getit
+EnvironmentFile=/home/monsoon/git/monsoon/environments/scripts/monsoon_env
+ExecStart=/home/monsoon/git/monsoon/venv3/bin/python -u node_workers.py -w 8
+StandardOutput=syslog
+StandardError=syslog
+Restart=always
+RestartSec=10
+SyslogIdentifier=monsoon_worker
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
+

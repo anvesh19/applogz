@@ -1,0 +1,4 @@
+- name: Add gitlab.sdil.aorta.net entry to /etc/hosts file
+  ansible.builtin.lineinfile:
+    path: "/etc/hosts"
+    line: "172.16.188.76 gitlab.sdil.aorta.net"

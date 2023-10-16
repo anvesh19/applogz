@@ -1,0 +1,22 @@
+{
+  "id": 11,
+  "uid": "-EE2zPF4z",
+  "orgId": 1,
+  "name": "Prometheus-ecx",
+  "type": "prometheus",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://prometheus.sdil.aorta.net/prometheus",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "httpMethod": "POST"
+  },
+  "secureJsonFields": {},
+  "version": 4,
+  "readOnly": false
+}

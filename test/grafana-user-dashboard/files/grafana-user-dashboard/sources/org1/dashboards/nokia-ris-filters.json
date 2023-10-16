@@ -1,0 +1,1005 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "nokia-ris-filters",
+    "url": "/d/T4TLrTank/nokia-ris-filters",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 92,
+    "iteration": 1644945555062,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "nokia1",
+        "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 1,
+        "gridPos": {
+          "h": 15,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": false,
+          "hideZero": false,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "filter_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "slot_number"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "entry_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "sros_ip_filter_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "card_egress_hit_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Egress_hit_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "card_ingress_hit_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Ingress_hit_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "source",
+                "operator": "=",
+                "value": "ch-zrh03b-ri1"
+              },
+              {
+                "condition": "AND",
+                "key": "filter_name",
+                "operator": "=~",
+                "value": "/^$Filter$/"
+              },
+              {
+                "condition": "AND",
+                "key": "entry_id",
+                "operator": "=~",
+                "value": "/^$Entry_ID$/"
+              },
+              {
+                "condition": "AND",
+                "key": "source",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - Ingress/Egress Hit for filter  $Filter",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:85",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:86",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "nokia1",
+        "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 16,
+          "w": 12,
+          "x": 0,
+          "y": 15
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "filter_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "slot_number"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "entry_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "sros_ip_filter_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "card_ingress_rate_limiter_dropped_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Ingress Dropped_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "card_ingress_rate_limiter_forwarded_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Ingress Forwarded_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "card_ingress_rate_limiter_offered_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Ingress Offered_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "source",
+                "operator": "=",
+                "value": "ch-zrh03b-ri1"
+              },
+              {
+                "condition": "AND",
+                "key": "filter_name",
+                "operator": "=~",
+                "value": "/^$Filter$/"
+              },
+              {
+                "condition": "AND",
+                "key": "entry_id",
+                "operator": "=~",
+                "value": "/^$Entry_ID$/"
+              },
+              {
+                "condition": "AND",
+                "key": "source",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - Ingress Rate Limiter for filter  $Filter",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:85",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:86",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "nokia1",
+        "description": "show filter ip \"IX-V4-Sunrise-in\" counters",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 16,
+          "w": 12,
+          "x": 12,
+          "y": 15
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "Slot: $tag_slot_number Filter Name: $tag_filter_name  - Metric Name - Entry ID: $tag_entry_id : $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "filter_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "slot_number"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "entry_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "sros_ip_filter_stats",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT last(\"card/egress_rate_limiter/dropped_pkt\") AS \"Egress Dropped_pkt\", last(\"card/egress_rate_limiter/forwarded_pkt\") AS \"Egress Forwarded_pkt\", last(\"card/egress_rate_limiter/offered_pkt\") AS \"Egress Offered_pkt\" FROM \"sros_ip_filter_stats\" WHERE (\"source\" = 'ch-zrh03b-ri1' AND \"filter_name\" =~ /^$Filter$/) AND $timeFilter GROUP BY time($__interval), \"filter_name\", \"slot_number\" fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "card_egress_rate_limiter_dropped_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Egress Dropped_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "card_egress_rate_limiter_forwarded_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Egress Forwarded_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "card_egress_rate_limiter_offered_pkt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Egress Offered_pkt"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "source",
+                "operator": "=",
+                "value": "ch-zrh03b-ri1"
+              },
+              {
+                "condition": "AND",
+                "key": "filter_name",
+                "operator": "=~",
+                "value": "/^$Filter$/"
+              },
+              {
+                "condition": "AND",
+                "key": "entry_id",
+                "operator": "=~",
+                "value": "/^$Entry_ID$/"
+              },
+              {
+                "condition": "AND",
+                "key": "source",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - Egress Rate Limiter for filter  $Filter",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:85",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:86",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "ch-zrh03b-ri1",
+            "value": "ch-zrh03b-ri1"
+          },
+          "datasource": "nokia1",
+          "definition": "show tag values from sros_ip_filter_stats with key=\"source\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname",
+          "multi": false,
+          "name": "Hostname",
+          "options": [
+            {
+              "selected": true,
+              "text": "ch-zrh03b-ri1",
+              "value": "ch-zrh03b-ri1"
+            }
+          ],
+          "query": "show tag values from sros_ip_filter_stats with key=\"source\"",
+          "refresh": 0,
+          "regex": "/.*-ri.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "IX-V4-Sunrise-in",
+            "value": "IX-V4-Sunrise-in"
+          },
+          "datasource": "nokia1",
+          "definition": "show tag values from sros_ip_filter_stats with key=\"filter_name\" where(\"source\"=~ /$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "Filter",
+          "options": [],
+          "query": "show tag values from sros_ip_filter_stats with key=\"filter_name\" where(\"source\"=~ /$Hostname/)",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "340"
+            ],
+            "value": [
+              "340"
+            ]
+          },
+          "datasource": "nokia1",
+          "definition": "show tag values from sros_ip_filter_stats with key=\"entry_id\" where(filter_name='$Filter' AND \"source\"=~ /$Hostname/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Entry ID",
+          "multi": true,
+          "name": "Entry_ID",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "10",
+              "value": "10"
+            },
+            {
+              "selected": false,
+              "text": "20",
+              "value": "20"
+            },
+            {
+              "selected": false,
+              "text": "30",
+              "value": "30"
+            },
+            {
+              "selected": false,
+              "text": "40",
+              "value": "40"
+            },
+            {
+              "selected": false,
+              "text": "50",
+              "value": "50"
+            },
+            {
+              "selected": false,
+              "text": "60",
+              "value": "60"
+            },
+            {
+              "selected": false,
+              "text": "70",
+              "value": "70"
+            },
+            {
+              "selected": false,
+              "text": "80",
+              "value": "80"
+            },
+            {
+              "selected": false,
+              "text": "90",
+              "value": "90"
+            },
+            {
+              "selected": false,
+              "text": "100",
+              "value": "100"
+            },
+            {
+              "selected": false,
+              "text": "110",
+              "value": "110"
+            },
+            {
+              "selected": false,
+              "text": "120",
+              "value": "120"
+            },
+            {
+              "selected": false,
+              "text": "130",
+              "value": "130"
+            },
+            {
+              "selected": false,
+              "text": "140",
+              "value": "140"
+            },
+            {
+              "selected": false,
+              "text": "150",
+              "value": "150"
+            },
+            {
+              "selected": false,
+              "text": "160",
+              "value": "160"
+            },
+            {
+              "selected": false,
+              "text": "170",
+              "value": "170"
+            },
+            {
+              "selected": false,
+              "text": "180",
+              "value": "180"
+            },
+            {
+              "selected": false,
+              "text": "190",
+              "value": "190"
+            },
+            {
+              "selected": false,
+              "text": "200",
+              "value": "200"
+            },
+            {
+              "selected": false,
+              "text": "210",
+              "value": "210"
+            },
+            {
+              "selected": false,
+              "text": "220",
+              "value": "220"
+            },
+            {
+              "selected": false,
+              "text": "230",
+              "value": "230"
+            },
+            {
+              "selected": false,
+              "text": "240",
+              "value": "240"
+            },
+            {
+              "selected": false,
+              "text": "250",
+              "value": "250"
+            },
+            {
+              "selected": false,
+              "text": "260",
+              "value": "260"
+            },
+            {
+              "selected": false,
+              "text": "270",
+              "value": "270"
+            },
+            {
+              "selected": false,
+              "text": "280",
+              "value": "280"
+            },
+            {
+              "selected": false,
+              "text": "290",
+              "value": "290"
+            },
+            {
+              "selected": false,
+              "text": "300",
+              "value": "300"
+            },
+            {
+              "selected": false,
+              "text": "310",
+              "value": "310"
+            },
+            {
+              "selected": false,
+              "text": "320",
+              "value": "320"
+            },
+            {
+              "selected": false,
+              "text": "330",
+              "value": "330"
+            },
+            {
+              "selected": false,
+              "text": "340",
+              "value": "340"
+            },
+            {
+              "selected": false,
+              "text": "350",
+              "value": "350"
+            },
+            {
+              "selected": false,
+              "text": "380",
+              "value": "380"
+            },
+            {
+              "selected": false,
+              "text": "390",
+              "value": "390"
+            },
+            {
+              "selected": false,
+              "text": "410",
+              "value": "410"
+            },
+            {
+              "selected": false,
+              "text": "440",
+              "value": "440"
+            },
+            {
+              "selected": false,
+              "text": "450",
+              "value": "450"
+            },
+            {
+              "selected": false,
+              "text": "460",
+              "value": "460"
+            },
+            {
+              "selected": false,
+              "text": "470",
+              "value": "470"
+            },
+            {
+              "selected": false,
+              "text": "480",
+              "value": "480"
+            }
+          ],
+          "query": "show tag values from sros_ip_filter_stats with key=\"entry_id\" where(filter_name='$Filter' AND \"source\"=~ /$Hostname/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Nokia RIs Filters",
+    "uid": "T4TLrTank"
+  }
+}

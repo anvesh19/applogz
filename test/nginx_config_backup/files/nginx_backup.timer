@@ -1,0 +1,11 @@
+[Unit]
+Description=Script that will collect nginx configs and push in to the git repo
+
+[Timer]
+OnCalendar=*-*-* 07:00:00
+
+Persistent=true
+Unit=nginx_backup.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,5 @@
+- name: Restart mdatp
+  systemd:
+    name: mdatp
+    daemon_reload: yes
+    state: restarted

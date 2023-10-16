@@ -1,0 +1,13 @@
+---
+- name: download dynatrace oneagent
+  include_tasks: "tasks/download.yml"
+
+- name: install dynatrace oneagent
+  include_tasks: "tasks/install.yml"
+
+- name: ensure oneagent has selected state and enabled on boot | linux
+  service:
+    name: "{{ dynatrace_oneagent_service_name }}"
+    state: "{{ dynatrace_oneagent_state }}"
+    enabled: true
+  when: dynatrace_oneagent_package_state != "absent"

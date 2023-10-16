@@ -1,0 +1,7 @@
+---
+- name: Restart swarm_stacks_backup timer
+  systemd:
+    name: swarm_stacks_backup.timer
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

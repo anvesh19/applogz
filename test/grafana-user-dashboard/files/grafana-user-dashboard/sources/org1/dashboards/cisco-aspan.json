@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "cisco-aspan",
+    "url": "/dashboards/f/T6_v2O27z/cisco-aspan",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 78,
+    "schemaVersion": 17,
+    "title": "Cisco (ASPAN)",
+    "uid": "T6_v2O27z"
+  }
+}

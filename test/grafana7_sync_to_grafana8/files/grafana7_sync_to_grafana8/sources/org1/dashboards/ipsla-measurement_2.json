@@ -1,0 +1,2572 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "ipsla-measurement_2",
+    "url": "/d/ukfnX4Unk/ipsla-measurement_2",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "",
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 114,
+    "iteration": 1649768833040,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 26,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 13,
+              "w": 24,
+              "x": 0,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 19,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": true,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_rtt",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "min_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Min_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "avg_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Avg_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Max_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA RTT",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 13,
+              "w": 24,
+              "x": 0,
+              "y": 14
+            },
+            "hiddenSeries": false,
+            "id": 28,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": true,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_rtt",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "min_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Min_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "avg_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Avg_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Max_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA RTT to all remote routers",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IPSLA RTT",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 24,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 13,
+              "w": 24,
+              "x": 0,
+              "y": 2
+            },
+            "hiddenSeries": false,
+            "id": 21,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "sort": "max",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_loss",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "SD"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "DS"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "mia"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " * 100/298"
+                      ],
+                      "type": "math"
+                    },
+                    {
+                      "params": [
+                        "Not Found Loss Direction"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ratio"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " * 100"
+                      ],
+                      "type": "math"
+                    },
+                    {
+                      "params": [
+                        "Ratio"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Loss ",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 13,
+              "w": 24,
+              "x": 0,
+              "y": 15
+            },
+            "hiddenSeries": false,
+            "id": 29,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "sort": "max",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_loss",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "SD"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "DS"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "mia"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " * 100/298"
+                      ],
+                      "type": "math"
+                    },
+                    {
+                      "params": [
+                        "Not Found Loss Direction"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "ratio"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        " * 100"
+                      ],
+                      "type": "math"
+                    },
+                    {
+                      "params": [
+                        "Ratio"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Loss to all remote Routers",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "percent",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IPSLA Loss",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 2
+        },
+        "id": 5,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 3
+            },
+            "hiddenSeries": false,
+            "id": 11,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_jitter",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_neg_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_neg_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_pos_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_pos_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_neg_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_neg_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_pos_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_pos_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Jitter",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 24,
+              "x": 0,
+              "y": 18
+            },
+            "hiddenSeries": false,
+            "id": 27,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_jitter",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Jitter - to ALL remote Routers",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IP SLA Jitter",
+        "type": "row"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita",
+      "ipsla"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "at-vie01a-rm1"
+            ],
+            "value": [
+              "at-vie01a-rm1"
+            ]
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Measurement Collected From",
+          "multi": false,
+          "name": "Hostname",
+          "options": [
+            {
+              "selected": true,
+              "text": "at-vie01a-rm1",
+              "value": "at-vie01a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "at-vie01a-rv1",
+              "value": "at-vie01a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "at-vie01a-rv2",
+              "value": "at-vie01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "at-vie15a-rm1",
+              "value": "at-vie15a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "be-dgb01a-rg01",
+              "value": "be-dgb01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "be-zav01a-rg01",
+              "value": "be-zav01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ch-gva01a-rm1",
+              "value": "ch-gva01a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "ch-otf01a-rg01",
+              "value": "ch-otf01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ch-otf01a-rg02",
+              "value": "ch-otf01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "ch-otf01b-rm1",
+              "value": "ch-otf01b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "ch-zrh03a-rm2",
+              "value": "ch-zrh03a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "cl-scl01a-rg01",
+              "value": "cl-scl01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "cl-scl01a-rg02",
+              "value": "cl-scl01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "cz-brq01a-rv1",
+              "value": "cz-brq01a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "cz-brq01a-rv2",
+              "value": "cz-brq01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rg01",
+              "value": "cz-prg01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rg02",
+              "value": "cz-prg01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rm2",
+              "value": "cz-prg01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rv1",
+              "value": "cz-prg01a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rv2",
+              "value": "cz-prg01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg02a-rm1",
+              "value": "cz-prg02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-fra01b-rm1",
+              "value": "de-fra01b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-fra02a-rm1",
+              "value": "de-fra02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-fra04a-rm1",
+              "value": "de-fra04a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-krp01a-rg01",
+              "value": "de-krp01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "de-krp01a-rg02",
+              "value": "de-krp01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "fr-par02b-rm1",
+              "value": "fr-par02b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "fr-par02c-rm1",
+              "value": "fr-par02c-rm1"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud02a-rm5",
+              "value": "hu-bud02a-rm5"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud03a-rg01",
+              "value": "hu-bud03a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud03a-rg02",
+              "value": "hu-bud03a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud03a-rm2",
+              "value": "hu-bud03a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-pr1",
+              "value": "ie-dub01a-pr1"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-rg01",
+              "value": "ie-dub01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-rg02",
+              "value": "ie-dub01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-rm1",
+              "value": "ie-dub01a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rg01",
+              "value": "nl-ams02a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rg02",
+              "value": "nl-ams02a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rm1",
+              "value": "nl-ams02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rv1",
+              "value": "nl-ams02a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rv2",
+              "value": "nl-ams02a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-rg03",
+              "value": "nl-ams02c-rg03"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-rg04",
+              "value": "nl-ams02c-rg04"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-pr1",
+              "value": "nl-ams02e-pr1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams05a-rg01",
+              "value": "nl-ams05a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams05a-rg02",
+              "value": "nl-ams05a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams05a-rm1",
+              "value": "nl-ams05a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams10a-rm1",
+              "value": "nl-ams10a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams11a-pr1",
+              "value": "nl-ams11a-pr1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams14a-rm2",
+              "value": "nl-ams14a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-rg01",
+              "value": "nl-srk03a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-rg02",
+              "value": "nl-srk03a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-sla1",
+              "value": "nl-srk03a-sla1"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-sla2",
+              "value": "nl-srk03a-sla2"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03d-rg02",
+              "value": "nl-srk03d-rg02"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw02a-rm1",
+              "value": "pl-waw02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rg01",
+              "value": "pl-waw04a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rm4",
+              "value": "pl-waw04a-rm4"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw12a-rv1",
+              "value": "pl-waw12a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw12a-rv2",
+              "value": "pl-waw12a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-rg01",
+              "value": "pl-waw18a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-rv1",
+              "value": "pl-waw18a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-rv2",
+              "value": "pl-waw18a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "pr-hre01a-rg01",
+              "value": "pr-hre01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "pr-hre01a-rg02",
+              "value": "pr-hre01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "ro-buh01a-rg01",
+              "value": "ro-buh01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ro-buh01a-rg02",
+              "value": "ro-buh01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04a-rg01",
+              "value": "sk-bts04a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04a-rg02",
+              "value": "sk-bts04a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04b-rv1",
+              "value": "sk-bts04b-rv1"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04b-rv2",
+              "value": "sk-bts04b-rv2"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts06a-rv1",
+              "value": "sk-bts06a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts06a-rv2",
+              "value": "sk-bts06a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "uk-knw01a-rg01",
+              "value": "uk-knw01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-knw01a-rg02",
+              "value": "uk-knw01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon01b-rm1",
+              "value": "uk-lon01b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon01c-rg01",
+              "value": "uk-lon01c-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon02a-rm1",
+              "value": "uk-lon02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon03b-rg01",
+              "value": "uk-lon03b-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon22a-rg01",
+              "value": "uk-lon22a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon22a-rg02",
+              "value": "uk-lon22a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "uk-wnb01a-rg01",
+              "value": "uk-wnb01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-wnb01a-rg02",
+              "value": "uk-wnb01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "us-chi01a-rm2",
+              "value": "us-chi01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "us-nyc01b-rm2",
+              "value": "us-nyc01b-rm2"
+            },
+            {
+              "selected": false,
+              "text": "us-sjo01a-rm2",
+              "value": "us-sjo01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "us-was02a-rm2",
+              "value": "us-was02a-rm2"
+            }
+          ],
+          "query": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "IPSLA at-vie01a -> at-vie15a Service: Buisness",
+            "value": "IPSLA at-vie01a -> at-vie15a Service: Buisness"
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values from ipsla_$measure with key = \"tag_name\" where hostname = '$Hostname'",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Name",
+          "multi": false,
+          "name": "Name",
+          "options": [
+            {
+              "selected": true,
+              "text": "IPSLA at-vie01a -> at-vie15a Service: Buisness",
+              "value": "IPSLA at-vie01a -> at-vie15a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> at-vie15a Service: Default",
+              "value": "IPSLA at-vie01a -> at-vie15a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> at-vie15a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> at-vie15a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> at-vie15a Service: Signalling",
+              "value": "IPSLA at-vie01a -> at-vie15a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> at-vie15a Service: Video",
+              "value": "IPSLA at-vie01a -> at-vie15a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> at-vie15a Service: Voice",
+              "value": "IPSLA at-vie01a -> at-vie15a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-gva01a Service: Buisness",
+              "value": "IPSLA at-vie01a -> ch-gva01a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-gva01a Service: Default",
+              "value": "IPSLA at-vie01a -> ch-gva01a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-gva01a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> ch-gva01a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-gva01a Service: Signalling",
+              "value": "IPSLA at-vie01a -> ch-gva01a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-gva01a Service: Video",
+              "value": "IPSLA at-vie01a -> ch-gva01a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-gva01a Service: Voice",
+              "value": "IPSLA at-vie01a -> ch-gva01a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-otf01b Service: Buisness",
+              "value": "IPSLA at-vie01a -> ch-otf01b Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-otf01b Service: Default",
+              "value": "IPSLA at-vie01a -> ch-otf01b Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-otf01b Service: Scavenger",
+              "value": "IPSLA at-vie01a -> ch-otf01b Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-otf01b Service: Signalling",
+              "value": "IPSLA at-vie01a -> ch-otf01b Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-otf01b Service: Video",
+              "value": "IPSLA at-vie01a -> ch-otf01b Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ch-otf01b Service: Voice",
+              "value": "IPSLA at-vie01a -> ch-otf01b Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg01a Service: Buisness",
+              "value": "IPSLA at-vie01a -> cz-prg01a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg01a Service: Default",
+              "value": "IPSLA at-vie01a -> cz-prg01a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg01a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> cz-prg01a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg01a Service: Signalling",
+              "value": "IPSLA at-vie01a -> cz-prg01a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg01a Service: Video",
+              "value": "IPSLA at-vie01a -> cz-prg01a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg01a Service: Voice",
+              "value": "IPSLA at-vie01a -> cz-prg01a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg02a Service: Buisness",
+              "value": "IPSLA at-vie01a -> cz-prg02a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg02a Service: Default",
+              "value": "IPSLA at-vie01a -> cz-prg02a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg02a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> cz-prg02a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg02a Service: Signalling",
+              "value": "IPSLA at-vie01a -> cz-prg02a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg02a Service: Video",
+              "value": "IPSLA at-vie01a -> cz-prg02a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> cz-prg02a Service: Voice",
+              "value": "IPSLA at-vie01a -> cz-prg02a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra01b Service: Buisness",
+              "value": "IPSLA at-vie01a -> de-fra01b Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra01b Service: Default",
+              "value": "IPSLA at-vie01a -> de-fra01b Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra01b Service: Scavenger",
+              "value": "IPSLA at-vie01a -> de-fra01b Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra01b Service: Signalling",
+              "value": "IPSLA at-vie01a -> de-fra01b Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra01b Service: Video",
+              "value": "IPSLA at-vie01a -> de-fra01b Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra01b Service: Voice",
+              "value": "IPSLA at-vie01a -> de-fra01b Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra04a Service: Buisness",
+              "value": "IPSLA at-vie01a -> de-fra04a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra04a Service: Default",
+              "value": "IPSLA at-vie01a -> de-fra04a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra04a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> de-fra04a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra04a Service: Signalling",
+              "value": "IPSLA at-vie01a -> de-fra04a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra04a Service: Video",
+              "value": "IPSLA at-vie01a -> de-fra04a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> de-fra04a Service: Voice",
+              "value": "IPSLA at-vie01a -> de-fra04a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02b Service: Buisness",
+              "value": "IPSLA at-vie01a -> fr-par02b Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02b Service: Default",
+              "value": "IPSLA at-vie01a -> fr-par02b Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02b Service: Scavenger",
+              "value": "IPSLA at-vie01a -> fr-par02b Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02b Service: Signalling",
+              "value": "IPSLA at-vie01a -> fr-par02b Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02b Service: Video",
+              "value": "IPSLA at-vie01a -> fr-par02b Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02b Service: Voice",
+              "value": "IPSLA at-vie01a -> fr-par02b Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02c Service: Buisness",
+              "value": "IPSLA at-vie01a -> fr-par02c Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02c Service: Default",
+              "value": "IPSLA at-vie01a -> fr-par02c Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02c Service: Scavenger",
+              "value": "IPSLA at-vie01a -> fr-par02c Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02c Service: Signalling",
+              "value": "IPSLA at-vie01a -> fr-par02c Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02c Service: Video",
+              "value": "IPSLA at-vie01a -> fr-par02c Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> fr-par02c Service: Voice",
+              "value": "IPSLA at-vie01a -> fr-par02c Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> hu-bud02a Service: Buisness",
+              "value": "IPSLA at-vie01a -> hu-bud02a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> hu-bud02a Service: Default",
+              "value": "IPSLA at-vie01a -> hu-bud02a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> hu-bud02a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> hu-bud02a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> hu-bud02a Service: Signalling",
+              "value": "IPSLA at-vie01a -> hu-bud02a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> hu-bud02a Service: Video",
+              "value": "IPSLA at-vie01a -> hu-bud02a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> hu-bud02a Service: Voice",
+              "value": "IPSLA at-vie01a -> hu-bud02a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ie-dub01a Service: Buisness",
+              "value": "IPSLA at-vie01a -> ie-dub01a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ie-dub01a Service: Default",
+              "value": "IPSLA at-vie01a -> ie-dub01a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ie-dub01a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> ie-dub01a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ie-dub01a Service: Signalling",
+              "value": "IPSLA at-vie01a -> ie-dub01a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ie-dub01a Service: Video",
+              "value": "IPSLA at-vie01a -> ie-dub01a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> ie-dub01a Service: Voice",
+              "value": "IPSLA at-vie01a -> ie-dub01a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams02a Service: Buisness",
+              "value": "IPSLA at-vie01a -> nl-ams02a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams02a Service: Default",
+              "value": "IPSLA at-vie01a -> nl-ams02a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams02a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> nl-ams02a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams02a Service: Signalling",
+              "value": "IPSLA at-vie01a -> nl-ams02a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams02a Service: Video",
+              "value": "IPSLA at-vie01a -> nl-ams02a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams02a Service: Voice",
+              "value": "IPSLA at-vie01a -> nl-ams02a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams05a Service: Buisness",
+              "value": "IPSLA at-vie01a -> nl-ams05a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams05a Service: Default",
+              "value": "IPSLA at-vie01a -> nl-ams05a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams05a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> nl-ams05a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams05a Service: Signalling",
+              "value": "IPSLA at-vie01a -> nl-ams05a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams05a Service: Video",
+              "value": "IPSLA at-vie01a -> nl-ams05a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> nl-ams05a Service: Voice",
+              "value": "IPSLA at-vie01a -> nl-ams05a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw04a Service: Buisness",
+              "value": "IPSLA at-vie01a -> pl-waw04a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw04a Service: Default",
+              "value": "IPSLA at-vie01a -> pl-waw04a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw04a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> pl-waw04a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw04a Service: Signalling",
+              "value": "IPSLA at-vie01a -> pl-waw04a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw04a Service: Video",
+              "value": "IPSLA at-vie01a -> pl-waw04a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw04a Service: Voice",
+              "value": "IPSLA at-vie01a -> pl-waw04a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw05a Service: Buisness",
+              "value": "IPSLA at-vie01a -> pl-waw05a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw05a Service: Default",
+              "value": "IPSLA at-vie01a -> pl-waw05a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw05a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> pl-waw05a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw05a Service: Signalling",
+              "value": "IPSLA at-vie01a -> pl-waw05a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw05a Service: Video",
+              "value": "IPSLA at-vie01a -> pl-waw05a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> pl-waw05a Service: Voice",
+              "value": "IPSLA at-vie01a -> pl-waw05a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> sk-bts01a Service: Buisness",
+              "value": "IPSLA at-vie01a -> sk-bts01a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> sk-bts01a Service: Default",
+              "value": "IPSLA at-vie01a -> sk-bts01a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> sk-bts01a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> sk-bts01a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> sk-bts01a Service: Signalling",
+              "value": "IPSLA at-vie01a -> sk-bts01a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> sk-bts01a Service: Video",
+              "value": "IPSLA at-vie01a -> sk-bts01a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> sk-bts01a Service: Voice",
+              "value": "IPSLA at-vie01a -> sk-bts01a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon01b Service: Buisness",
+              "value": "IPSLA at-vie01a -> uk-lon01b Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon01b Service: Default",
+              "value": "IPSLA at-vie01a -> uk-lon01b Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon01b Service: Scavenger",
+              "value": "IPSLA at-vie01a -> uk-lon01b Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon01b Service: Signalling",
+              "value": "IPSLA at-vie01a -> uk-lon01b Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon01b Service: Video",
+              "value": "IPSLA at-vie01a -> uk-lon01b Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon01b Service: Voice",
+              "value": "IPSLA at-vie01a -> uk-lon01b Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon02a Service: Buisness",
+              "value": "IPSLA at-vie01a -> uk-lon02a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon02a Service: Default",
+              "value": "IPSLA at-vie01a -> uk-lon02a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon02a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> uk-lon02a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon02a Service: Signalling",
+              "value": "IPSLA at-vie01a -> uk-lon02a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon02a Service: Video",
+              "value": "IPSLA at-vie01a -> uk-lon02a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> uk-lon02a Service: Voice",
+              "value": "IPSLA at-vie01a -> uk-lon02a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-chi01a Service: Buisness",
+              "value": "IPSLA at-vie01a -> us-chi01a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-chi01a Service: Default",
+              "value": "IPSLA at-vie01a -> us-chi01a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-chi01a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> us-chi01a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-chi01a Service: Signalling",
+              "value": "IPSLA at-vie01a -> us-chi01a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-chi01a Service: Video",
+              "value": "IPSLA at-vie01a -> us-chi01a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-chi01a Service: Voice",
+              "value": "IPSLA at-vie01a -> us-chi01a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-nyc01b Service: Buisness",
+              "value": "IPSLA at-vie01a -> us-nyc01b Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-nyc01b Service: Default",
+              "value": "IPSLA at-vie01a -> us-nyc01b Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-nyc01b Service: Scavenger",
+              "value": "IPSLA at-vie01a -> us-nyc01b Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-nyc01b Service: Signalling",
+              "value": "IPSLA at-vie01a -> us-nyc01b Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-nyc01b Service: Video",
+              "value": "IPSLA at-vie01a -> us-nyc01b Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-nyc01b Service: Voice",
+              "value": "IPSLA at-vie01a -> us-nyc01b Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-sjo01a Service: Buisness",
+              "value": "IPSLA at-vie01a -> us-sjo01a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-sjo01a Service: Default",
+              "value": "IPSLA at-vie01a -> us-sjo01a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-sjo01a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> us-sjo01a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-sjo01a Service: Signalling",
+              "value": "IPSLA at-vie01a -> us-sjo01a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-sjo01a Service: Video",
+              "value": "IPSLA at-vie01a -> us-sjo01a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-sjo01a Service: Voice",
+              "value": "IPSLA at-vie01a -> us-sjo01a Service: Voice"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-was02a Service: Buisness",
+              "value": "IPSLA at-vie01a -> us-was02a Service: Buisness"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-was02a Service: Default",
+              "value": "IPSLA at-vie01a -> us-was02a Service: Default"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-was02a Service: Scavenger",
+              "value": "IPSLA at-vie01a -> us-was02a Service: Scavenger"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-was02a Service: Signalling",
+              "value": "IPSLA at-vie01a -> us-was02a Service: Signalling"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-was02a Service: Video",
+              "value": "IPSLA at-vie01a -> us-was02a Service: Video"
+            },
+            {
+              "selected": false,
+              "text": "IPSLA at-vie01a -> us-was02a Service: Voice",
+              "value": "IPSLA at-vie01a -> us-was02a Service: Voice"
+            }
+          ],
+          "query": "show tag values from ipsla_$measure with key = \"tag_name\" where hostname = '$Hostname'",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "jitter",
+            "value": "jitter"
+          },
+          "description": null,
+          "error": null,
+          "hide": 2,
+          "includeAll": false,
+          "label": "measure",
+          "multi": false,
+          "name": "measure",
+          "options": [
+            {
+              "selected": true,
+              "text": "jitter",
+              "value": "jitter"
+            },
+            {
+              "selected": false,
+              "text": "loss",
+              "value": "loss"
+            },
+            {
+              "selected": false,
+              "text": "rtt",
+              "value": "rtt"
+            }
+          ],
+          "query": "jitter, loss, rtt",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "IPSLA Measurement_2",
+    "uid": "ukfnX4Unk"
+  }
+}

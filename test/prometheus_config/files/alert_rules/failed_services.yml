@@ -1,0 +1,44 @@
+groups:
+- name: systemd services
+  rules:
+  - alert: DDS Monsoon
+    expr: (node_systemd_unit_state{name=~".*monsoon.*|.*dsm.*", state="failed"} + on(instance) group_left(nodename) (node_uname_info * 0)) ==1
+    for: 10m
+    labels:
+      severity: warning
+      domain: dds
+    annotations:
+      description: "Service {{$labels.name}} failed on node {{$labels.nodename}}"
+      summary: |
+        {{$labels.nodename}} failed on node {{$labels.instance}}:
+         The collection is run once a day at 5:00 ~ this is not P1
+         Dont restart the service.
+         Log in the server and check the service status to identify the reason of the failure
+         Contact DDS team at
+         >>> https://teams.microsoft.com.mcas.ms/_#/conversations/dds%20devops
+- name: backup_services
+  rules:
+  - alert: nginx_backup_service
+    expr: (node_systemd_unit_state{name=~"nginx_backup.service",state="failed"} + on(instance) group_left(nodename) (node_uname_info * 0)) == 1
+    for: 10m
+    labels:
+      severity: warning
+      domain: web
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: Service {{$labels.name}} failed"
+      description: "{{$labels.instance}}-: Service {{$labels.name}} failed check the node {{$labels.nodename}} and the service to identify the issue"
+  - alert: dss_postgres_db_backup_service
+    expr: (node_systemd_unit_state{name=~"dds-db-backup.service",state="failed"} + on(instance) group_left(nodename) (node_uname_info * 0)) == 1
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: |
+        {{$labels.nodename}} failed on node {{$labels.instance}}:
+         The collection is run once a day at 5:00 ~ this is not P1
+         Dont restart the service.
+         Log in the server and check the service status to identify the reason of the failure
+         Contact DDS team at
+         >>> https://teams.microsoft.com.mcas.ms/_#/conversations/dds%20devops
+      description: "{{$labels.instance}}-: Service {{$labels.name}} failed check the node {{$labels.nodename}} and the service to identify the issue"

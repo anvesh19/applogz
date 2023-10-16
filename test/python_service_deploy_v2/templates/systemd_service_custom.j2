@@ -1,0 +1,12 @@
+[Unit]
+Description={{ base_package_name|default('A service') }} {{ package_version|default(omit) }}
+
+[Service]
+{% if systemd_custom_service is iterable %}
+{% for option in systemd_custom_service %}
+{{ option }}
+{% endfor %}
+{% endif%}
+
+[Install]
+WantedBy=multi-user.target

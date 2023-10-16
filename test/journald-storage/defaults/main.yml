@@ -1,0 +1,2 @@
+---
+journald_conf_dir: "/etc/systemd/journald.conf.d/"

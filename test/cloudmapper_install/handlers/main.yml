@@ -1,0 +1,21 @@
+---
+- name: Restart cloudmapper_obodr timer
+  systemd:
+    name: cloudmapper_obodr.timer
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: Restart cloudmapper_hzngo timer
+  systemd:
+    name: cloudmapper_hzngo.timer
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+
+- name: Restart cloudmapper_eos timer
+  systemd:
+    name: cloudmapper_eos.timer
+    state: restarted
+    enabled: yes
+    daemon_reload: yes

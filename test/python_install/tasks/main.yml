@@ -1,0 +1,9 @@
+---
+
+- name: Check os family
+  fail:
+    msg: "Only Debian family supported now"
+  when: ansible_os_family != "Debian"
+
+- name: Installation
+  import_tasks: install-package.yml

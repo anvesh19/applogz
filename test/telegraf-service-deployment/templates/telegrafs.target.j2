@@ -1,0 +1,7 @@
+[Unit]
+Description=Telegraf instances
+# Wants=telegraf@cisco.service telegraf@juniper.service telegraf@nokia.service telegraf@telemetry_sessions.service telegraf@ucs.service
+Wants={% for file in main_configs %}telegraf@{{ file.path | basename | splitext | first }}.service {% endfor %}
+
+[Install]
+WantedBy=multi-user.target

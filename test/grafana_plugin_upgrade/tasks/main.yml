@@ -1,0 +1,13 @@
+---
+- name: Copy plugin update scrypt
+  copy:
+    src: update_grafana_plugins.sh
+    dest: /home/ansible/update_grafana_plugins.sh
+    owner: ansible
+    group: ansible
+    mode: 0755
+
+- name: Upgrade Grafana 7/8 plugins
+  shell: |
+    cd /home/ansible/
+    ./update_grafana_plugins.sh

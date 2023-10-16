@@ -1,0 +1,6 @@
+{
+"tokens": {"accesstoken": "{{ lacework_access_token }}"},
+"serverurl": "{{ lacework_server_url }}"{% if proxy_env is defined %},
+"proxyurl":"{{ proxy_env.https_proxy }}"
+{% endif %}
+}

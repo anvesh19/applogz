@@ -1,0 +1,28 @@
+{
+  "id": 15,
+  "uid": "Wq7Fn9J7k",
+  "orgId": 1,
+  "name": "LG Chart Datasource test",
+  "type": "lg-chart-datasource",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://observer-api-v3.dev.sdil.aorta.net",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsAuth": false,
+    "tlsAuthWithCACert": true,
+    "tlsSkipVerify": true
+  },
+  "secureJsonFields": {
+    "tlsCACert": true
+  },
+  "version": 13,
+  "readOnly": false
+}

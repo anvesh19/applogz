@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "dtv-core-routers",
+    "url": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 43,
+    "schemaVersion": 17,
+    "title": "DTV Core Routers",
+    "uid": "U05qpiSnk"
+  }
+}

@@ -1,0 +1,28 @@
+groups:
+    - name: watchdog_poller
+      rules:
+      - alert: polling_problem
+        expr: (sum by (poller)(increase(SNMP_POLLER_TOTAL_COUNT{device_name=~".*fw.*"}[15m]))) + on(instance) group_left(domainname) (sum by (watchdog)(increase(WATCHDOG_OBSERVED_COUNT{file_name="all_files",watchdog="vnl-ecx-prd-col03-checkpoint"}[10m]))) == 0
+        for: 15m
+        annotations:
+          summary: "{{$labels.instance}}-{{$labels.nodename}}: Polling is not working on: {{$labels.poller}}"
+          description: "{{$labels.instance}}-{{$labels.nodename}}: Polling is not working on: {{$labels.poller}}-{{$value}}"
+        
+      - alert: watchdog_problem
+        expr: (sum by (watchdog)(increase(WATCHDOG_OBSERVED_COUNT{file_name="all_files"}[15m])) == 0) and on(instance) (sum by (poller)(increase(SNMP_POLLER_TOTAL_COUNT{device_name=~".*fw.*"}[15m])) > 50) == 0 
+        for: 15m
+        annotations:
+          summary: "{{$labels.instance}}-{{$labels.nodename}}: Problem is with watchdog, it cannot't read filesystem {{$labels.watchdog}}"
+          description: "{{$labels.instance}}-{{$labels.nodename}}: Problem is with watchdog, it cannot't read filesystem: {{$labels.watchdog}}-{{$value}}"
+      - alert: watchdog_checkpoint
+        expr: sum by (watchdog, nodename, instance)(increase(WATCHDOG_OBSERVED_COUNT{file_name="all_files",watchdog="vnl-ecx-prd-col03-checkpoint"}[10m])  + on(instance) group_left(nodename) (node_uname_info * 0)) == 0
+        for: 15m
+        annotations:
+          summary: "{{$labels.instance}}-{{$labels.nodename}}: Watchdog in {{$labels.watchdog}} not picking up files"
+          description: "{{$labels.instance}}-{{$labels.nodename}}: Problem is with watchdog, please check the dashboard https://prometheus-grafana.sdil.aorta.net/d/JhaB_OEMz/checkpoint-collection?orgId=1&from=now-3h&to=now \nIf the SNMP graph is ok please check the worker. \n1. ssh to {{$labels.instance}} \n2. check the docker sudo docker ps | grep watchdog \n3. restart the containers it cannot't read filesystem: {{$labels.watchdog}}-{{$value}}"
+      - alert: watchdog_missing_file
+        expr: sum by (watchdog, nodename, instance)(increase(WATCHDOG_OBSERVED_COUNT{file_name="all_files"}[10m])  + on(instance) group_left(nodename) (node_uname_info * 0)) == 0
+        for: 15m
+        annotations:
+          summary: "{{$labels.instance}}-{{$labels.nodename}}: Watchdog in {{$labels.watchdog}} not picking up files"
+          description: "{{$labels.instance}}-{{$labels.nodename}}: Problem is with watchdog, please check if we are able to read the files and send messages {{$labels.instance}} {{$labels.watchdog}}-{{$value}}"

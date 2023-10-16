@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "poc-aws-vcsr",
+    "url": "/dashboards/f/XaiDo26Gk/poc-aws-vcsr",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 29,
+    "schemaVersion": 17,
+    "title": "POC AWS vCSR",
+    "uid": "XaiDo26Gk"
+  }
+}

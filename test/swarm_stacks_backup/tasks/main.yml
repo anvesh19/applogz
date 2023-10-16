@@ -1,0 +1,26 @@
+--- 
+- name: Copy script
+  template:
+    src: files/swarm_stacks_backup.sh
+    dest: /home/ansible/swarm_stacks_backup.sh
+    owner: ansible
+    group: ansible
+    mode: 0765 
+
+- name: Copy swarm_stacks_backup service
+  copy:
+    src: swarm_stacks_backup.service
+    dest: /etc/systemd/system/swarm_stacks_backup.service
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart swarm_stacks_backup timer
+
+- name: Copy swarm_stacks_backup timer
+  copy:
+    src: swarm_stacks_backup.timer
+    dest: /etc/systemd/system/swarm_stacks_backup.timer
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart swarm_stacks_backup timer

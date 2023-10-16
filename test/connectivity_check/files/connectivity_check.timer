@@ -1,0 +1,11 @@
+[Unit]
+Description=Script checks does we have connection problems bettween hosts and if yes push as metric in Prometheus and alarm. 
+
+[Timer]
+OnCalendar=*:0/2
+
+Persistent=true
+Unit=connectivity_check.service
+
+[Install]
+WantedBy=multi-user.target

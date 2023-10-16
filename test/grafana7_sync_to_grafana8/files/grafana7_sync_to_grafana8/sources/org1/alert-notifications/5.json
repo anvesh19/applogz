@@ -1,0 +1,18 @@
+{
+  "id": 5,
+  "uid": "cRUG5rY7k",
+  "name": "vCSR_LAB",
+  "type": "email",
+  "isDefault": false,
+  "sendReminder": false,
+  "disableResolveMessage": false,
+  "frequency": "",
+  "settings": {
+    "addresses": "cbadita.contractor@libertyglobal.com; ybanchev@libertyglobal.com; natanasovkolev.contractor@libertyglobal.com; vsevolod_gritsaenko@epam.com; ovidiu_nitu@epam.com; vsevolod_gritsaenko@epam.com",
+    "autoResolve": true,
+    "httpMethod": "POST",
+    "severity": "critical",
+    "uploadImage": false
+  },
+  "secureFields": {}
+}

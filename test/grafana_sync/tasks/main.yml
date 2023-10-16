@@ -1,0 +1,15 @@
+---
+- name: Sync Grafana from ECX
+  shell: |
+    cd /home/ansible/git/obs-infrastructure/roles/grafana_sync/files/
+    ./grafana_sync_ecx.sh
+  when: sync_from == "ecx"
+  
+
+- name: Sync Grafana from KBW
+  shell: |
+    cd /home/ansible/git/obs-infrastructure/roles/grafana_sync/files/
+    ./grafana_sync_kbw.sh
+  when: sync_from == "kbw"
+ 
+ 

@@ -1,0 +1,3157 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "ipsla-measurement",
+    "url": "/d/gpi0IFsnz/ipsla-measurement",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "",
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 113,
+    "iteration": 1649768833795,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 26,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 13,
+              "w": 24,
+              "x": 0,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 19,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": true,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_rtt",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "min_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Min_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "avg_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Avg_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_rtt"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Max_RTT"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA RTT",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IPSLA RTT",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 24,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 12,
+              "w": 12,
+              "x": 0,
+              "y": 2
+            },
+            "hiddenSeries": false,
+            "id": 21,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "max",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_loss",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Loss  - Source - Destination",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 12,
+              "w": 12,
+              "x": 12,
+              "y": 2
+            },
+            "hiddenSeries": false,
+            "id": 22,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "max",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_loss",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Loss  - Destination - Source",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 12,
+              "w": 12,
+              "x": 0,
+              "y": 14
+            },
+            "hiddenSeries": false,
+            "id": 28,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "max",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_loss",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "ratio"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "Ratio"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Loss  - Ratio",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 12,
+              "w": 12,
+              "x": 12,
+              "y": 14
+            },
+            "hiddenSeries": false,
+            "id": 29,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "max",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_loss",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "mia"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "mia"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Loss  - MIA",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IPSLA Loss",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 2
+        },
+        "id": 5,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 19,
+              "w": 12,
+              "x": 0,
+              "y": 3
+            },
+            "hiddenSeries": false,
+            "id": 11,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_jitter",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Jitter - Source - Destination",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 19,
+              "w": 12,
+              "x": 12,
+              "y": 3
+            },
+            "hiddenSeries": false,
+            "id": 2,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_jitter",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "tag_name",
+                    "operator": "=~",
+                    "value": "/^$Name$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - IP SLA Jitter - Destination - Source",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IP SLA Jitter RG Routers",
+        "type": "row"
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 3
+        },
+        "id": 16,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 12,
+              "x": 0,
+              "y": 4
+            },
+            "hiddenSeries": false,
+            "id": 14,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_jitter",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_neg_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_neg_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_pos_ds"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_pos_ds"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$HostnameRV$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$HostnameRV - IPSLA Jitter - Average Destination - Source",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 0,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 12,
+              "x": 12,
+              "y": 4
+            },
+            "hiddenSeries": false,
+            "id": 17,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": false,
+              "min": false,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_tag_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "tag_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "ipsla_jitter",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+                "rawQuery": false,
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "avg_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_neg_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_neg_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "max_pos_sd"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "max_pos_sd"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$HostnameRV$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$HostnameRV - IPSLA Jitter - Average Source - Destination",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:1858",
+                "format": "ms",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:1859",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "IP SLA Jitter RV Routers",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 4
+        },
+        "id": 7,
+        "panels": [],
+        "title": "RM Routers - QoS Queues",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 0,
+          "y": 5
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 4,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_tag_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "tag_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipsla_jitter",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "avg_ds"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "avg_ds"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$HostnameRM$/"
+              },
+              {
+                "condition": "AND",
+                "key": "tag_name",
+                "operator": "=~",
+                "value": "/.*IPSLA*./"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$HostnameRM - IPSLA Jitter - Average Destination - Source",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1858",
+            "format": "ms",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1859",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 12,
+          "y": 5
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 4,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_tag_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "tag_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipsla_jitter",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "avg_sd"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "avg_sd"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$HostnameRM$/"
+              },
+              {
+                "condition": "AND",
+                "key": "tag_name",
+                "operator": "=~",
+                "value": "/.*IPSLA*./"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$HostnameRM - IPSLA Jitter - Average Source - Destination",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1858",
+            "format": "ms",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1859",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 13,
+          "w": 24,
+          "x": 0,
+          "y": 20
+        },
+        "hiddenSeries": false,
+        "id": 30,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 4,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_tag_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "tag_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipsla_loss",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "sd"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Source - Destination"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "ds"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Destination - Source"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$HostnameRM$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$HostnameRM - IPSLA Loss",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1858",
+            "format": "ms",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1859",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 5,
+          "w": 12,
+          "x": 0,
+          "y": 33
+        },
+        "hiddenSeries": false,
+        "id": 31,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 4,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_tag_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "tag_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipsla_rtt",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "min_rtt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Min RTT"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$HostnameRM$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$HostnameRM - IPSLA RTT",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1858",
+            "format": "ms",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1859",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 0,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 13,
+          "w": 24,
+          "x": 0,
+          "y": 38
+        },
+        "hiddenSeries": false,
+        "id": 32,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "max": false,
+          "min": false,
+          "rightSide": true,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 4,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_tag_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "tag_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "ipsla_rtt",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"value\") FROM \"ipsla_jitter\" WHERE (\"hostname\" = 'uk-lon01c-rg01') AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "max_rtt"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "Max RTT"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$HostnameRM$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$HostnameRM - IPSLA RTT",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1858",
+            "format": "ms",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1859",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita",
+      "ipsla"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "nl-srk03a-rg01"
+            ],
+            "value": [
+              "nl-srk03a-rg01"
+            ]
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Measurement Collected From",
+          "multi": true,
+          "name": "Hostname",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "be-dgb01a-rg01",
+              "value": "be-dgb01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "be-zav01a-rg01",
+              "value": "be-zav01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ch-otf01a-rg01",
+              "value": "ch-otf01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ch-otf01a-rg02",
+              "value": "ch-otf01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "cl-scl01a-rg01",
+              "value": "cl-scl01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "cl-scl01a-rg02",
+              "value": "cl-scl01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rg01",
+              "value": "cz-prg01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rg02",
+              "value": "cz-prg01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rm2",
+              "value": "cz-prg01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rv1",
+              "value": "cz-prg01a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rv2",
+              "value": "cz-prg01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg02a-rm1",
+              "value": "cz-prg02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-krp01a-rg01",
+              "value": "de-krp01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "de-krp01a-rg02",
+              "value": "de-krp01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud03a-rg01",
+              "value": "hu-bud03a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud03a-rg02",
+              "value": "hu-bud03a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-rg01",
+              "value": "ie-dub01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-rg02",
+              "value": "ie-dub01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rg01",
+              "value": "nl-ams02a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rg02",
+              "value": "nl-ams02a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-rg03",
+              "value": "nl-ams02c-rg03"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-rg04",
+              "value": "nl-ams02c-rg04"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams05a-rg01",
+              "value": "nl-ams05a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams05a-rg02",
+              "value": "nl-ams05a-rg02"
+            },
+            {
+              "selected": true,
+              "text": "nl-srk03a-rg01",
+              "value": "nl-srk03a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-rg02",
+              "value": "nl-srk03a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03d-rg02",
+              "value": "nl-srk03d-rg02"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rg01",
+              "value": "pl-waw04a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-rg01",
+              "value": "pl-waw18a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "pr-hre01a-rg01",
+              "value": "pr-hre01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "pr-hre01a-rg02",
+              "value": "pr-hre01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "ro-buh01a-rg01",
+              "value": "ro-buh01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "ro-buh01a-rg02",
+              "value": "ro-buh01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04a-rg01",
+              "value": "sk-bts04a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04a-rg02",
+              "value": "sk-bts04a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "uk-knw01a-rg01",
+              "value": "uk-knw01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-knw01a-rg02",
+              "value": "uk-knw01a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon01c-rg01",
+              "value": "uk-lon01c-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon03b-rg01",
+              "value": "uk-lon03b-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon22a-rg01",
+              "value": "uk-lon22a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon22a-rg02",
+              "value": "uk-lon22a-rg02"
+            },
+            {
+              "selected": false,
+              "text": "uk-wnb01a-rg01",
+              "value": "uk-wnb01a-rg01"
+            },
+            {
+              "selected": false,
+              "text": "uk-wnb01a-rg02",
+              "value": "uk-wnb01a-rg02"
+            }
+          ],
+          "query": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "/.*rg.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "-> at-vie01a-rg05",
+            "value": "-> at-vie01a-rg05"
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values from ipsla_$measure with key = \"tag_name\" where hostname = '$Hostname'",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hubs",
+          "multi": false,
+          "name": "Name",
+          "options": [
+            {
+              "selected": false,
+              "text": "-> at-vie01a-rg05",
+              "value": "-> at-vie01a-rg05"
+            },
+            {
+              "selected": false,
+              "text": "-> at-vie01a-rg06",
+              "value": "-> at-vie01a-rg06"
+            },
+            {
+              "selected": false,
+              "text": "-> nl-ams02c-rg01",
+              "value": "-> nl-ams02c-rg01"
+            },
+            {
+              "selected": false,
+              "text": "-> nl-ams02c-rg02",
+              "value": "-> nl-ams02c-rg02"
+            },
+            {
+              "selected": false,
+              "text": "-> nl-ams05a-rg01 ",
+              "value": "-> nl-ams05a-rg01 "
+            },
+            {
+              "selected": false,
+              "text": "-> nl-ams05a-rg02",
+              "value": "-> nl-ams05a-rg02"
+            }
+          ],
+          "query": "show tag values from ipsla_$measure with key = \"tag_name\" where hostname = '$Hostname'",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "at-vie01a-rv2"
+            ],
+            "value": [
+              "at-vie01a-rv2"
+            ]
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "RV Routers ",
+          "multi": true,
+          "name": "HostnameRV",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "at-vie01a-rv1",
+              "value": "at-vie01a-rv1"
+            },
+            {
+              "selected": true,
+              "text": "at-vie01a-rv2",
+              "value": "at-vie01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "cz-brq01a-rv1",
+              "value": "cz-brq01a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "cz-brq01a-rv2",
+              "value": "cz-brq01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rv1",
+              "value": "cz-prg01a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rv2",
+              "value": "cz-prg01a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rv1",
+              "value": "nl-ams02a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rv2",
+              "value": "nl-ams02a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw12a-rv1",
+              "value": "pl-waw12a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw12a-rv2",
+              "value": "pl-waw12a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-rv1",
+              "value": "pl-waw18a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-rv2",
+              "value": "pl-waw18a-rv2"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04b-rv1",
+              "value": "sk-bts04b-rv1"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts04b-rv2",
+              "value": "sk-bts04b-rv2"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts06a-rv1",
+              "value": "sk-bts06a-rv1"
+            },
+            {
+              "selected": false,
+              "text": "sk-bts06a-rv2",
+              "value": "sk-bts06a-rv2"
+            }
+          ],
+          "query": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "/.*rv.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "tags": [],
+            "text": [
+              "at-vie01a-rm1"
+            ],
+            "value": [
+              "at-vie01a-rm1"
+            ]
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "RM Routers ",
+          "multi": true,
+          "name": "HostnameRM",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "at-vie01a-rm1",
+              "value": "at-vie01a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "at-vie15a-rm1",
+              "value": "at-vie15a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "ch-gva01a-rm1",
+              "value": "ch-gva01a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "ch-otf01b-rm1",
+              "value": "ch-otf01b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "ch-zrh03a-rm2",
+              "value": "ch-zrh03a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg01a-rm2",
+              "value": "cz-prg01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "cz-prg02a-rm1",
+              "value": "cz-prg02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-fra01b-rm1",
+              "value": "de-fra01b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-fra02a-rm1",
+              "value": "de-fra02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "de-fra04a-rm1",
+              "value": "de-fra04a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "fr-par02b-rm1",
+              "value": "fr-par02b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "fr-par02c-rm1",
+              "value": "fr-par02c-rm1"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud02a-rm5",
+              "value": "hu-bud02a-rm5"
+            },
+            {
+              "selected": false,
+              "text": "hu-bud03a-rm2",
+              "value": "hu-bud03a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "ie-dub01a-rm1",
+              "value": "ie-dub01a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02a-rm1",
+              "value": "nl-ams02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams05a-rm1",
+              "value": "nl-ams05a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams10a-rm1",
+              "value": "nl-ams10a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams14a-rm2",
+              "value": "nl-ams14a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw02a-rm1",
+              "value": "pl-waw02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rm4",
+              "value": "pl-waw04a-rm4"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon01b-rm1",
+              "value": "uk-lon01b-rm1"
+            },
+            {
+              "selected": false,
+              "text": "uk-lon02a-rm1",
+              "value": "uk-lon02a-rm1"
+            },
+            {
+              "selected": false,
+              "text": "us-chi01a-rm2",
+              "value": "us-chi01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "us-nyc01b-rm2",
+              "value": "us-nyc01b-rm2"
+            },
+            {
+              "selected": false,
+              "text": "us-sjo01a-rm2",
+              "value": "us-sjo01a-rm2"
+            },
+            {
+              "selected": false,
+              "text": "us-was02a-rm2",
+              "value": "us-was02a-rm2"
+            }
+          ],
+          "query": "show tag values from ipsla_jitter with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "/.*rm.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "jitter",
+            "value": "jitter"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "measure",
+          "multi": false,
+          "name": "measure",
+          "options": [
+            {
+              "selected": true,
+              "text": "jitter",
+              "value": "jitter"
+            },
+            {
+              "selected": false,
+              "text": "loss",
+              "value": "loss"
+            },
+            {
+              "selected": false,
+              "text": "rtt",
+              "value": "rtt"
+            }
+          ],
+          "query": "jitter, loss, rtt",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "IPSLA Measurement",
+    "uid": "gpi0IFsnz"
+  }
+}

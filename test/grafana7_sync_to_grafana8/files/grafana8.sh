@@ -1,0 +1,10 @@
+ORGS_exp=(
+"org1:eyJrIjoiMTlTTE9hRjI1bXpsNXNUR2ZBSmpHQkhTNnVpNzJHTUsiLCJuIjoiZ3JhZmFuYV9leHBvcnQiLCJpZCI6MX0="
+)
+HOST_exp="https://grafana7.dev.sdil.aorta.net"
+FILE_DIR_exp=/home/ansible/git/obs-infrastructure/roles/grafana7_sync_to_grafana8/files/grafana7_sync_to_grafana8/sources
+ORGS=(
+"org1:eyJrIjoiTVQ4d0RrRktWZHNTUFhZN2d0ZW9FYXBESXo3WVR4eHAiLCJuIjoiZXhwb3J0IiwiaWQiOjF9"
+)
+HOST="https://grafana8.dev.sdil.aorta.net"
+FILE_DIR=/home/ansible/git/obs-infrastructure/roles/grafana7_sync_to_grafana8/files/grafana7_sync_to_grafana8/sources

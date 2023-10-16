@@ -1,0 +1,2120 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "ch-core-isis",
+    "url": "/d/S89nzCx7k/ch-core-isis",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 91,
+    "iteration": 1643791529883,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "MySQL Observer",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": null,
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "hostname"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 198
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "if_name"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 409
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 17,
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "if_name"
+            }
+          ]
+        },
+        "pluginVersion": "7.4.2",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "select router.hostname, interface.if_name, interface.description from interface join router on router.id = router_id where router.hostname like '$hostname'",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "admin_status"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "interface",
+            "timeColumn": "ae_if_id",
+            "timeColumnType": "bigint",
+            "where": [
+              {
+                "name": "$__unixEpochFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "$hostname - Interface Description",
+        "type": "table"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 9
+        },
+        "id": 11,
+        "panels": [],
+        "title": "ch-zrh03-rc2 | ch-otf01b-rc2 - Traffic on All ISIS Links",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 10
+        },
+        "hiddenSeries": false,
+        "id": 12,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"in_bps\") FROM \"traffic\" WHERE (\n\"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae1' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae17' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae20' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae203' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae205' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae206' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae207' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae222' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae223' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae232' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae233' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae234' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae3' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae30' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae301' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae302' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae303' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae304' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae305' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae306' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae307' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae308' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae309' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae310' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae311' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae312' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae313' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae314' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae315' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae316' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae317' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae318' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae319' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae320' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae321' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae322' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae323' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae324' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae326' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae327' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae4' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae5' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae50' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae51' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae52' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae53' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae55' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae6' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae7' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae9' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae98' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae99') AND $timeFilter GROUP BY time($__interval), \"hostname\", \"if_name\" fill(null)",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae207"
+              },
+              {
+                "condition": "OR",
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae6"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "ch-zrh03-rc2 - INGRESS Traffic On ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 19
+        },
+        "hiddenSeries": false,
+        "id": 13,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"out_bps\") FROM \"traffic\" WHERE (\n\"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae1' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae17' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae20' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae203' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae205' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae206' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae207' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae222' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae223' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae232' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae233' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae234' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae3' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae30' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae301' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae302' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae303' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae304' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae305' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae306' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae307' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae308' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae309' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae310' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae311' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae312' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae313' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae314' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae315' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae316' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae317' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae318' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae319' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae320' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae321' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae322' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae323' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae324' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae326' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae327' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae4' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae5' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae50' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae51' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae52' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae53' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae55' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae6' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae7' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae9' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae98' OR \"hostname\" = 'ch-zrh03a-rc2' AND \"if_name\" = 'ae99') AND $timeFilter GROUP BY time($__interval), \"hostname\", \"if_name\" fill(null)",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae207"
+              },
+              {
+                "condition": "OR",
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae6"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "ch-zrh03-rc2 - EGRESS Traffic On ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 10,
+          "w": 24,
+          "x": 0,
+          "y": 28
+        },
+        "hiddenSeries": false,
+        "id": 14,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"in_bps\") FROM \"traffic\" WHERE (\"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae1' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae101' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae102' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae103' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae104' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae105' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae106' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae107' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae111' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae112' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae116' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae12' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae17' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae2' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae20' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae202' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae203' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae205' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae207' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae22' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae222' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae223' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae232' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae233' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae234' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae30' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae301' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae302' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae303' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae304' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae305' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae306' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae307' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae308' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae309' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae310' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae312' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae313' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae314' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae315' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae316' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae317' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae318' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae319' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae320' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae321' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae322' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae323' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae324' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae4' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae50' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae52' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae53' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae54' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae6' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae7' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae8' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae9' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae52' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae51') AND $timeFilter GROUP BY time($__interval), \"hostname\", \"if_name\" fill(null)",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae207"
+              },
+              {
+                "condition": "OR",
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae6"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "ch-otf01b-rc2 - INGRESS Traffic On ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 11,
+          "w": 24,
+          "x": 0,
+          "y": 38
+        },
+        "hiddenSeries": false,
+        "id": 15,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "query": "SELECT mean(\"out_bps\") FROM \"traffic\" WHERE (\"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae1' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae101' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae102' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae103' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae104' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae105' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae106' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae107' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae111' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae112' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae116' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae12' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae17' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae2' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae20' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae202' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae203' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae205' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae207' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae22' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae222' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae223' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae232' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae233' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae234' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae30' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae301' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae302' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae303' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae304' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae305' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae306' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae307' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae308' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae309' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae310' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae312' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae313' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae314' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae315' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae316' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae317' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae318' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae319' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae320' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae321' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae322' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae323' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae324' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae4' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae50' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae52' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae53' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae54' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae6' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae7' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae8' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae9' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae52' OR \"hostname\" = 'ch-otf01b-rc2' AND \"if_name\" = 'ae51') AND $timeFilter GROUP BY time($__interval), \"hostname\", \"if_name\" fill(null)",
+            "rawQuery": true,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae207"
+              },
+              {
+                "condition": "OR",
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae6"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "ch-otf01b-rc2 - EGRESS Traffic On ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 49
+        },
+        "id": 6,
+        "panels": [],
+        "title": "ZH03A/OFT01B-mlxGLS901|902",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 50
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from mlxGLS901"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to mlxGLS901"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae207"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from ch-otf01b-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to ch-otf01b-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae6"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from mlxotf902"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to mlxotf902"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-zrh03a-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae233"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "ch-zrh03-rc2 - Traffic on ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 59
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from mlxGLS902"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to mlxGLS902"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae207"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from ch-zrhn03a-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to ch-zrhn03a-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae6"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "C",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from mlxotf901"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to mlxotf901"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-otf01b-rc2"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "ae233"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "ch-otf01b-rc2 - Traffic on ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 68
+        },
+        "hiddenSeries": false,
+        "id": 4,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from ch-zrh03a-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to ch-zrh03a-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "mlxotf901"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "Bundle-Ether1"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from mlxGLS902"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to mlxGLS902"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-mlxgls901"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "Bundle-Ether2"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "mlxGLS901 - Traffic on ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 77
+        },
+        "hiddenSeries": false,
+        "id": 7,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "max": false,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from ch-otf01b-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to ch-otf01b-rc2"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-mlxgls902"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "Bundle-Ether1"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN - from mlxGLS901"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT - to mlxGLS901"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=",
+                "value": "ch-mlxgls902"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=",
+                "value": "Bundle-Ether2"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "mlxGLS902 - Traffic on ISIS Interfaces",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:216",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:217",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": "ch-zrh03a-rc2",
+            "value": "ch-zrh03a-rc2"
+          },
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostaname to Display Interface Description",
+          "multi": false,
+          "name": "hostname",
+          "options": [
+            {
+              "selected": false,
+              "text": "ch-otf01b-rc2",
+              "value": "ch-otf01b-rc2"
+            },
+            {
+              "selected": true,
+              "text": "ch-zrh03a-rc2",
+              "value": "ch-zrh03a-rc2"
+            }
+          ],
+          "query": "ch-otf01b-rc2,ch-zrh03a-rc2",
+          "queryValue": "",
+          "skipUrlSync": false,
+          "type": "custom"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "CH Core ISIS",
+    "uid": "S89nzCx7k"
+  }
+}

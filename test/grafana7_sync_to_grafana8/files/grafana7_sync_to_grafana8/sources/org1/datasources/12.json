@@ -1,0 +1,24 @@
+{
+  "id": 12,
+  "uid": "l67J1uHnz",
+  "orgId": 1,
+  "name": "MySQL Observer",
+  "type": "mysql",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "172.31.141.184",
+  "password": "",
+  "user": "observer",
+  "database": "observer",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 5,
+  "readOnly": false
+}

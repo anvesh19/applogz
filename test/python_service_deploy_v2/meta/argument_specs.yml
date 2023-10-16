@@ -1,0 +1,63 @@
+---
+argument_specs:
+  main:
+    short_description: The main entry point for the python_service_deploy role.
+    options:
+      base_package_name:
+        required: true
+        description: "Name of the package"
+      package_version:
+        description: "Version of the package to be installed"
+      base_service_name:
+        description: "Name of the service, defaults to the base_package_name"
+      service_user:
+        default: observer
+        description: "Name of the service user, defaults to the observer"
+      service_group:
+        default: observer
+        description: "Name of the service group, defaults to the observer"
+      service_home:
+        description: "Name of the service user home directory, defaults to the /home/service_user"
+      service_env:
+        default: prod
+        description: "Name of the environment, defaults prod"
+      systemd_units_dir:
+        type: path
+        default: /etc/systemd/system
+        description: "Path to the systemd units directory, default to the /etc/systemd/system"
+      systemd_env_dir:
+        type: path
+        description: "Path to the environment file directory, defaults to the base_dir"
+      site_packages_workdir_postfix:
+        type: path
+        description: "Part of the systemd WorkingDirectory path relative to site-packages directory"
+      systemd_execstart:
+        description: "Full ExecStart definition e.g. /path/to/script.sh"
+      execstart_venv_bin:
+        description: "A part of the ExecStart after venv/bin directory e.g. 'python -m module.name'"
+      execstart_python_script:
+        description: "A part of the ExecStart after python interpreter, relative to the site-packages e.g. 'path/to/script.py'"
+      systemd_custom_service:
+        description: "Comma separated directives of the Service section of a systemd service file"
+      systemd_timer_oncalendar:
+        description: "Value of the OnCalendar parameter for the Timer"
+      systemd_custom_timer:
+        description: "Comma separated directives of the Timer section of a systemd timer file"
+      venv_python_binary:
+        type: path
+        default: /usr/bin/python3
+        description: "Path to python interprater for the venv creation, defaults to the /usr/bin/python3"
+      venv_command:
+        description: "A command to create venv, defaults to the venv_python_binary -m venv"
+      venv_python_version:
+        default: 3.9
+        description: "Python version which was used for the venv creation, defaults to the 3.9"
+      pip_extra_args:
+        default: --extra-index-url https://pypi.sdil.aorta.net/simple
+        description: "Extra arguments for pip, defaults to the --extra-index-url https://pypi.sdil.aorta.net/simple"
+      debian_dependencies:
+        type: list
+        description: "A list of OS-level packages to be installed before the package installation"
+      pip_dependencies:
+        type: list
+        description: "A list of python packages to be installed into venv before the package installation"

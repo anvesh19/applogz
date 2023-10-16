@@ -1,0 +1,12 @@
+[Unit]
+Description={{ item.description if 'description' in item else base_package_name|default('A service') }}
+
+[Service]
+{% if 'service_options' in item and item.service_options is iterable %}
+{% for option in item.service_options %}
+{{ option }}
+{% endfor %}
+{% endif%}
+
+[Install]
+WantedBy=multi-user.target

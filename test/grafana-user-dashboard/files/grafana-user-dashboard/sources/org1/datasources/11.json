@@ -1,0 +1,22 @@
+{
+  "id": 11,
+  "uid": "1WtYj8V7k",
+  "orgId": 1,
+  "name": "Observer np counters",
+  "type": "influxdb",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://172.31.141.215:18086",
+  "password": "",
+  "user": "",
+  "database": "snmp_metrics",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {},
+  "version": 3,
+  "readOnly": false
+}

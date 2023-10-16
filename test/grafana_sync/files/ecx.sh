@@ -1,0 +1,10 @@
+ORGS_exp=(
+"org1:eyJrIjoiUVJISElFdExyVjBqTDdWZXY2VUlhaWVuQTk3Sno5VGQiLCJuIjoiZXhwb3J0IiwiaWQiOjF9"
+)
+HOST_exp="https://prometheus-grafana.sdil.aorta.net"
+FILE_DIR_exp=/home/ansible/git/obs-infrastructure/roles/grafana_sync/files/grafana_sync/sources
+ORGS=(
+"org1:eyJrIjoiejNhcjJTSWEzdG5ISVFUd1ZWQzE0MUF4NmRvMEhhU0QiLCJuIjoiZXhwb3J0IiwiaWQiOjF9"
+)
+HOST="https://prometheus-grafana-kbw.sdil.aorta.net"
+FILE_DIR=/home/ansible/git/obs-infrastructure/roles/grafana_sync/files/grafana_sync/sources

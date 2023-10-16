@@ -1,0 +1,96 @@
+---
+- name: Add gitlab.sdil.aorta.net entry to /etc/hosts file
+  import_tasks: update_hosts_file.yml
+  when: update_hosts_file == true
+
+- name: Install necessary packages
+  package:
+    name: git
+    state: present
+
+- name: Create working directory
+  file:
+    path: "{{ static_route_handler_dir }}/bin"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+
+- name: deploy change-handler.sh
+  template:
+    src: change-handler.sh.j2
+    dest: "{{ static_route_handler_dir }}/bin/change-handler.sh"
+    owner: root
+    group: root
+    mode: 0770
+
+- name: deploy generate-routes.sh
+  copy:
+    src: generate-routes.sh
+    dest: "{{ static_route_handler_dir }}/bin/generate-routes.sh"
+    owner: root
+    group: root
+    mode: 0770
+
+- name: deploy systemd timer
+  template:
+    src: "{{ item.src }}"
+    dest: "/etc/systemd/system/{{ item.dest }}"
+  with_items:
+    - src: "static-route-handler.timer.j2"
+      dest: "static-route-handler.timer"
+    - src: "static-route-handler.service.j2"
+      dest: "static-route-handler.service"
+
+- name: create static-route ssh directory
+  file:
+    path: "{{ static_route_handler_dir }}/.ssh"
+    state: directory
+    owner: root
+    group: root
+    mode: 0770
+
+- name: deploy ssh-git keys
+  copy:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: 0400
+  with_items:
+    - src: "id_rsa"
+      dest: "{{ static_route_handler_dir }}/.ssh/id_rsa"
+    - src: "id_rsa.pub"
+      dest: "{{ static_route_handler_dir }}/.ssh/id_rsa.pub"
+
+- name: pull git repository
+  git:
+    repo: ssh://git@gitlab.sdil.aorta.net:2259/observer-devops/static-routes.git
+    dest: "{{ static_route_handler_dir }}/static-routes/"
+    clone: yes
+    accept_hostkey: yes
+    key_file: "{{ static_route_handler_dir }}/.ssh/id_rsa"
+
+- name: change git ssh command to use static-route's ssh key
+  command:
+    cmd: "{{ item }}"
+    chdir: "{{ static_route_handler_dir }}/static-routes/"
+  with_items:
+    - 'git config user.name "static-route-handler"'
+    - 'git config user.email "static-route-handler"'
+    - 'git config push.default simple'
+
+- name: initialize host directory
+  file:
+    path: "{{ item }}"
+    state: directory
+    owner: root
+    group: root
+    mode: 0775
+  with_items:
+    - "{{ static_route_handler_dir }}/static-routes/{{ inventory_hostname }}"
+    - "{{ static_route_handler_dir }}/static-routes/{{ inventory_hostname }}/tmp"
+
+- name: trigger systemd timer restart
+  command: /bin/true
+  notify: Restart systemd timer

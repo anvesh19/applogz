@@ -1,0 +1,26 @@
+{
+  "id": 7,
+  "uid": "h9_pdFeGk",
+  "orgId": 1,
+  "name": "nokia1",
+  "type": "influxdb",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://172.16.188.83:8086",
+  "password": "",
+  "user": "juniper",
+  "database": "nokia1",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsSkipVerify": true
+  },
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 2,
+  "readOnly": false
+}

@@ -1,0 +1,26 @@
+{
+  "id": 4,
+  "uid": "Op5YD8XGz",
+  "orgId": 1,
+  "name": "LG In-Home Datasource",
+  "type": "inhome-datasource",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://topo-hfc-dev.aorta.net/hfb",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsAuthWithCACert": true
+  },
+  "secureJsonFields": {
+    "tlsCACert": true
+  },
+  "version": 2,
+  "readOnly": false
+}

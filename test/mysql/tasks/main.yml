@@ -1,0 +1,14 @@
+---
+- name: Install packages
+  apt:
+    pkg: "{{ item }}"
+    state: present
+    update_cache: yes
+  with_items:
+    - "mariadb-common"
+    - "mariadb-client-{{ mariadb_version }}"
+    - "mariadb-client-core-{{ mariadb_version }}"
+    - "mariadb-server"
+    - "mariadb-server-{{ mariadb_version }}"
+    - "mariadb-server-core-{{ mariadb_version }}"
+  

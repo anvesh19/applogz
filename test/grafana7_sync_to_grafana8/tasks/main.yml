@@ -1,0 +1,5 @@
+---
+- name: Sync grafana7 to grafana8
+  shell: |
+    cd /home/ansible/git/obs-infrastructure/roles/grafana7_sync_to_grafana8/files/
+    ./grafana7_sync_to_grafana8.sh

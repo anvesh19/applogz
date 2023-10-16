@@ -1,0 +1,15 @@
+scan_public_registries: true
+static_cache_location: /opt/lacework/cache
+lacework:
+  account_name: {{ lacework_account_name }}
+  integration_access_token: {{ lacework_access_token }}
+registries:
+  - domain: {{ docker_registry_domain }}
+    name: {{ docker_registry_name }}
+    ssl: {{ docker_registry_use_ssl }}
+    is_public: true
+    auto_poll: true
+    poll_frequency_minutes: 20
+    disable_non_os_package_scanning: false
+    go_binary_scanning:
+      enable: true

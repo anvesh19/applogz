@@ -1,0 +1,23 @@
+- name: Checking override directory
+  stat:
+    path: /etc/systemd/system/mdatp.service.d
+  register: override_dir
+
+- name: Create override directory
+  file:
+    path: /etc/systemd/system/mdatp.service.d
+    recurse: true
+    state: directory
+    mode: 0755
+    owner: root
+    group: root
+  when: override_dir.stat.exists == false
+
+- name: Copy override.conf
+  copy:
+    src: override.conf
+    dest: /etc/systemd/system/mdatp.service.d/override.conf
+    mode: 0600
+    owner: root
+    group: root
+  notify: Restart mdatp

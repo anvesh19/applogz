@@ -1,0 +1,4 @@
+---
+static_route_handler_dir: "/usr/local/static_route_handler"
+save_static_routes_as_permanent: "true"
+update_hosts_file: false

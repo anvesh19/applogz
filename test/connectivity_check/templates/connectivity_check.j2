@@ -1,0 +1,14 @@
+#!/bin/bash
+
+echo "" > /usr/local/prometheus/metrics/connectivity_check.prom
+
+array=({{network_test_target|join(' ')}})
+
+for i in "${array[@]}"; do
+    result="$(nc -zvn -w 1 $i 2>&1)"
+    if grep -q -e "Connected" -e "open"  <<< "$result"; then
+    echo "connectivity_check{host_ip=\"{{ansible_host}}\",target=\"$i\"} 1" >> /usr/local/prometheus/metrics/connectivity_check.prom
+    else
+    echo "connectivity_check{host_ip=\"{{ansible_host}}\",target=\"$i\"} 0" >> /usr/local/prometheus/metrics/connectivity_check.prom
+    fi
+done

@@ -1,0 +1,5 @@
+{% if 'vars' in item and item.vars is iterable %}
+{% for var in item.vars %}
+{{ var }}
+{% endfor %}
+{% endif%}

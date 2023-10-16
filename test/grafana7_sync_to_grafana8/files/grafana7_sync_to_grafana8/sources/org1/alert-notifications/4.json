@@ -1,0 +1,18 @@
+{
+  "id": 4,
+  "uid": "X3b9Rgh7z",
+  "name": "vCSR_AWS_Cloud",
+  "type": "email",
+  "isDefault": false,
+  "sendReminder": false,
+  "disableResolveMessage": false,
+  "frequency": "",
+  "settings": {
+    "addresses": "cbadita.contractor@libertyglobal.com; ybanchev@libertyglobal.com; natanasovkolev.contractor@libertyglobal.com; alepajevic.ext@libertyglobal.com; ovidiu_nitu@epam.com;",
+    "autoResolve": true,
+    "httpMethod": "POST",
+    "severity": "critical",
+    "uploadImage": false
+  },
+  "secureFields": {}
+}

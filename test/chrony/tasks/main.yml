@@ -1,0 +1,69 @@
+---
+- name: disable htpdate service
+  systemd:
+    name: htpdate.service
+    state: stopped
+  ignore_errors: yes
+
+- name: uninstall htpdate package  # to prevent package conflict
+  package:
+    name: htpdate
+    state: absent
+
+- name: disable ntpd
+  systemd:
+    name: ntp.service
+    state: stopped
+  ignore_errors: yes
+
+- name: uninstall ntp package  # to prevent package conflict
+  package:
+    name: ntp
+    state: absent
+
+- name: stop systemd-timesyncd.service
+  systemd:
+    name: systemd-timesyncd.service
+    state: stopped
+  ignore_errors: yes
+
+- name: install Chrony
+  package:
+    state: present
+    name: chrony
+  notify: restart chrony service
+
+- name: copy configuration file on CentOS 7
+  template:
+    src: chrony.conf_centos7.j2
+    dest: /etc/chrony.conf
+  notify: restart chrony service
+  when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+
+- name: copy configuration file on Debian 8
+  template:
+    src: chrony.conf_debian8.j2
+    dest: /etc/chrony/chrony.conf
+  notify: restart chrony service
+  when: ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "8"
+
+- name: copy configuration file on Debian 9
+  template:
+    src: chrony.conf_debian9.j2
+    dest: /etc/chrony/chrony.conf
+  notify: restart chrony service
+  when: ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "9"
+
+- name: copy configuration file on Debian 10
+  template:
+    src: chrony.conf_debian10.j2
+    dest: /etc/chrony/chrony.conf
+  notify: restart chrony service
+  when: ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "10"
+
+- name: copy configuration file on Debian 11
+  template:
+    src: chrony.conf_debian11.j2
+    dest: /etc/chrony/chrony.conf
+  notify: restart chrony service
+  when: ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "11"

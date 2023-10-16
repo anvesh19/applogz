@@ -1,0 +1,21 @@
+---
+- name: restart chrony.service on debian 8 and 11
+  systemd:
+    name: chrony
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  when: (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "8") or
+        (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "11")
+  listen: restart chrony service
+
+- name: restart chronyd.service on debian 9, 10 & centos 7
+  systemd:
+    name: chronyd
+    state: restarted
+    enabled: yes
+    daemon_reload: yes
+  when: (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "9") or
+        (ansible_facts['distribution'] == "Debian" and ansible_facts['distribution_major_version'] == "10") or
+        (ansible_facts['distribution'] == "CentOS")
+  listen: restart chrony service

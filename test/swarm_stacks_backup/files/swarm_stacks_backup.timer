@@ -1,0 +1,11 @@
+[Unit]
+Description=Script that will collect swarm stack from swarm cluster nfs and store in git
+
+[Timer]
+OnCalendar=*-*-* 18:00:00
+
+Persistent=true
+Unit=swarm_stacks_backup.service
+
+[Install]
+WantedBy=multi-user.target

@@ -1,0 +1,87 @@
+groups:
+- name: data pipeline
+  rules:
+  - alert: Files waiting to be processed
+    expr: number_of_files_waiting_to_be_processed + ON(instance) GROUP_RIGHT(domainname) (node_uname_info * 0) > 800
+    for: 10m
+    labels:
+      severity: "warning"
+      team: backend
+    annotations:
+      symptom: "Number of files waiting to be process by observer_core_parsing is {{ $value }}."
+      summary: "Files are not processed on the host: {{$labels.nodename}}}. The observer_parsing service could have problems. This is impacting observer core ingestion. more info: https://prometheus-grafana-kbw.sdil.aorta.net/d/vH8Bjj-Mz/observer-core-processing?orgId=1"
+      description: "{{ $value }} files waiting to be procesed by observer-core on server {{$labels.instance}}"
+  - alert: Metrics for all devices
+    expr: sum by (info_r) (increase(obs_new_processing_by_hostname_metrics_total{info_r=~".*mcast.*",instance=~"172.31.141.*"}[10m])) == 0
+    for: 15m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      summary: "No more metrics: {$labels.info_r}} are stored by observer core. No router in obs-core collection  is generating anymore this metric. Check the Counter logged by observer core metrics processing. Analyse the observer parsing for any exceptions on the log."
+      description: "No more metrics: {$labels.info_r}} are stored by observer core."
+  - alert: Device last seen
+    expr: (sum by (country)(increase(devices_not_seen[5m])) / sum by (country)(devices_collected_total) *100) > 30
+    for: 5m
+    annotations:
+      summary: " Device not seen in -{{$labels.country}} is higher."
+      description: " Devices not seen in {{$labels.country}}} is {{$value}}."
+  - alert: OBS ETL collections
+    expr: (node_systemd_unit_state{name=~".*ecx_cloud.*|.*aci_metrics.*|.*aci_ingestion.*|.*infra_ingestion.*|.*f5.*|.*cach.*|.*vrops_ing.*",state="failed"} + on(instance) group_left(nodename) (node_uname_info * 0)) ==1
+    for: 10m
+    labels:
+      severity: "warning"
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: Service {{$labels.name}} failed"
+      description: "{{$labels.instance}}-: Service {{$labels.name}} failed check the node {{$labels.nodename}} and the service to identify the issue"
+- name: edra_alert
+  rules:
+  - alert: edra_errors
+    expr: increase(EDRA_NOTIFIER_ERROR_COUNT[10m]) + ON(instance) GROUP_LEFT(nodename) (node_uname_info * 0) > 0
+    for: 1m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: There are to much errors"
+      description: "{{$labels.instance}}: There are to much errors on: {{$labels.nodename}}}"
+- name: reports_alert
+  rules:
+  - alert: reports_systmed_error
+    expr: node_systemd_unit_state{state="failed",name=~".*report_.*"} == 1
+    for: 10s
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      summary: "{{$labels.instance}}: Report execution failed: {{$labels.name}}"
+      description: "{{$labels.instance}}: Systemctl execution of report {{$labels.name}} is in failed state."
+  - alert: report_errors
+    expr: reports_errors > 0
+    for: 10s
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      summary: "{{$labels.instance}}: Report '{{$labels.report}}' has errors"
+      description: "{{$labels.instance}}: Errors were found in the execution of '{{$labels.report}}'."
+- name: observer dashboard
+  rules:
+    - record: metrics:rate:obs_new_processing_by_hostname_metrics_total
+      expr: sum by (info_r)(increase(obs_new_processing_by_hostname_metrics_total{instance=~"172.31.141.*"}[5m]))
+      labels:
+        environment: production
+        service: processing_metrics
+    - record: increase5m:obs_core_parsing_incoming_file
+      expr: |
+          sum by (instance)(increase(collection_task_counter{service="observer-parsing@prod", status="received"}[5m]))
+      labels:
+        environment: production
+        service: parsing
+    - record: increase5m:obs_file_received_watchdog
+      expr: |
+        sum by (instance)(increase(obs_file_received_watchdog_by_hostname{instance=~"172.31.141.*"}[5m]))
+      labels:
+        environment: production
+        service: watchdog

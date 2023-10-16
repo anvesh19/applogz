@@ -1,0 +1,24 @@
+---
+- name: Initialize machine ID
+  ansible.builtin.command: systemd-machine-id-setup
+
+- name: Create configuration directory
+  file:
+    path: "{{ journald_conf_dir }}"
+    state: directory
+    mode: '0755'
+    owner: root
+    group: root
+
+- name: Copy journald storage config
+  copy:
+    src: 10-storage.conf
+    dest: "{{ journald_conf_dir }}" 
+    mode: '0644'
+    owner: root
+    group: root 
+
+- name: Restart journald
+  systemd:
+    name: systemd-journald
+    state: restarted

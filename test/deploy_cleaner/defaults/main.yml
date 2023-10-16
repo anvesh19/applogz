@@ -1,0 +1,10 @@
+---
+
+cleaner:
+  - target: default
+#   basedir: /home/observer/tmp
+    filemask: '.+(\.bk|\.bak|\.bac|\.tmp|\.swp)'
+    maxage: 1440
+    action: archive
+#   targetdir: /home/observer/long_storage
+    frequency: '*-*-* *:10:00'

@@ -1,0 +1,71 @@
+groups:
+- name: Video network services
+  rules:
+  - alert: no task completed
+    expr: sum by (service, instance)(increase(np_collector_task_completed{service!~ ".*rg_collector.*"}[10m])) == 0
+    for: 20m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      description: "No task completed by the service {{$labels.service}} for the last 20 minutes on {{$labels.instance}}"
+      symptom: "No task completed by the service {{$labels.service}} for the last 20 minutes"
+      summary: "Service {{$labels.service}} didnt complete any task in the timely fascion. Check the alarm definition at https://devops.sdil.aorta.net/internal-tools/prometheus/alarms/No_task_completed_by_NP"
+      troubleshoot: "Log into server {{$labels.service}}. Check status service -- sudo systemctl | grep {{$labels.service}}. sudo journalctl -u {{$labels.service}}"
+  - alert: np_collection_no_tasks_received
+    expr: increase(conv_received_message{ingestion_name="np_collection"}[10m])<10
+    for: 15m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      summary: "{{$labels.hostname}}-{{$labels.instance}}: Task are not processed"
+      description: "{{$labels.instance}}: Tasks are not been processed. Please analyze the dashboard https://prometheus-grafana-kbw.sdil.aorta.net/d/h21XOso7k/np-collection?orgId=1 and check for the queue np_collection:results where the tasks should come from"
+  - alert: Data to be stored
+    expr: increase(conv_received_message{service=~".*influx.*", ingestion_name !~ ".*rg_collector.*"}[15m]) == 0
+    for: 15m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      description: "{{$labels.ingestion_name}} is not generating metrics since 15m"
+      summary: "Service {{$labels.ingestion_name}} didnt generate any metrics to be store. Check the alarm definition at https://devops.sdil.aorta.net/internal-tools/prometheus/alarms/data-to-be-stored"
+  - alert: Crypto collection storage
+    expr: increase(conv_received_message{service=~".*influx.*", ingestion_name =~ ".*rg_collector.*"}[10h]) == 0
+    for: 15m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      description: "{{$labels.ingestion_name}} is not generating metrics since 15m"
+      summary: "Service {{$labels.ingestion_name}} didnt generate any metrics to be store. Check where the service is located with query node_systemd_unit_state{name=\"{{$labels.ingestion_name}}\"}."
+  - alert: Snmp Fetcher scheduled tasks
+    expr: sum by (service) (increase(snmp_fetcher_devices_total{service=~".*fetcher.*"}[15m])) == 0
+    for: 15m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      description: "{{$labels.service}} did not received any task for the last 15 minutes"
+      summary: "Service {{$labels.service}} hasnt received any snmp tasks from scheduler. Check where the service is located by instance {name=\"{{$labels.instance}}\"}."
+  - alert: Snmp Fetcher result storage
+    expr: sum by (service) (increase(snmp_fetcher_storage_files_saved{service=~".*fetcher.*"}[15m])) == 0
+    for: 15m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      description: "{{$labels.service}} is not storing files since 15m"
+      summary: "Service {{$labels.service}} hasnt stored files. Check where the service is located by instance {name=\"{{$labels.instance}}\"}."
+- name: length of redis queue
+  rules:
+  - alert: Task not collected
+    expr: number_of_task_wating_COUNT{queue_name!="vnl-ecx-prd-be01:inventory_collector:result"} + on(instance) group_left(nodename) (node_uname_info * 0) >  800
+    for: 20m
+    labels:
+      severity: warning
+      domain: obscore
+    annotations:
+      description: "IMPACTING DATASET COLLECTION!!!{{$labels.nodename}}:Log in {{$labels.instance}}:\n1. Check for /opt/queue_chceck.sh/ \n2.find target redis. {{$labels.queue_name}} with {{$value}}"
+      summary: "No task picked up on queue {{$labels.queue_name}} on redis node {{$labels.nodename}}:  {{$labels.instance}}: review https://devops.sdil.aorta.net/internal-tools/prometheus/alarms/task_not_collected"
+      tshoot: "The task pushed to a fifo queue in the redis server are not been picket up. Search for the consumer service."

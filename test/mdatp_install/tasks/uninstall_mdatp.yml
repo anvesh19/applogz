@@ -1,0 +1,13 @@
+- name: Uninstall MDATP
+  apt:
+    name: mdatp
+    state: absent
+    purge: true
+    update_cache: yes
+  when: ansible_os_family == "Debian"
+- name: Uninstall MDATP
+  dnf:
+    name: mdatp
+    state: absent
+    enablerepo: packages-microsoft-prod
+  when: ansible_os_family == "RedHat"

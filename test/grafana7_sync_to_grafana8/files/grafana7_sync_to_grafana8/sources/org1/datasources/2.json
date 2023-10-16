@@ -1,0 +1,26 @@
+{
+  "id": 2,
+  "uid": "ew8yHUuGk",
+  "orgId": 1,
+  "name": "LG Headend Topology Datasource",
+  "type": "lg-headend-topology-datasource",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://topo-api-obs-dev-legacy.dev.sdil.aorta.net",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsAuthWithCACert": true
+  },
+  "secureJsonFields": {
+    "tlsCACert": true
+  },
+  "version": 12,
+  "readOnly": false
+}

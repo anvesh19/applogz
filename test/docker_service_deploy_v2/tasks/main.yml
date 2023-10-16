@@ -1,0 +1,25 @@
+---
+- name: Build environment variables dictionary
+  set_fact:
+    service_env_vars: "{{ service_env_vars | default({}) | combine({item.key: item.value}) }}"
+  loop: "{{ vault_data|dict2items }}"
+  no_log: True
+  when: >
+    vault_data is defined and
+    item.key is not regex('^ANSIBLE_.*')
+
+- import_tasks: prepare_environment_file.yml
+  when: >
+    service_env_vars is defined and
+    service_env_vars|default({})|length>0
+
+- name: Deploy container
+  docker_container:
+    name: "{{ container_name }}"
+    recreate: yes
+    image: "{{ container_image }}"
+    ports: "{{ ports | default(omit) }}"
+    env_file: "{{ env_file | default(omit) }}"
+    volumes: "{{ volumes | default(omit) }}"
+    log_driver: "{{ log_driver | default(omit) }}"
+    memory: "{{ memory | default(omit) }}"

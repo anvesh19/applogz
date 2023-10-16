@@ -1,0 +1,82 @@
+---  
+- name: Copy script
+  template:
+    src: files/cloudmapper_obodr.sh
+    dest: /home/ansible/cloudmapper_obodr.sh
+    owner: ansible
+    group: ansible
+    mode: 0765 
+   
+- name: Copy cloudmapper_obodr service
+  copy:
+    src: cloudmapper_obodr.service
+    dest: /etc/systemd/system/cloudmapper_obodr.service
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart cloudmapper_obodr timer
+
+- name: Copy cloudmapper_obodr timer
+  copy:
+    src: cloudmapper_obodr.timer
+    dest: /etc/systemd/system/cloudmapper_obodr.timer
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart cloudmapper_obodr timer
+
+# HZNGO
+
+- name: Copy script
+  template:
+    src: files/cloudmapper_hzngo.sh
+    dest: /home/ansible/cloudmapper_hzngo.sh
+    owner: ansible
+    group: ansible
+    mode: 0765 
+   
+- name: Copy cloudmapper_hzngo service
+  copy:
+    src: cloudmapper_hzngo.service
+    dest: /etc/systemd/system/cloudmapper_hzngo.service
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart cloudmapper_hzngo timer
+
+- name: Copy cloudmapper_hzngo timer
+  copy:
+    src: cloudmapper_hzngo.timer
+    dest: /etc/systemd/system/cloudmapper_hzngo.timer
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart cloudmapper_hzngo timer
+
+# EOS
+
+- name: Copy script
+  template:
+    src: files/cloudmapper_eos.sh
+    dest: /home/ansible/cloudmapper_eos.sh
+    owner: ansible
+    group: ansible
+    mode: 0765 
+   
+- name: Copy cloudmapper_eos service
+  copy:
+    src: cloudmapper_eos.service
+    dest: /etc/systemd/system/cloudmapper_eos.service
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart cloudmapper_eos timer
+
+- name: Copy cloudmapper_eos timer
+  copy:
+    src: cloudmapper_eos.timer
+    dest: /etc/systemd/system/cloudmapper_eos.timer
+    owner: ansible
+    group: ansible
+    mode: 0644
+  notify: Restart cloudmapper_eos timer

@@ -1,0 +1,24 @@
+{
+  "id": 10,
+  "uid": "kwavxU4nk",
+  "orgId": 1,
+  "name": "Observer core",
+  "type": "influxdb",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://172.31.141.215:18086",
+  "password": "",
+  "user": "mpaccusse",
+  "database": "observer",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 5,
+  "readOnly": false
+}

@@ -1,0 +1,125 @@
+global:
+  smtp_smarthost: "172.31.137.24:25"
+  smtp_from: "kbw@aorta.net"
+  smtp_require_tls: false
+
+templates:
+  - "/etc/alertmanager/template/*.tmpl"
+
+route:
+  receiver: admins
+  group_by: ["alertname", "job", "instance"]
+  group_wait: 30s
+  group_interval: 5m
+  repeat_interval: 24h
+
+  routes:
+    - matchers:
+        - domain = "telemetry"
+      routes:
+        - matchers:
+            - severity = critical
+          receiver: telemetry
+          repeat_interval: 1h
+        - receiver: blackhole
+    - matchers:
+        - domain = "obscore"
+      routes:
+        - matchers:
+            - severity = critical
+          receiver: developers
+          continue: true #allows to send to different target, mail and teams
+        - matchers:
+            - severity = critical
+          receiver: teams-service-channel
+          repeat_interval: 1h
+        - receiver: blackhole
+    - matchers:
+        - domain = deepmind
+      routes:
+        - matchers:
+            - severity = critical
+          receiver: deepmind
+          repeat_interval: 1h
+        - receiver: blackhole
+    - matchers:
+        - domain = "dds"
+      routes:
+        - matchers:
+            - severity = critical
+          receiver: dds
+          repeat_interval: 1h
+        - receiver: blackhole
+    - matchers:
+        - domain =~ "infra|web"
+      routes:
+        - matchers:
+            - severity = critical
+          receiver: devops
+          repeat_interval: 1h
+        - receiver: blackhole
+
+receivers:
+  - name: admins
+    email_configs:
+      - to: "mpaccusse@libertyglobal.com"
+      - to: "kirill_zhgulev@epam.com"
+      - to: "anrichmond.contractor@libertyglobal.com"
+    # webhook_configs:
+    #   - send_resolved: true
+    #     url: "http://prometheus-msteams:2000/alertmanager"
+
+  - name: devops
+    email_configs:
+      - to: "mpaccusse@libertyglobal.com"
+      - to: "kirill_zhgulev@epam.com"
+      - to: "anrichmond.contractor@libertyglobal.com"
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/alertmanager"
+
+  - name: developers
+    email_configs:
+      - to: "mpaccusse@libertyglobal.com"
+      - to: "anrichmond.contractor@libertyglobal.com"
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/_dynamicwebhook/{{ MSTEAMS_WEBHOOK_TELEMETRY }}"
+
+  - name: dds
+    email_configs:
+      - to: "mpaccusse@libertyglobal.com"
+      - to: "mbijman.contractor@libertyglobal.com"
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/_dynamicwebhook/{{ MSTEAMS_WEBHOOK_TELEMETRY }}"
+
+  - name: deepmind
+    email_configs:
+      - to: "jriveiro.contractor@libertyglobal.com"
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/_dynamicwebhook/{{ MSTEAMS_WEBHOOK_TELEMETRY }}"
+
+  - name: telemetry
+    email_configs:
+      - to: "mpaccusse@libertyglobal.com"
+      - to: "cbadita.contractor@libertyglobal.com"
+      - to: "ybanchev@libertyglobal.com"
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/_dynamicwebhook/{{ MSTEAMS_WEBHOOK_TELEMETRY }}"
+
+  - name: obscore
+    email_configs:
+      - to: "mpaccusse@libertyglobal.com"
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/_dynamicwebhook/{{ MSTEAMS_WEBHOOK_OBSCORE }}"
+
+  - name: teams-service-channel
+    webhook_configs:
+      - send_resolved: false
+        url: "http://prometheus-msteams:2000/_dynamicwebhook/{{ MSTEAMS_WEBHOOK_DEV }}"
+
+  - name: blackhole

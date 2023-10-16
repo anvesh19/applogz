@@ -1,0 +1,87 @@
+---
+- name: Check if we have mtail installed
+  become: true
+  command: which mtail
+  changed_when: false
+  failed_when: mtail_installed.rc not in [0,1]
+  register: mtail_installed
+
+- name: Install or update mtail
+  block:
+    - name: Create exporter user
+      become: true
+      user:
+        name: "{{ mtail_owner }}"
+        createhome: no
+        shell: /usr/sbin/nologin
+
+    - name: Create config directory
+      become: true
+      file:
+        path: "{{ item }}"
+        state: directory
+        owner: "{{ mtail_owner }}"
+        group: "{{ mtail_group }}"
+        mode: 0777
+      with_items:
+        - "/usr/local/bin"
+        - "/etc/mtail"
+      register: config_directory
+
+    - name: Create temp folder
+      tempfile:
+        state: directory
+        suffix: 'mtail_temp'
+      register: mtail_temp
+
+    - name: Download archive
+      become: true
+      get_url:
+        url: "{{ mtail_download_url }}"
+        dest: "{{ mtail_temp.path }}/{{ mtail_version }}.tar.gz"
+
+    - name: Extract binary
+      become: true
+      unarchive:
+        src: "{{ mtail_temp.path }}/{{ mtail_version }}.tar.gz"
+        dest: /usr/local/bin
+        remote_src: true
+        owner: "{{ mtail_owner }}"
+        group: "{{ mtail_group }}"
+        mode: 0744
+        extra_opts:
+          - "--add-file"
+          - "mtail"
+      notify: Restart mtail service
+
+    - name: Cleanup
+      file:
+        path: "{{ mtail_temp.path }}"
+        state: absent
+
+    - name: Copy systemd service
+      become: true
+      template:
+        src: mtail.service.j2
+        dest: /etc/systemd/system/mtail.service
+        owner: "{{ mtail_owner }}"
+        group: "{{ mtail_group }}"
+        mode: 0644
+      notify: Restart mtail service
+
+    - name: Start or restart mtail if installed
+      become: true
+      meta: flush_handlers
+
+    - name: Check if mtail able to respond
+      uri:
+        url: 'http://localhost:3903'
+        return_content: false
+        validate_certs: false
+        status_code: 
+          - 200
+      until: uri_output.status == 200
+      retries: 20
+      delay: 5
+      register: uri_output
+  when: mtail_update_only and mtail_installed.rc in [ 0 ] or mtail_update_only == false

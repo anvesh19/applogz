@@ -1,0 +1,20 @@
+{
+  "id": 4,
+  "uid": "000000004",
+  "orgId": 1,
+  "name": "Prometheus AlertManager-1",
+  "type": "camptocamp-prometheus-alertmanager-datasource",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://alertmanager:9093",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {},
+  "version": 2,
+  "readOnly": false
+}

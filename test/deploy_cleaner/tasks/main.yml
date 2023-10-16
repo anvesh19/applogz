@@ -1,0 +1,58 @@
+---
+
+- name: Create directories
+  file:
+    path: /opt/infrastructure/cleaner/
+    state: directory
+
+- name: Copy service template
+  template:
+    src: service.j2
+    dest: "/opt/infrastructure/cleaner/{{ item.target }}_cleaner.service"
+  loop:
+    "{{ cleaner }}"
+
+- name: Copy timer template
+  template:
+    src: timer.j2
+    dest: "/opt/infrastructure/cleaner/{{ item.target }}_cleaner.timer"
+  loop:
+    "{{ cleaner }}"
+
+- name: Copy cleaner script
+  copy:
+    src: cleaner.sh
+    dest: "/opt/infrastructure/cleaner/{{ item.target }}_cleaner.sh"
+  loop:
+    "{{ cleaner }}"
+
+- name: Copy environment file template
+  template:
+    src: env.j2
+    dest: "/opt/infrastructure/cleaner/{{ item.target }}.env"
+  loop:
+    "{{ cleaner }}"
+
+- name: Create service symlinks to systemd directory
+  file:
+    src: "/opt/infrastructure/cleaner/{{ item.target }}_cleaner.service"
+    dest: "/etc/systemd/system/{{ item.target }}_cleaner.service"
+    state: link
+  loop:
+    "{{ cleaner }}"
+
+- name: Create timer symlinks to systemd directory
+  file:
+    src: "/opt/infrastructure/cleaner/{{ item.target }}_cleaner.timer"
+    dest: "/etc/systemd/system/{{ item.target }}_cleaner.timer"
+    state: link
+  loop:
+    "{{ cleaner }}"
+
+- name: Reload systemd
+  systemd:
+    name: "{{ item.target }}_cleaner.timer"
+    daemon_reload: yes
+    state: restarted
+  loop:
+    "{{ cleaner }}"

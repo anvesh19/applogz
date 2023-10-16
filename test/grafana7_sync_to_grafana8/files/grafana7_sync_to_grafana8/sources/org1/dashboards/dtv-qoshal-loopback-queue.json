@@ -1,0 +1,2294 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "dtv-qoshal-loopback-queue",
+    "url": "/d/UMacvUB7z/dtv-qoshal-loopback-queue",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 102,
+    "iteration": 1651136392792,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 11,
+        "panels": [
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer np counters",
+            "description": "show qoshal loopback-queue np <np_id> location <location>",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 12,
+              "x": 0,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 6,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "Entity"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "NP_ID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "QID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "asr9k_np_qoshall",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "Xmt_Pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node",
+                    "operator": "=~",
+                    "value": "/^$Slot$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "NP_ID",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Qoshal Transmited Packets",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:623",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:624",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer np counters",
+            "description": "show qoshal loopback-queue np <np_id> location <location>",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 12,
+              "x": 12,
+              "y": 1
+            },
+            "hiddenSeries": false,
+            "id": 18,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "Entity"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "NP_ID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "QID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "asr9k_np_qoshall",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "Xmt_Pkts"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname2$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node",
+                    "operator": "=~",
+                    "value": "/^$Slot$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "NP_ID",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname2 - Qoshal Transmited Packets",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:623",
+                "format": "pps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:624",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer np counters",
+            "description": "show qoshal loopback-queue np <np_id> location <location>",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 12,
+              "x": 0,
+              "y": 16
+            },
+            "hiddenSeries": false,
+            "id": 7,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "Entity"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "NP_ID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "QID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "asr9k_np_qoshall",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "Xmt_Bytes"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node",
+                    "operator": "=~",
+                    "value": "/^$Slot$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "NP_ID",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname - Qoshal Transmited Bytes",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:623",
+                "format": "bytes",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:624",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer np counters",
+            "description": "show qoshal loopback-queue np <np_id> location <location>",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 15,
+              "w": 12,
+              "x": 12,
+              "y": 16
+            },
+            "hiddenSeries": false,
+            "id": 19,
+            "legend": {
+              "alignAsTable": true,
+              "avg": true,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": false,
+              "show": true,
+              "sort": "current",
+              "sortDesc": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "Entity"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "NP_ID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "QID"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "node"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "asr9k_np_qoshall",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "Xmt_Bytes"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "last"
+                    },
+                    {
+                      "params": [
+                        "10s"
+                      ],
+                      "type": "non_negative_derivative"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Hostname2$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "node",
+                    "operator": "=~",
+                    "value": "/^$Slot$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "NP_ID",
+                    "operator": "=~",
+                    "value": "/^$NP_ID$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Hostname2 - Qoshal Transmited Bytes",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:623",
+                "format": "bytes",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:624",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Transmited Packets",
+        "type": "row"
+      },
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 13,
+        "panels": [],
+        "title": "Dropped Packets",
+        "type": "row"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "show qoshal loopback-queue np <np_id> location <location>",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 0,
+          "y": 2
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "Entity"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "NP_ID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "QID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_qoshall",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Dropped_Pkts"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$Slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "NP_ID",
+                "operator": "=~",
+                "value": "/^$NP_ID$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - Qoshal Dropped Packets",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:623",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:624",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "show qoshal loopback-queue np <np_id> location <location>",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 12,
+          "y": 2
+        },
+        "hiddenSeries": false,
+        "id": 20,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "sort": "current",
+          "sortDesc": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "Entity"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "NP_ID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "QID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_qoshall",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Dropped_Pkts"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$Slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "NP_ID",
+                "operator": "=~",
+                "value": "/^$NP_ID$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname2 - Qoshal Dropped Packets",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:623",
+            "format": "pps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:624",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "show qoshal loopback-queue np <np_id> location <location>",
+        "fieldConfig": {
+          "defaults": {
+            "color": {},
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 0,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 8,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "Entity"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "NP_ID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "QID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_qoshall",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Dropped_Bytes"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$Slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "NP_ID",
+                "operator": "=~",
+                "value": "/^$NP_ID$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname - Qoshal Dropped Bytes",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:623",
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:624",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer np counters",
+        "description": "show qoshal loopback-queue np <np_id> location <location>",
+        "fieldConfig": {
+          "defaults": {
+            "color": {},
+            "custom": {},
+            "thresholds": {
+              "mode": "absolute",
+              "steps": []
+            }
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 15,
+          "w": 12,
+          "x": 12,
+          "y": 17
+        },
+        "hiddenSeries": false,
+        "id": 21,
+        "legend": {
+          "alignAsTable": true,
+          "avg": true,
+          "current": true,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": true,
+          "min": true,
+          "rightSide": false,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_node NP_ID:$tag_NP_ID QID:$tag_QID Entity: $tag_Entity",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "Entity"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "NP_ID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "QID"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "node"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "asr9k_np_qoshall",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "Dropped_Bytes"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                },
+                {
+                  "params": [
+                    "10s"
+                  ],
+                  "type": "non_negative_derivative"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Hostname2$/"
+              },
+              {
+                "condition": "AND",
+                "key": "node",
+                "operator": "=~",
+                "value": "/^$Slot$/"
+              },
+              {
+                "condition": "AND",
+                "key": "NP_ID",
+                "operator": "=~",
+                "value": "/^$NP_ID$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Hostname2 - Qoshal Dropped Bytes",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:623",
+            "format": "bytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:624",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": false,
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "nl-tbg01a-ra60"
+            ],
+            "value": [
+              "nl-tbg01a-ra60"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_qoshall with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostaname",
+          "multi": false,
+          "name": "Hostname",
+          "options": [
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-c",
+              "value": "at-vie-tc-dtv-asr9k-c"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-d",
+              "value": "at-vie-tc-dtv-asr9k-d"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf030",
+              "value": "dmuotf030"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf031",
+              "value": "dmuotf031"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-01",
+              "value": "ie-dinc-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-02",
+              "value": "ie-dinc-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-01",
+              "value": "ie-dtal-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-02",
+              "value": "ie-dtal-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra15",
+              "value": "nl-ams02c-ra15"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra16",
+              "value": "nl-ams02c-ra16"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra50",
+              "value": "nl-ams02e-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra60",
+              "value": "nl-ams02e-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra50",
+              "value": "nl-hlm01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra60",
+              "value": "nl-hlm01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra50",
+              "value": "nl-mnd01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra60",
+              "value": "nl-mnd01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra3",
+              "value": "nl-srk03a-ra3"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra4",
+              "value": "nl-srk03a-ra4"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra15",
+              "value": "nl-tbg01a-ra15"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra16",
+              "value": "nl-tbg01a-ra16"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra50",
+              "value": "nl-tbg01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra60",
+              "value": "nl-tbg01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-ra302",
+              "value": "pl-waw04a-ra302"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd26",
+              "value": "pl-waw04a-rd26"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd27",
+              "value": "pl-waw04a-rd27"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra1",
+              "value": "pl-waw10a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra2",
+              "value": "pl-waw10a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra201",
+              "value": "pl-waw10a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra202",
+              "value": "pl-waw10a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra1",
+              "value": "pl-waw18a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra2",
+              "value": "pl-waw18a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra201",
+              "value": "pl-waw18a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra202",
+              "value": "pl-waw18a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr103-new",
+              "value": "slr-tr0004-cr103-new"
+            },
+            {
+              "selected": true,
+              "text": "slr-tr0004-cr104-new",
+              "value": "slr-tr0004-cr104-new"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra15",
+              "value": "tb-rc0001-ra15"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra16",
+              "value": "tb-rc0001-ra16"
+            }
+          ],
+          "query": "show tag values from asr9k_np_qoshall with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_qoshall with key=\"node\" where(hostname=$Hostname)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Slot ID 1",
+          "multi": true,
+          "name": "Slot",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "0/0/CPU0",
+              "value": "0/0/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/1/CPU0",
+              "value": "0/1/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/2/CPU0",
+              "value": "0/2/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/3/CPU0",
+              "value": "0/3/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/4/CPU0",
+              "value": "0/4/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/5/CPU0",
+              "value": "0/5/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/6/CPU0",
+              "value": "0/6/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/7/CPU0",
+              "value": "0/7/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/8/CPU0",
+              "value": "0/8/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/9/CPU0",
+              "value": "0/9/CPU0"
+            }
+          ],
+          "query": "show tag values from asr9k_np_qoshall with key=\"node\" where(hostname=$Hostname)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_qoshall with key=\"NP_ID\" where(hostname=~ /$Hostname/ AND node=~ /$Slot/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "NP ID 1",
+          "multi": true,
+          "name": "NP_ID",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "0",
+              "value": "0"
+            },
+            {
+              "selected": false,
+              "text": "1",
+              "value": "1"
+            },
+            {
+              "selected": false,
+              "text": "2",
+              "value": "2"
+            },
+            {
+              "selected": false,
+              "text": "3",
+              "value": "3"
+            }
+          ],
+          "query": "show tag values from asr9k_np_qoshall with key=\"NP_ID\" where(hostname=~ /$Hostname/ AND node=~ /$Slot/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "at-vie-tc-dtv-asr9k-c",
+            "value": "at-vie-tc-dtv-asr9k-c"
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_qoshall with key=\"hostname\"",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Hostname_2",
+          "multi": false,
+          "name": "Hostname2",
+          "options": [
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-c",
+              "value": "at-vie-tc-dtv-asr9k-c"
+            },
+            {
+              "selected": false,
+              "text": "at-vie-tc-dtv-asr9k-d",
+              "value": "at-vie-tc-dtv-asr9k-d"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf030",
+              "value": "dmuotf030"
+            },
+            {
+              "selected": false,
+              "text": "dmuotf031",
+              "value": "dmuotf031"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-01",
+              "value": "ie-dinc-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dinc-dtvasr-02",
+              "value": "ie-dinc-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-01",
+              "value": "ie-dtal-dtvasr-01"
+            },
+            {
+              "selected": false,
+              "text": "ie-dtal-dtvasr-02",
+              "value": "ie-dtal-dtvasr-02"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra15",
+              "value": "nl-ams02c-ra15"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02c-ra16",
+              "value": "nl-ams02c-ra16"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra50",
+              "value": "nl-ams02e-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-ams02e-ra60",
+              "value": "nl-ams02e-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra50",
+              "value": "nl-hlm01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-hlm01a-ra60",
+              "value": "nl-hlm01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra50",
+              "value": "nl-mnd01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-mnd01a-ra60",
+              "value": "nl-mnd01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra3",
+              "value": "nl-srk03a-ra3"
+            },
+            {
+              "selected": false,
+              "text": "nl-srk03a-ra4",
+              "value": "nl-srk03a-ra4"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra15",
+              "value": "nl-tbg01a-ra15"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra16",
+              "value": "nl-tbg01a-ra16"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra50",
+              "value": "nl-tbg01a-ra50"
+            },
+            {
+              "selected": false,
+              "text": "nl-tbg01a-ra60",
+              "value": "nl-tbg01a-ra60"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-ra302",
+              "value": "pl-waw04a-ra302"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd26",
+              "value": "pl-waw04a-rd26"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw04a-rd27",
+              "value": "pl-waw04a-rd27"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra1",
+              "value": "pl-waw10a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra2",
+              "value": "pl-waw10a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra201",
+              "value": "pl-waw10a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw10a-ra202",
+              "value": "pl-waw10a-ra202"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra1",
+              "value": "pl-waw18a-ra1"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra2",
+              "value": "pl-waw18a-ra2"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra201",
+              "value": "pl-waw18a-ra201"
+            },
+            {
+              "selected": false,
+              "text": "pl-waw18a-ra202",
+              "value": "pl-waw18a-ra202"
+            },
+            {
+              "selected": true,
+              "text": "slr-tr0004-cr103-new",
+              "value": "slr-tr0004-cr103-new"
+            },
+            {
+              "selected": false,
+              "text": "slr-tr0004-cr104-new",
+              "value": "slr-tr0004-cr104-new"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra15",
+              "value": "tb-rc0001-ra15"
+            },
+            {
+              "selected": false,
+              "text": "tb-rc0001-ra16",
+              "value": "tb-rc0001-ra16"
+            }
+          ],
+          "query": "show tag values from asr9k_np_qoshall with key=\"hostname\"",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "0/0/CPU0",
+            "value": "0/0/CPU0"
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_qoshall with key=\"node\" where(hostname=$Hostname2)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Slot ID 2",
+          "multi": true,
+          "name": "Slot_2",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "0/0/CPU0",
+              "value": "0/0/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/1/CPU0",
+              "value": "0/1/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/2/CPU0",
+              "value": "0/2/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/3/CPU0",
+              "value": "0/3/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/4/CPU0",
+              "value": "0/4/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/5/CPU0",
+              "value": "0/5/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/6/CPU0",
+              "value": "0/6/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/7/CPU0",
+              "value": "0/7/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/8/CPU0",
+              "value": "0/8/CPU0"
+            },
+            {
+              "selected": false,
+              "text": "0/9/CPU0",
+              "value": "0/9/CPU0"
+            }
+          ],
+          "query": "show tag values from asr9k_np_qoshall with key=\"node\" where(hostname=$Hostname2)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "0",
+            "value": "0"
+          },
+          "datasource": "Observer np counters",
+          "definition": "show tag values from asr9k_np_qoshall with key=\"NP_ID\" where(hostname=~ /$Hostname2/ AND node=~ /$Slot_2/)",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "NP ID 2",
+          "multi": true,
+          "name": "NP_ID_2",
+          "options": [
+            {
+              "selected": true,
+              "text": "All",
+              "value": "$__all"
+            }
+          ],
+          "query": "show tag values from asr9k_np_qoshall with key=\"NP_ID\" where(hostname=~ /$Hostname2/ AND node=~ /$Slot_2/)",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "DTV qoshal loopback-queue",
+    "uid": "UMacvUB7z"
+  }
+}

@@ -1,0 +1,24 @@
+groups:
+- name: nginx_http_error
+  rules:
+    - alert: Http_Error_Rate
+      expr: sum by (vhost, code, instance) (rate(http_requests_total{code=~"50.*"}[5m])) / sum by (vhost, code, instance) (rate(http_requests_total[5m])) * 100 > 10
+      for: 5m
+      labels:
+        severity: warning
+        domain: web
+      annotations:
+        summary: "HTTP{{ $labels.code }} for vhost {{ $labels.vhost }}. Log in on server {{ $labels.instance }} and analyze the nginx logs to see the source of traffic."
+        description: "HTTP{{ $labels.code }} for vhost {{ $labels.vhost }} Too many HTTP requests with status 5xx\n  VALUE = {{ $value }}\n"
+- name: nginx downsample
+  rules:
+    - record: increase5m:http_requests_total
+      expr: sum by (vhost, code)(increase(http_requests_total[5m]))
+      labels:
+        environment: production
+        service: processing_metrics
+    - record: rate5m:http_requests_total
+      expr: sum by (vhost, code)(rate(http_requests_total[5m]))
+      labels:
+        environment: production
+        service: processing_metrics

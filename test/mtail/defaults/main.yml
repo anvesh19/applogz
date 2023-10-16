@@ -1,0 +1,6 @@
+---
+mtail_version: "3.0.0-rc51"
+mtail_download_url: "https://github.com/google/mtail/releases/download/v{{ mtail_version }}/mtail_{{ mtail_version }}_Linux_x86_64.tar.gz"
+mtail_owner: "exporter"
+mtail_group: "exporter"
+mtail_update_only: false

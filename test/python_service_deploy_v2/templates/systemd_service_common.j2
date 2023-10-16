@@ -1,0 +1,27 @@
+[Unit]
+Description={{ base_package_name|default('A service') }} {{ package_version|default("") }}
+After=network.target
+
+[Service]
+{% if site_packages_workdir is defined %}
+WorkingDirectory={{ site_packages_workdir }}
+{% else %}
+WorkingDirectory={{ base_dir }}
+{% endif %}
+ExecStart={{ systemd_execstart }}
+{% if service_env_vars is defined and service_env_vars is iterable %}
+EnvironmentFile={{ systemd_environment_file }}
+{% endif %}
+StandardOutput=journal
+StandardError=journal
+SyslogIdentifier=%N
+User={{ service_user }}
+Group={{ service_group }}
+PrivateTmp=true
+{% if restart_on_failure is defined %}
+Restart=on-failure
+RestartSec=3
+{% endif %}
+
+[Install]
+WantedBy=multi-user.target

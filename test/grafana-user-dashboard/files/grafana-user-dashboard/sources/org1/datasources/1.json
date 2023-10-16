@@ -1,0 +1,26 @@
+{
+  "id": 1,
+  "uid": "6MB7HUuGk",
+  "orgId": 1,
+  "name": "LG Field Tech View Datasource (AngularJS)",
+  "type": "lg-field-tech-view-datasource-angularjs",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://topo-hfc-dev.aorta.net/preprod",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": true,
+  "jsonData": {
+    "tlsAuthWithCACert": true
+  },
+  "secureJsonFields": {
+    "tlsCACert": true
+  },
+  "version": 4,
+  "readOnly": false
+}

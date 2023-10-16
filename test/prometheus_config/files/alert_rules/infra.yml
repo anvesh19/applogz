@@ -1,0 +1,198 @@
+groups:
+- name: disk_usage_alert
+  rules:
+  - alert: fs_percentage_85
+    expr: ((node_filesystem_size_bytes{fstype=~"ext3|ext4|xfs"} - node_filesystem_avail_bytes{fstype=~"ext3|ext4|xfs"}) / node_filesystem_size_bytes{fstype=~"ext3|ext4|xfs"} * 100) + on(instance) group_left(nodename) (node_uname_info * 0) > 85
+    for: 2m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}_{{$labels.nodename}}: Low disk space on:{{$labels.mountpoint}}"
+      description: "{{$labels.instance}}_{{$labels.nodename}}:  Disk usage is above 85% (current value is: {{ $value }} on {{$labels.mountpoint}})"
+  - alert: fs_percentage_95
+    expr: ((node_filesystem_size_bytes{fstype=~"ext3|ext4|xfs"} - node_filesystem_avail_bytes{fstype=~"ext3|ext4|xfs"}) / node_filesystem_size_bytes{fstype=~"ext3|ext4|xfs"} * 100) + on(instance) group_left(nodename) (node_uname_info * 0) > 95
+    for: 2m
+    labels:
+      severity: critical
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}_{{$labels.nodename}}: Low disk space on:{{$labels.mountpoint}}"
+      description: "{{$labels.instance}}_{{$labels.nodename}}:  Disk usage is above 95% (current value is: {{ $value }} on {{$labels.mountpoint}})"
+  - alert: disk_full
+    expr: node_filesystem_avail_bytes{fstype=~"ext3|ext4|xfs"} + ON(instance) GROUP_LEFT(nodename) (node_uname_info * 0) == 0
+    for: 1m
+    labels:
+      severity: critical
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}_{{$labels.nodename}}: No more space left on device"
+      description: "{{$labels.instance}}_{{$labels.nodename}}: Filesystem available bytes is: {{ $value }}"
+  - alert: HostDiskWillFillIn24Hours
+    expr: (node_filesystem_avail_bytes * 100) / node_filesystem_size_bytes < 10 and ON (instance, device, mountpoint) predict_linear(node_filesystem_avail_bytes{fstype!~"tmpfs"}[1h], 24 * 3600) < 0 and ON (instance, device, mountpoint) node_filesystem_readonly == 0
+    for: 10m
+    labels:
+      severity: critical
+      domain: infra
+    annotations:
+      summary: Host disk will fill in 24 hours (instance {{ $labels.instance }})
+      description: "Filesystem is predicted to run out of space within the next 24 hours at current write rate\n  VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: tmp_fs_critical_osp01
+    expr: node_filesystem_avail_bytes{mountpoint="/tmp",instance="172.31.134.54:9100"} + on(instance) group_left(nodename) (node_uname_info * 0) < 1073741824
+    for: 1m
+    labels:
+      severity: critical
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}_{{$labels.nodename}}: Low /tmp ramdisk space on nl-ams05a-osp01"
+      description: "{{$labels.instance}}_{{$labels.nodename}}: tmpfs available free space is below 1GB (current value is: {{ $value }})"
+
+- name: Mysql
+  rules:
+  - alert: mysql_errors
+    expr: increase(mysql_global_variables_max_error_count [5m]) + ON(instance) GROUP_LEFT(nodename) (node_uname_info * 0) > 0
+    for: 1m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: There are new errors"
+      description: "{{$labels.instance}}: There are new errors: {{$labels.nodename}}"
+  - alert: read_only_mode
+    expr: mysql_global_variables_read_only{instance!="172.31.141.184:9104"} > 0
+    for: 1m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}: Instance is in read_only_mode"
+      description: "{{$labels.instance}}: Istance is in read_only_mode"
+  - alert: MySQL_Open_Connections
+    expr: mysql_global_status_threads_connected > 400
+    for: 1m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "MySQL Server has crossed threshold number of open connections"
+      description: "{{$labels.instance}}-: MySQL Server {{$labels.instance}} has too many open connections. Check the service to identify the issue"
+
+- name: used_memory
+  rules:
+  - alert: used_memory
+    expr: ((node_memory_MemTotal_bytes - node_memory_MemFree_bytes - node_memory_Cached_bytes - node_memory_Buffers_bytes) / (node_memory_MemTotal_bytes )) * 100 + ON(instance) GROUP_LEFT(nodename) (node_uname_info * 0) > 95
+    for: 5m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.nodename}}-{{$labels.instance}}: Used ram memory {{$value}}"
+      description: "{{$labels.instance}}-{{$labels.nodename}}: RAM usage is too high, please inform the devops team {{$value}}"
+
+- name: Redis_Alert
+  rules:
+  - alert: RedisDown
+    expr: (count(redis_instance_info) or vector(0)) - (count(redis_up) or vector(0)) < 0
+    for: 1m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "Redis down for (instance {{ $labels.instance }}). Log in and check status of redisserver service"
+      description: "Redis instance is down\n  for VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: Redis_Low_input_on_172.16.188.74
+    expr: rate(redis_net_input_bytes_total{instance="172.16.188.74:9121"}[5m]) < 2621440
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: Redis low input for (instance {{ $labels.instance }})
+      description: "Redis low input  traffic for 172.16.188.74 VALUE = {{ $value }}\n  LABELS = {{ $labels }}"
+  - alert: number_of_open_redis_sesion
+    expr: node_netstat_Tcp_CurrEstab{instance="172.31.141.215:9100"}>2000
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: Too many sessions open"
+      description: "{{$labels.instance}}: We have too many concurrent {{ $value }} open sessions on node {{$labels.nodename}}} this can cause problem for the obsever core ingestion. please check https://prometheus-grafana-kbw.sdil.aorta.net/d/NfeoCjaMz/external-hosts-stats-extended?panelId=85&edit&fullscreen&orgId=1&var-node=172.31.141.215&from=now-3h&to=now and run the folloging command on `172.31.141.166 grep clients /var/log/observer.log"
+
+- name: Back up services
+  rules:
+  - alert: Nginx to gitlab
+    expr: (node_systemd_unit_state{name=~"nginx_backup.service",state="failed"} + on(instance) group_left(nodename) (node_uname_info * 0)) == 1
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: Service {{$labels.name}} failed"
+      description: "{{$labels.instance}}-: Service {{$labels.name}} failed check the node {{$labels.nodename}} and the service to identify the issue"
+  - alert: DDS postgress
+    expr: (node_systemd_unit_state{name=~"dds-db-backup.service",state="failed"} + on(instance) group_left(nodename) (node_uname_info * 0)) == 1
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: Service {{$labels.name}} failed"
+      description: "{{$labels.instance}}-: Service {{$labels.name}} failed check the node {{$labels.nodename}} and the service to identify the issue"
+
+- name: Docker
+  rules:
+  - alert: deamon services
+    expr: node_systemd_unit_state{name="docker.service", state="failed"} == 1
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: Service {{$labels.name}} failed"
+      description: "{{$labels.instance}}-: Service {{$labels.name}} failed check the node {{$labels.nodename}} and the service to identify the issue"
+  - alert: AWX API call experience in swarm
+    expr: end_user_awx_jobs_time_total{instance!="172.23.101.223:9100", instance=~"172.23.101.22.*"} + on(instance) group_left(nodename) (node_uname_info * 0)>2
+    for: 15m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      summary: "{{$labels.instance}}-{{$labels.nodename}}: high RTD for http call to local swarm. "
+      description: "{{$labels.instance}}-: Log into the server and check folder /opt/end_user_awx_call.sh RTD for call is now {{ $value }},seconts. Refer to the ticket OBSCLOUD-5554"
+
+- name: glusterfs
+  rules:
+  - alert: GlusterFS mount error
+    expr: glusterfs_mount_error + on(instance) group_right(domainname) (node_uname_info * 0) > 0
+    for: 1s
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      description: "{{$labels.instance}} cannot access GlusterFS mount"
+      summary: "{{$labels.instance}}: GlusterFS mount point is failed on: {{$labels.nodename}}. Problem with store or data retrieve. Use https://devops.sdil.aorta.net/chores/gluster-fs/ to perform troubleshooting"
+
+- name: node_down
+  rules:
+  - alert: Node down
+    expr: up{job=~"ExtServerMetrics|Ditto_servers"} == 0
+    for: 5m
+    labels:
+      severity: critical
+      domain: infra
+    annotations:
+      description: "{{ $labels.instance }} has been down for more than 5 minutes."
+      summary: "Instance {{ $labels.instance }} down. Log in in the server and curl the port used to colect ex: curl localhost:9100/metrics"
+
+- name: connectivity_check
+  rules:
+  - alert: Datacenter connectivity
+    expr: connectivity_check{host_ip=~"172.16.188.*|172.23.101.*", target=~"172.31.141.*"} == 0
+    for: 10m
+    labels:
+      severity: warning
+      domain: infra
+    annotations:
+      description: "Network connection between ECX Greenfield Host: {{ $labels.host_ip }} and ECX Brownfield: {{ $labels.target }} has been lost for more than 10 minutes. This may impact Web services for observer and direct access to the servers. To test, connect to the server {{ $labels.host_ip }} and perform the command: ---> nc -zvn -w 1 {{ $labels.target }}"
+      summary: "Host {{ $labels.host_ip }} was unable to reach {{ $labels.target }}. Check network accessibility between those hosts."

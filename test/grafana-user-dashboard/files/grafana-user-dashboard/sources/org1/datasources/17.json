@@ -1,0 +1,26 @@
+{
+  "id": 17,
+  "uid": "8eHrBLQnk",
+  "orgId": 1,
+  "name": "InfluxDB snmp_metrics",
+  "type": "influxdb",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://172.31.141.195:8086",
+  "password": "",
+  "user": "cbadita",
+  "database": "snmp_metrics",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "httpMode": "POST"
+  },
+  "secureJsonFields": {
+    "password": true
+  },
+  "version": 3,
+  "readOnly": false
+}

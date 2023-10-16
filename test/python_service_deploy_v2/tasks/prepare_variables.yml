@@ -1,0 +1,111 @@
+---
+- name: Get pip dependencies from Vault if not defined
+  set_fact:
+    pip_dependencies: "{{ vault_data.ANSIBLE_PIP_DEPENDENCIES }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_PIP_DEPENDENCIES" in vault_data and
+    pip_dependencies is not defined
+
+- set_fact:
+    pip_dependencies: "{{ pip_dependencies | split(',') }}"
+  when: >
+    pip_dependencies is defined and
+    pip_dependencies is string
+
+- name: Get ExecStart part from Vault if not defined
+  set_fact:
+    execstart_venv_bin: "{{ vault_data.ANSIBLE_EXECSTART_VENV_BIN }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_EXECSTART_VENV_BIN" in vault_data and
+    systemd_execstart is not defined and
+    execstart_venv_bin is not defined
+
+- name: Set ExecStart for a python module
+  set_fact:
+    systemd_execstart: "{{ venv_dir }}/bin/{{ execstart_venv_bin }}"
+  when: >
+    systemd_execstart is not defined and
+    execstart_venv_bin is defined
+
+- name: Get ExecStart part from Vault if not defined
+  set_fact:
+    execstart_python_script: "{{ vault_data.ANSIBLE_EXECSTART_PYTHON_SCRIPT }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_EXECSTART_PYTHON_SCRIPT" in vault_data and
+    systemd_execstart is not defined and
+    execstart_python_script is not defined
+
+- name: Set ExecStart for a python script
+  set_fact:
+    systemd_execstart: "{{ venv_dir }}/bin/python
+                        {{ venv_site_packages }}/{{ execstart_python_script }}"
+  when: >
+    systemd_execstart is not defined and
+    execstart_python_script is defined
+
+- name: Get full ExecStart from Vault if not defined
+  set_fact:
+    systemd_execstart: "{{ vault_data.ANSIBLE_SYSTEMD_EXECSTART }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_SYSTEMD_EXECSTART" in vault_data and
+    systemd_execstart is not defined
+
+- assert:
+    that:
+    - systemd_execstart is defined
+    fail_msg: "Either 'systemd_execstart' or 'execstart_python_script' or
+               'execstart_venv_bin' MUST be defined"
+
+- name: Get custom systemd service definition from Vault
+  set_fact:
+    systemd_custom_service: "{{ vault_data.ANSIBLE_SYSTEMD_CUSTOM_SERVICE }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_SYSTEMD_CUSTOM_SERVICE" in vault_data and
+    systemd_custom_service is not defined
+
+- set_fact:
+    systemd_custom_service: "{{ systemd_custom_service | split(',') }}"
+  when: >
+    systemd_custom_service is defined and
+    systemd_custom_service is string
+
+- name: Get custom systemd timer definition from Vault
+  set_fact:
+    systemd_custom_timer: "{{ vault_data.ANSIBLE_SYSTEMD_CUSTOM_TIMER }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_SYSTEMD_CUSTOM_TIMER" in vault_data and
+    systemd_custom_timer is not defined
+
+- set_fact:
+    systemd_custom_timer: "{{ systemd_custom_timer | split(',') }}"
+  when: >
+    systemd_custom_timer is defined and
+    systemd_custom_timer is string
+
+- name: Get custom systemd timer OnCalendar from Vault
+  set_fact:
+    systemd_timer_oncalendar: "{{ vault_data.ANSIBLE_SYSTEMD_TIMER_ONCALENDAR }}"
+  when: >
+    vault_data is defined and
+    "ANSIBLE_SYSTEMD_TIMER_ONCALENDAR" in vault_data and
+    systemd_timer_oncalendar is not defined
+
+- name: Build environment variables dictionary
+  set_fact:
+    service_env_vars: "{{ service_env_vars | default({}) | combine({item.key: item.value}) }}"
+  loop: "{{ vault_data|dict2items }}"
+  no_log: True
+  when: >
+    vault_data is defined and
+    item.key is not regex('^ANSIBLE_.*')
+
+- name: Define site-packages WorkingDirectory
+  set_fact:
+    site_packages_workdir: "{{ venv_site_packages }}/{{ site_packages_workdir_postfix }}"
+  when: site_packages_workdir_postfix is defined

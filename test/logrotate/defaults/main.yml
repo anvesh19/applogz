@@ -1,0 +1,5 @@
+---
+maxsize: 1G
+debian_8_9_postrotate: invoke-rc.d rsyslog rotate > /dev/null
+debian_10_11_postrotate: /usr/lib/rsyslog/rsyslog-rotate
+timer_custom_location: /etc/systemd/system/

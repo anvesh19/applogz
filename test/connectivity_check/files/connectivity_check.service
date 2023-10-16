@@ -1,0 +1,9 @@
+[Unit]
+Description=Script checks does we have connection problems bettween hosts and if yes push as metric in Prometheus and alarm. 
+
+[Service]
+ExecStart=/opt/connectivity_check.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=connectivity_check
+User=prometheus

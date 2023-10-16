@@ -1,0 +1,24 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "ri-telemetry-data",
+    "url": "/dashboards/f/EJybM4Knk/ri-telemetry-data",
+    "hasAcl": false,
+    "isFolder": true,
+    "folderId": 0,
+    "folderTitle": "General",
+    "folderUrl": "",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "id": 63,
+    "schemaVersion": 17,
+    "title": "RI Telemetry Data",
+    "uid": "EJybM4Knk"
+  }
+}

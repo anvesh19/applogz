@@ -1,0 +1,457 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "nat-translations-xe",
+    "url": "/d/bVw4b2eGk/nat-translations-xe",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 3,
+    "folderTitle": "Cisco",
+    "folderUrl": "/dashboards/f/_PIhKFeGk/cisco",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 31,
+    "iteration": 1623251574110,
+    "links": [],
+    "panels": [
+      {
+        "datasource": "cisco1",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": null,
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Entries"
+                },
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 80
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last_1"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Flows"
+                },
+                {
+                  "id": "unit",
+                  "value": "short"
+                },
+                {
+                  "id": "custom.width",
+                  "value": 80
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last_2"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "Hits"
+                },
+                {
+                  "id": "unit",
+                  "value": "none"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "last_3"
+              },
+              "properties": [
+                {
+                  "id": "displayName",
+                  "value": "VRF"
+                },
+                {
+                  "id": "unit",
+                  "value": "string"
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_in_glo_ip"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 120
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_in_glo_port"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_in_loc_ip"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 120
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_in_loc_port"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_out_glo_ip"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 120
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_out_glo_port"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_out_loc_ip"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 120
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "nat_out_loc_port"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 110
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 25,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 9,
+        "links": [],
+        "options": {
+          "showHeader": true,
+          "sortBy": []
+        },
+        "pluginVersion": "7.4.2",
+        "targets": [
+          {
+            "alias": "",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "nat_in_glo_ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_in_glo_port"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_in_loc_ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_in_loc_port"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_out_glo_ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_out_glo_port"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_out_loc_ip"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "nat_out_loc_port"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "xe_nat_stats",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"ip_nat_statistics/entries\"), last(\"ip_nat_statistics/entry_timeouts\"), last(\"ip_nat_statistics/frag_pak_count\"), last(\"ip_nat_statistics/hits\"), last(\"ip_nat_statistics/in2out_drops\"), last(\"ip_nat_statistics/out2in_drops\"), last(\"ip_nat_statistics/interrupt_switched\"), last(\"ip_nat_translation/limit_entry_add_fail\"), last(\"ip_nat_translation/pool_stats_drop\"), last(\"ip_nat_translation/vrf_name\"), last(\"ip_nat_translation/statics\"), last(\"ip_nat_translation/packets_punted       \"), last(\"ip_nat_translation/portlist_req_fail\") FROM \"autogen\".\"xe_nat_stats\" WHERE (\"source\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval) fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "table",
+            "select": [
+              [
+                {
+                  "params": [
+                    "ip_nat_statistics/entries"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "ip_nat_statistics/flows"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "ip_nat_statistics/hits"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "ip_nat_translation/vrf_name"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "source",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "timeFrom": null,
+        "timeShift": null,
+        "title": "NAT Statistics $device",
+        "transformations": [],
+        "type": "table"
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "de-fra20g-aws-obo-rg02",
+            "value": "de-fra20g-aws-obo-rg02"
+          },
+          "datasource": "cisco1",
+          "definition": "show tag values with key = source",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "device",
+          "options": [],
+          "query": "show tag values with key = source",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "NAT Translations (XE)",
+    "uid": "bVw4b2eGk"
+  }
+}

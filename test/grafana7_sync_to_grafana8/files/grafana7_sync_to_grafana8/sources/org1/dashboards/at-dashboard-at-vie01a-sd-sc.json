@@ -1,0 +1,3663 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "at-dashboard-at-vie01a-sd-sc",
+    "url": "/d/zcExC_t7z/at-dashboard-at-vie01a-sd-sc",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 43,
+    "folderTitle": "DTV Core Routers",
+    "folderUrl": "/dashboards/f/U05qpiSnk/dtv-core-routers",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 75,
+    "iteration": 1638445241441,
+    "links": [],
+    "panels": [
+      {
+        "collapsed": false,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 0
+        },
+        "id": 10,
+        "panels": [],
+        "title": "Traffic Statistics for $Devices_SC",
+        "type": "row"
+      },
+      {
+        "datasource": "MySQL Observer",
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "align": null,
+              "filterable": false
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": [
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "hostname"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 198
+                }
+              ]
+            },
+            {
+              "matcher": {
+                "id": "byName",
+                "options": "if_name"
+              },
+              "properties": [
+                {
+                  "id": "custom.width",
+                  "value": 409
+                }
+              ]
+            }
+          ]
+        },
+        "gridPos": {
+          "h": 9,
+          "w": 24,
+          "x": 0,
+          "y": 1
+        },
+        "id": 6,
+        "options": {
+          "showHeader": true,
+          "sortBy": [
+            {
+              "desc": false,
+              "displayName": "if_name"
+            }
+          ]
+        },
+        "pluginVersion": "7.4.2",
+        "targets": [
+          {
+            "format": "table",
+            "group": [],
+            "metricColumn": "none",
+            "rawQuery": true,
+            "rawSql": "select router.hostname, interface.if_name, interface.description from interface join router on router.id = router_id where router.hostname like $Devices_SC",
+            "refId": "A",
+            "select": [
+              [
+                {
+                  "params": [
+                    "admin_status"
+                  ],
+                  "type": "column"
+                }
+              ]
+            ],
+            "table": "interface",
+            "timeColumn": "ae_if_id",
+            "timeColumnType": "bigint",
+            "where": [
+              {
+                "name": "$__unixEpochFilter",
+                "params": [],
+                "type": "macro"
+              }
+            ]
+          }
+        ],
+        "title": "$Devices_SC - Interface Description",
+        "type": "table"
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "Observer core",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {}
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 22,
+          "w": 24,
+          "x": 0,
+          "y": 10
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "legend": {
+          "alignAsTable": true,
+          "avg": false,
+          "current": true,
+          "max": true,
+          "min": true,
+          "rightSide": true,
+          "show": true,
+          "total": false,
+          "values": true
+        },
+        "lines": true,
+        "linewidth": 1,
+        "nullPointMode": "connected",
+        "options": {
+          "alertThreshold": true
+        },
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_hostname - $tag_if_name - $col",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "hostname"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_id"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "if_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "traffic",
+            "orderByTime": "ASC",
+            "policy": "default",
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "in_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "IN"
+                  ],
+                  "type": "alias"
+                }
+              ],
+              [
+                {
+                  "params": [
+                    "out_bps"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "mean"
+                },
+                {
+                  "params": [
+                    "OUT"
+                  ],
+                  "type": "alias"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "hostname",
+                "operator": "=~",
+                "value": "/^$Devices_SC$/"
+              },
+              {
+                "condition": "AND",
+                "key": "if_name",
+                "operator": "=~",
+                "value": "/^$Physical_IF_SC$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "$Devices_SC - Traffic On Interface ",
+        "tooltip": {
+          "shared": true,
+          "sort": 0,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:2626",
+            "format": "bps",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:2627",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "collapsed": true,
+        "datasource": null,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 32
+        },
+        "id": 8,
+        "panels": [
+          {
+            "datasource": "MySQL Observer",
+            "fieldConfig": {
+              "defaults": {
+                "color": {
+                  "mode": "thresholds"
+                },
+                "custom": {
+                  "align": null,
+                  "filterable": false
+                },
+                "mappings": [],
+                "thresholds": {
+                  "mode": "absolute",
+                  "steps": [
+                    {
+                      "color": "green",
+                      "value": null
+                    },
+                    {
+                      "color": "red",
+                      "value": 80
+                    }
+                  ]
+                }
+              },
+              "overrides": [
+                {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "hostname"
+                  },
+                  "properties": [
+                    {
+                      "id": "custom.width",
+                      "value": 198
+                    }
+                  ]
+                },
+                {
+                  "matcher": {
+                    "id": "byName",
+                    "options": "if_name"
+                  },
+                  "properties": [
+                    {
+                      "id": "custom.width",
+                      "value": 409
+                    }
+                  ]
+                }
+              ]
+            },
+            "gridPos": {
+              "h": 9,
+              "w": 24,
+              "x": 0,
+              "y": 2
+            },
+            "id": 5,
+            "options": {
+              "showHeader": true,
+              "sortBy": [
+                {
+                  "desc": false,
+                  "displayName": "if_name"
+                }
+              ]
+            },
+            "pluginVersion": "7.4.2",
+            "targets": [
+              {
+                "format": "table",
+                "group": [],
+                "metricColumn": "none",
+                "rawQuery": true,
+                "rawSql": "select router.hostname, interface.if_name, interface.description from interface join router on router.id = router_id where router.hostname like $Devices",
+                "refId": "A",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "admin_status"
+                      ],
+                      "type": "column"
+                    }
+                  ]
+                ],
+                "table": "interface",
+                "timeColumn": "ae_if_id",
+                "timeColumnType": "bigint",
+                "where": [
+                  {
+                    "name": "$__unixEpochFilter",
+                    "params": [],
+                    "type": "macro"
+                  }
+                ]
+              }
+            ],
+            "title": "$Devices - Interface Description",
+            "type": "table"
+          },
+          {
+            "aliasColors": {},
+            "bars": false,
+            "dashLength": 10,
+            "dashes": false,
+            "datasource": "Observer core",
+            "fieldConfig": {
+              "defaults": {
+                "custom": {}
+              },
+              "overrides": []
+            },
+            "fill": 1,
+            "fillGradient": 0,
+            "gridPos": {
+              "h": 22,
+              "w": 24,
+              "x": 0,
+              "y": 11
+            },
+            "hiddenSeries": false,
+            "id": 2,
+            "legend": {
+              "alignAsTable": true,
+              "avg": false,
+              "current": true,
+              "max": true,
+              "min": true,
+              "rightSide": true,
+              "show": true,
+              "total": false,
+              "values": true
+            },
+            "lines": true,
+            "linewidth": 1,
+            "nullPointMode": "connected",
+            "options": {
+              "alertThreshold": true
+            },
+            "percentage": false,
+            "pluginVersion": "7.4.2",
+            "pointradius": 2,
+            "points": false,
+            "renderer": "flot",
+            "seriesOverrides": [],
+            "spaceLength": 10,
+            "stack": false,
+            "steppedLine": false,
+            "targets": [
+              {
+                "alias": "$tag_hostname  - $tag_if_name - $col",
+                "groupBy": [
+                  {
+                    "params": [
+                      "$__interval"
+                    ],
+                    "type": "time"
+                  },
+                  {
+                    "params": [
+                      "hostname"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "if_id"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "if_name"
+                    ],
+                    "type": "tag"
+                  },
+                  {
+                    "params": [
+                      "null"
+                    ],
+                    "type": "fill"
+                  }
+                ],
+                "measurement": "traffic",
+                "orderByTime": "ASC",
+                "policy": "default",
+                "refId": "A",
+                "resultFormat": "time_series",
+                "select": [
+                  [
+                    {
+                      "params": [
+                        "in_bps"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "mean"
+                    },
+                    {
+                      "params": [
+                        "IN"
+                      ],
+                      "type": "alias"
+                    }
+                  ],
+                  [
+                    {
+                      "params": [
+                        "out_bps"
+                      ],
+                      "type": "field"
+                    },
+                    {
+                      "params": [],
+                      "type": "mean"
+                    },
+                    {
+                      "params": [
+                        "OUT"
+                      ],
+                      "type": "alias"
+                    }
+                  ]
+                ],
+                "tags": [
+                  {
+                    "key": "hostname",
+                    "operator": "=~",
+                    "value": "/^$Devices$/"
+                  },
+                  {
+                    "condition": "AND",
+                    "key": "if_name",
+                    "operator": "=~",
+                    "value": "/^$Physical_IF_SD$/"
+                  }
+                ]
+              }
+            ],
+            "thresholds": [],
+            "timeFrom": null,
+            "timeRegions": [],
+            "timeShift": null,
+            "title": "$Devices - Traffic On Interface ",
+            "tooltip": {
+              "shared": true,
+              "sort": 0,
+              "value_type": "individual"
+            },
+            "type": "graph",
+            "xaxis": {
+              "buckets": null,
+              "mode": "time",
+              "name": null,
+              "show": true,
+              "values": []
+            },
+            "yaxes": [
+              {
+                "$$hashKey": "object:2626",
+                "format": "bps",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              },
+              {
+                "$$hashKey": "object:2627",
+                "format": "short",
+                "label": null,
+                "logBase": 1,
+                "max": null,
+                "min": null,
+                "show": true
+              }
+            ],
+            "yaxis": {
+              "align": false,
+              "alignLevel": null
+            }
+          }
+        ],
+        "title": "Traffic Statistics for $Devices",
+        "type": "row"
+      }
+    ],
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [
+      "cbadita"
+    ],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "at-vie01a-sc01",
+            "value": "at-vie01a-sc01"
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values with key = hostname",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": "Devices_SC",
+          "multi": true,
+          "name": "Devices_SC",
+          "options": [],
+          "query": "show tag values with key = hostname",
+          "refresh": 1,
+          "regex": "/.*at-vie01a-sc.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": [
+              "at-vie01a-sd02"
+            ],
+            "value": [
+              "at-vie01a-sd02"
+            ]
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values with key = hostname",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Devices_SD*",
+          "multi": true,
+          "name": "Devices",
+          "options": [],
+          "query": "show tag values with key = hostname",
+          "refresh": 1,
+          "regex": "/.*at-vie01a-sd.*/",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "All",
+            "value": "$__all"
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values with key = \"if_name\" where \"hostname\" =~ /$Devices_SC/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Physical_Interface_SC*",
+          "multi": true,
+          "name": "Physical_IF_SC",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/17",
+              "value": "Ethernet1/17"
+            },
+            {
+              "selected": true,
+              "text": "Ethernet1/19",
+              "value": "Ethernet1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/20",
+              "value": "Ethernet1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/21",
+              "value": "Ethernet1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/22",
+              "value": "Ethernet1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/23",
+              "value": "Ethernet1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/24",
+              "value": "Ethernet1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/27",
+              "value": "Ethernet1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/30",
+              "value": "Ethernet1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/35",
+              "value": "Ethernet1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/37",
+              "value": "Ethernet1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/38",
+              "value": "Ethernet1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/39",
+              "value": "Ethernet1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/40",
+              "value": "Ethernet1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/43",
+              "value": "Ethernet1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/44",
+              "value": "Ethernet1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/45",
+              "value": "Ethernet1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/47",
+              "value": "Ethernet1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/48",
+              "value": "Ethernet1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/5",
+              "value": "Ethernet1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/9",
+              "value": "Ethernet1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/11",
+              "value": "Ethernet10/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/12",
+              "value": "Ethernet10/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/19",
+              "value": "Ethernet10/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/20",
+              "value": "Ethernet10/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/22",
+              "value": "Ethernet10/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/23",
+              "value": "Ethernet10/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/24",
+              "value": "Ethernet10/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/35",
+              "value": "Ethernet10/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/37",
+              "value": "Ethernet10/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/38",
+              "value": "Ethernet10/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/39",
+              "value": "Ethernet10/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/40",
+              "value": "Ethernet10/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/43",
+              "value": "Ethernet10/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/44",
+              "value": "Ethernet10/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/47",
+              "value": "Ethernet10/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/48",
+              "value": "Ethernet10/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/9",
+              "value": "Ethernet10/9"
+            },
+            {
+              "selected": false,
+              "text": "port-channel101",
+              "value": "port-channel101"
+            },
+            {
+              "selected": false,
+              "text": "port-channel102",
+              "value": "port-channel102"
+            },
+            {
+              "selected": false,
+              "text": "port-channel103",
+              "value": "port-channel103"
+            },
+            {
+              "selected": false,
+              "text": "port-channel105",
+              "value": "port-channel105"
+            },
+            {
+              "selected": false,
+              "text": "port-channel106",
+              "value": "port-channel106"
+            },
+            {
+              "selected": false,
+              "text": "port-channel109",
+              "value": "port-channel109"
+            },
+            {
+              "selected": false,
+              "text": "port-channel111",
+              "value": "port-channel111"
+            },
+            {
+              "selected": false,
+              "text": "port-channel112",
+              "value": "port-channel112"
+            },
+            {
+              "selected": false,
+              "text": "port-channel113",
+              "value": "port-channel113"
+            },
+            {
+              "selected": false,
+              "text": "port-channel114",
+              "value": "port-channel114"
+            },
+            {
+              "selected": false,
+              "text": "port-channel115",
+              "value": "port-channel115"
+            },
+            {
+              "selected": false,
+              "text": "port-channel116",
+              "value": "port-channel116"
+            },
+            {
+              "selected": false,
+              "text": "port-channel117",
+              "value": "port-channel117"
+            },
+            {
+              "selected": false,
+              "text": "port-channel119",
+              "value": "port-channel119"
+            },
+            {
+              "selected": false,
+              "text": "port-channel120",
+              "value": "port-channel120"
+            },
+            {
+              "selected": false,
+              "text": "port-channel121",
+              "value": "port-channel121"
+            },
+            {
+              "selected": false,
+              "text": "port-channel122",
+              "value": "port-channel122"
+            },
+            {
+              "selected": false,
+              "text": "port-channel123",
+              "value": "port-channel123"
+            },
+            {
+              "selected": false,
+              "text": "port-channel124",
+              "value": "port-channel124"
+            },
+            {
+              "selected": false,
+              "text": "port-channel160",
+              "value": "port-channel160"
+            },
+            {
+              "selected": false,
+              "text": "port-channel161",
+              "value": "port-channel161"
+            },
+            {
+              "selected": false,
+              "text": "port-channel203",
+              "value": "port-channel203"
+            },
+            {
+              "selected": false,
+              "text": "port-channel222",
+              "value": "port-channel222"
+            },
+            {
+              "selected": false,
+              "text": "port-channel311",
+              "value": "port-channel311"
+            },
+            {
+              "selected": false,
+              "text": "port-channel312",
+              "value": "port-channel312"
+            },
+            {
+              "selected": false,
+              "text": "port-channel322",
+              "value": "port-channel322"
+            },
+            {
+              "selected": false,
+              "text": "port-channel421",
+              "value": "port-channel421"
+            },
+            {
+              "selected": false,
+              "text": "port-channel5",
+              "value": "port-channel5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/1",
+              "value": "Ethernet1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/10",
+              "value": "Ethernet1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/11",
+              "value": "Ethernet1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/12",
+              "value": "Ethernet1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/13",
+              "value": "Ethernet1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/14",
+              "value": "Ethernet1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/15",
+              "value": "Ethernet1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/16",
+              "value": "Ethernet1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/18",
+              "value": "Ethernet1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/2",
+              "value": "Ethernet1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/25",
+              "value": "Ethernet1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/26",
+              "value": "Ethernet1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/28",
+              "value": "Ethernet1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/29",
+              "value": "Ethernet1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/3",
+              "value": "Ethernet1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/31",
+              "value": "Ethernet1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/32",
+              "value": "Ethernet1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/33",
+              "value": "Ethernet1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/34",
+              "value": "Ethernet1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/36",
+              "value": "Ethernet1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/4",
+              "value": "Ethernet1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/41",
+              "value": "Ethernet1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/42",
+              "value": "Ethernet1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/46",
+              "value": "Ethernet1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/6",
+              "value": "Ethernet1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/7",
+              "value": "Ethernet1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/8",
+              "value": "Ethernet1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/1",
+              "value": "Ethernet10/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/10",
+              "value": "Ethernet10/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/13",
+              "value": "Ethernet10/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/14",
+              "value": "Ethernet10/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/15",
+              "value": "Ethernet10/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/16",
+              "value": "Ethernet10/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/17",
+              "value": "Ethernet10/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/18",
+              "value": "Ethernet10/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/2",
+              "value": "Ethernet10/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/21",
+              "value": "Ethernet10/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/25",
+              "value": "Ethernet10/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/26",
+              "value": "Ethernet10/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/27",
+              "value": "Ethernet10/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/28",
+              "value": "Ethernet10/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/29",
+              "value": "Ethernet10/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/3",
+              "value": "Ethernet10/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/30",
+              "value": "Ethernet10/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/31",
+              "value": "Ethernet10/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/32",
+              "value": "Ethernet10/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/33",
+              "value": "Ethernet10/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/34",
+              "value": "Ethernet10/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/36",
+              "value": "Ethernet10/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/4",
+              "value": "Ethernet10/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/41",
+              "value": "Ethernet10/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/42",
+              "value": "Ethernet10/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/45",
+              "value": "Ethernet10/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/46",
+              "value": "Ethernet10/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/5",
+              "value": "Ethernet10/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/6",
+              "value": "Ethernet10/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/7",
+              "value": "Ethernet10/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet10/8",
+              "value": "Ethernet10/8"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1",
+              "value": "port-channel1"
+            },
+            {
+              "selected": false,
+              "text": "port-channel10",
+              "value": "port-channel10"
+            },
+            {
+              "selected": false,
+              "text": "port-channel104",
+              "value": "port-channel104"
+            },
+            {
+              "selected": false,
+              "text": "port-channel107",
+              "value": "port-channel107"
+            },
+            {
+              "selected": false,
+              "text": "port-channel108",
+              "value": "port-channel108"
+            },
+            {
+              "selected": false,
+              "text": "port-channel11",
+              "value": "port-channel11"
+            },
+            {
+              "selected": false,
+              "text": "port-channel110",
+              "value": "port-channel110"
+            },
+            {
+              "selected": false,
+              "text": "port-channel118",
+              "value": "port-channel118"
+            },
+            {
+              "selected": false,
+              "text": "port-channel201",
+              "value": "port-channel201"
+            },
+            {
+              "selected": false,
+              "text": "port-channel202",
+              "value": "port-channel202"
+            },
+            {
+              "selected": false,
+              "text": "port-channel204",
+              "value": "port-channel204"
+            },
+            {
+              "selected": false,
+              "text": "port-channel211",
+              "value": "port-channel211"
+            },
+            {
+              "selected": false,
+              "text": "port-channel212",
+              "value": "port-channel212"
+            },
+            {
+              "selected": false,
+              "text": "port-channel213",
+              "value": "port-channel213"
+            },
+            {
+              "selected": false,
+              "text": "port-channel221",
+              "value": "port-channel221"
+            },
+            {
+              "selected": false,
+              "text": "port-channel223",
+              "value": "port-channel223"
+            },
+            {
+              "selected": false,
+              "text": "port-channel313",
+              "value": "port-channel313"
+            },
+            {
+              "selected": false,
+              "text": "port-channel321",
+              "value": "port-channel321"
+            },
+            {
+              "selected": false,
+              "text": "port-channel323",
+              "value": "port-channel323"
+            },
+            {
+              "selected": false,
+              "text": "port-channel6",
+              "value": "port-channel6"
+            },
+            {
+              "selected": false,
+              "text": "port-channel725",
+              "value": "port-channel725"
+            }
+          ],
+          "query": "show tag values with key = \"if_name\" where \"hostname\" =~ /$Devices_SC/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "Ethernet121/1/3"
+            ],
+            "value": [
+              "Ethernet121/1/3"
+            ]
+          },
+          "datasource": "Observer core",
+          "definition": "show tag values with key = \"if_name\" where \"hostname\" =~ /$Devices/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": "Physical_Interface_SD*",
+          "multi": true,
+          "name": "Physical_IF_SD",
+          "options": [
+            {
+              "selected": false,
+              "text": "All",
+              "value": "$__all"
+            },
+            {
+              "selected": true,
+              "text": "Ethernet121/1/3",
+              "value": "Ethernet121/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/31",
+              "value": "Ethernet121/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/32",
+              "value": "Ethernet121/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/13",
+              "value": "Ethernet125/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/1",
+              "value": "Ethernet2/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/2",
+              "value": "Ethernet2/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/3",
+              "value": "Ethernet2/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/4",
+              "value": "Ethernet2/4"
+            },
+            {
+              "selected": false,
+              "text": "port-channel11",
+              "value": "port-channel11"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1124",
+              "value": "port-channel1124"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1126",
+              "value": "port-channel1126"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1127",
+              "value": "port-channel1127"
+            },
+            {
+              "selected": false,
+              "text": "port-channel12",
+              "value": "port-channel12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/1",
+              "value": "Ethernet1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/10",
+              "value": "Ethernet1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/11",
+              "value": "Ethernet1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/12",
+              "value": "Ethernet1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/13",
+              "value": "Ethernet1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/14",
+              "value": "Ethernet1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/15",
+              "value": "Ethernet1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/16",
+              "value": "Ethernet1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/17",
+              "value": "Ethernet1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/18",
+              "value": "Ethernet1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/19",
+              "value": "Ethernet1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/2",
+              "value": "Ethernet1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/20",
+              "value": "Ethernet1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/21",
+              "value": "Ethernet1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/22",
+              "value": "Ethernet1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/23",
+              "value": "Ethernet1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/24",
+              "value": "Ethernet1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/25",
+              "value": "Ethernet1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/26",
+              "value": "Ethernet1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/27",
+              "value": "Ethernet1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/28",
+              "value": "Ethernet1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/29",
+              "value": "Ethernet1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/3",
+              "value": "Ethernet1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/30",
+              "value": "Ethernet1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/31",
+              "value": "Ethernet1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/32",
+              "value": "Ethernet1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/4",
+              "value": "Ethernet1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/5",
+              "value": "Ethernet1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/6",
+              "value": "Ethernet1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/7",
+              "value": "Ethernet1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/8",
+              "value": "Ethernet1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet1/9",
+              "value": "Ethernet1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/1",
+              "value": "Ethernet100/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/10",
+              "value": "Ethernet100/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/11",
+              "value": "Ethernet100/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/12",
+              "value": "Ethernet100/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/13",
+              "value": "Ethernet100/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/14",
+              "value": "Ethernet100/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/15",
+              "value": "Ethernet100/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/16",
+              "value": "Ethernet100/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/17",
+              "value": "Ethernet100/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/18",
+              "value": "Ethernet100/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/19",
+              "value": "Ethernet100/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/2",
+              "value": "Ethernet100/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/20",
+              "value": "Ethernet100/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/21",
+              "value": "Ethernet100/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/22",
+              "value": "Ethernet100/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/23",
+              "value": "Ethernet100/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/24",
+              "value": "Ethernet100/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/25",
+              "value": "Ethernet100/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/26",
+              "value": "Ethernet100/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/27",
+              "value": "Ethernet100/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/28",
+              "value": "Ethernet100/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/29",
+              "value": "Ethernet100/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/3",
+              "value": "Ethernet100/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/30",
+              "value": "Ethernet100/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/31",
+              "value": "Ethernet100/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/32",
+              "value": "Ethernet100/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/4",
+              "value": "Ethernet100/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/5",
+              "value": "Ethernet100/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/6",
+              "value": "Ethernet100/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/7",
+              "value": "Ethernet100/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/8",
+              "value": "Ethernet100/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet100/1/9",
+              "value": "Ethernet100/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/1",
+              "value": "Ethernet121/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/10",
+              "value": "Ethernet121/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/11",
+              "value": "Ethernet121/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/12",
+              "value": "Ethernet121/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/13",
+              "value": "Ethernet121/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/14",
+              "value": "Ethernet121/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/15",
+              "value": "Ethernet121/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/16",
+              "value": "Ethernet121/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/17",
+              "value": "Ethernet121/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/18",
+              "value": "Ethernet121/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/19",
+              "value": "Ethernet121/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/2",
+              "value": "Ethernet121/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/20",
+              "value": "Ethernet121/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/21",
+              "value": "Ethernet121/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/22",
+              "value": "Ethernet121/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/23",
+              "value": "Ethernet121/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/24",
+              "value": "Ethernet121/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/25",
+              "value": "Ethernet121/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/26",
+              "value": "Ethernet121/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/27",
+              "value": "Ethernet121/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/28",
+              "value": "Ethernet121/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/29",
+              "value": "Ethernet121/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/30",
+              "value": "Ethernet121/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/33",
+              "value": "Ethernet121/1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/34",
+              "value": "Ethernet121/1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/35",
+              "value": "Ethernet121/1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/36",
+              "value": "Ethernet121/1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/37",
+              "value": "Ethernet121/1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/38",
+              "value": "Ethernet121/1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/39",
+              "value": "Ethernet121/1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/4",
+              "value": "Ethernet121/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/40",
+              "value": "Ethernet121/1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/41",
+              "value": "Ethernet121/1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/42",
+              "value": "Ethernet121/1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/43",
+              "value": "Ethernet121/1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/44",
+              "value": "Ethernet121/1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/45",
+              "value": "Ethernet121/1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/46",
+              "value": "Ethernet121/1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/47",
+              "value": "Ethernet121/1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/48",
+              "value": "Ethernet121/1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/5",
+              "value": "Ethernet121/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/6",
+              "value": "Ethernet121/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/7",
+              "value": "Ethernet121/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/8",
+              "value": "Ethernet121/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet121/1/9",
+              "value": "Ethernet121/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/1",
+              "value": "Ethernet122/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/10",
+              "value": "Ethernet122/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/11",
+              "value": "Ethernet122/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/12",
+              "value": "Ethernet122/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/13",
+              "value": "Ethernet122/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/14",
+              "value": "Ethernet122/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/15",
+              "value": "Ethernet122/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/16",
+              "value": "Ethernet122/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/17",
+              "value": "Ethernet122/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/18",
+              "value": "Ethernet122/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/19",
+              "value": "Ethernet122/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/2",
+              "value": "Ethernet122/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/20",
+              "value": "Ethernet122/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/21",
+              "value": "Ethernet122/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/22",
+              "value": "Ethernet122/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/23",
+              "value": "Ethernet122/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/24",
+              "value": "Ethernet122/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/25",
+              "value": "Ethernet122/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/26",
+              "value": "Ethernet122/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/27",
+              "value": "Ethernet122/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/28",
+              "value": "Ethernet122/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/29",
+              "value": "Ethernet122/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/3",
+              "value": "Ethernet122/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/30",
+              "value": "Ethernet122/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/31",
+              "value": "Ethernet122/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/32",
+              "value": "Ethernet122/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/33",
+              "value": "Ethernet122/1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/34",
+              "value": "Ethernet122/1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/35",
+              "value": "Ethernet122/1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/36",
+              "value": "Ethernet122/1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/37",
+              "value": "Ethernet122/1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/38",
+              "value": "Ethernet122/1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/39",
+              "value": "Ethernet122/1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/4",
+              "value": "Ethernet122/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/40",
+              "value": "Ethernet122/1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/41",
+              "value": "Ethernet122/1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/42",
+              "value": "Ethernet122/1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/43",
+              "value": "Ethernet122/1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/44",
+              "value": "Ethernet122/1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/45",
+              "value": "Ethernet122/1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/46",
+              "value": "Ethernet122/1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/47",
+              "value": "Ethernet122/1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/48",
+              "value": "Ethernet122/1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/5",
+              "value": "Ethernet122/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/6",
+              "value": "Ethernet122/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/7",
+              "value": "Ethernet122/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/8",
+              "value": "Ethernet122/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet122/1/9",
+              "value": "Ethernet122/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/1",
+              "value": "Ethernet123/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/10",
+              "value": "Ethernet123/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/11",
+              "value": "Ethernet123/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/12",
+              "value": "Ethernet123/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/13",
+              "value": "Ethernet123/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/14",
+              "value": "Ethernet123/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/15",
+              "value": "Ethernet123/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/16",
+              "value": "Ethernet123/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/17",
+              "value": "Ethernet123/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/18",
+              "value": "Ethernet123/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/19",
+              "value": "Ethernet123/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/2",
+              "value": "Ethernet123/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/20",
+              "value": "Ethernet123/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/21",
+              "value": "Ethernet123/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/22",
+              "value": "Ethernet123/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/23",
+              "value": "Ethernet123/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/24",
+              "value": "Ethernet123/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/25",
+              "value": "Ethernet123/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/26",
+              "value": "Ethernet123/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/27",
+              "value": "Ethernet123/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/28",
+              "value": "Ethernet123/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/29",
+              "value": "Ethernet123/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/3",
+              "value": "Ethernet123/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/30",
+              "value": "Ethernet123/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/31",
+              "value": "Ethernet123/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/32",
+              "value": "Ethernet123/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/33",
+              "value": "Ethernet123/1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/34",
+              "value": "Ethernet123/1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/35",
+              "value": "Ethernet123/1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/36",
+              "value": "Ethernet123/1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/37",
+              "value": "Ethernet123/1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/38",
+              "value": "Ethernet123/1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/39",
+              "value": "Ethernet123/1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/4",
+              "value": "Ethernet123/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/40",
+              "value": "Ethernet123/1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/41",
+              "value": "Ethernet123/1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/42",
+              "value": "Ethernet123/1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/43",
+              "value": "Ethernet123/1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/44",
+              "value": "Ethernet123/1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/45",
+              "value": "Ethernet123/1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/46",
+              "value": "Ethernet123/1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/47",
+              "value": "Ethernet123/1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/48",
+              "value": "Ethernet123/1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/5",
+              "value": "Ethernet123/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/6",
+              "value": "Ethernet123/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/7",
+              "value": "Ethernet123/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/8",
+              "value": "Ethernet123/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet123/1/9",
+              "value": "Ethernet123/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/1",
+              "value": "Ethernet124/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/10",
+              "value": "Ethernet124/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/11",
+              "value": "Ethernet124/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/12",
+              "value": "Ethernet124/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/13",
+              "value": "Ethernet124/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/14",
+              "value": "Ethernet124/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/15",
+              "value": "Ethernet124/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/16",
+              "value": "Ethernet124/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/17",
+              "value": "Ethernet124/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/18",
+              "value": "Ethernet124/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/19",
+              "value": "Ethernet124/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/2",
+              "value": "Ethernet124/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/20",
+              "value": "Ethernet124/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/21",
+              "value": "Ethernet124/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/22",
+              "value": "Ethernet124/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/23",
+              "value": "Ethernet124/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/24",
+              "value": "Ethernet124/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/25",
+              "value": "Ethernet124/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/26",
+              "value": "Ethernet124/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/27",
+              "value": "Ethernet124/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/28",
+              "value": "Ethernet124/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/29",
+              "value": "Ethernet124/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/3",
+              "value": "Ethernet124/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/30",
+              "value": "Ethernet124/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/31",
+              "value": "Ethernet124/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/32",
+              "value": "Ethernet124/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/33",
+              "value": "Ethernet124/1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/34",
+              "value": "Ethernet124/1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/35",
+              "value": "Ethernet124/1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/36",
+              "value": "Ethernet124/1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/37",
+              "value": "Ethernet124/1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/38",
+              "value": "Ethernet124/1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/39",
+              "value": "Ethernet124/1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/4",
+              "value": "Ethernet124/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/40",
+              "value": "Ethernet124/1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/41",
+              "value": "Ethernet124/1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/42",
+              "value": "Ethernet124/1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/43",
+              "value": "Ethernet124/1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/44",
+              "value": "Ethernet124/1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/45",
+              "value": "Ethernet124/1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/46",
+              "value": "Ethernet124/1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/47",
+              "value": "Ethernet124/1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/48",
+              "value": "Ethernet124/1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/5",
+              "value": "Ethernet124/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/6",
+              "value": "Ethernet124/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/7",
+              "value": "Ethernet124/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/8",
+              "value": "Ethernet124/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet124/1/9",
+              "value": "Ethernet124/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/1",
+              "value": "Ethernet125/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/10",
+              "value": "Ethernet125/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/11",
+              "value": "Ethernet125/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/12",
+              "value": "Ethernet125/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/14",
+              "value": "Ethernet125/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/15",
+              "value": "Ethernet125/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/16",
+              "value": "Ethernet125/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/17",
+              "value": "Ethernet125/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/18",
+              "value": "Ethernet125/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/19",
+              "value": "Ethernet125/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/2",
+              "value": "Ethernet125/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/20",
+              "value": "Ethernet125/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/21",
+              "value": "Ethernet125/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/22",
+              "value": "Ethernet125/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/23",
+              "value": "Ethernet125/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/24",
+              "value": "Ethernet125/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/25",
+              "value": "Ethernet125/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/26",
+              "value": "Ethernet125/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/27",
+              "value": "Ethernet125/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/28",
+              "value": "Ethernet125/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/29",
+              "value": "Ethernet125/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/3",
+              "value": "Ethernet125/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/30",
+              "value": "Ethernet125/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/31",
+              "value": "Ethernet125/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/32",
+              "value": "Ethernet125/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/33",
+              "value": "Ethernet125/1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/34",
+              "value": "Ethernet125/1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/35",
+              "value": "Ethernet125/1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/36",
+              "value": "Ethernet125/1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/37",
+              "value": "Ethernet125/1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/38",
+              "value": "Ethernet125/1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/39",
+              "value": "Ethernet125/1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/4",
+              "value": "Ethernet125/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/40",
+              "value": "Ethernet125/1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/41",
+              "value": "Ethernet125/1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/42",
+              "value": "Ethernet125/1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/43",
+              "value": "Ethernet125/1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/44",
+              "value": "Ethernet125/1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/45",
+              "value": "Ethernet125/1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/46",
+              "value": "Ethernet125/1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/47",
+              "value": "Ethernet125/1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/48",
+              "value": "Ethernet125/1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/5",
+              "value": "Ethernet125/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/6",
+              "value": "Ethernet125/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/7",
+              "value": "Ethernet125/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/8",
+              "value": "Ethernet125/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet125/1/9",
+              "value": "Ethernet125/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/1",
+              "value": "Ethernet126/1/1"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/10",
+              "value": "Ethernet126/1/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/11",
+              "value": "Ethernet126/1/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/12",
+              "value": "Ethernet126/1/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/13",
+              "value": "Ethernet126/1/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/14",
+              "value": "Ethernet126/1/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/15",
+              "value": "Ethernet126/1/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/16",
+              "value": "Ethernet126/1/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/17",
+              "value": "Ethernet126/1/17"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/18",
+              "value": "Ethernet126/1/18"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/19",
+              "value": "Ethernet126/1/19"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/2",
+              "value": "Ethernet126/1/2"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/20",
+              "value": "Ethernet126/1/20"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/21",
+              "value": "Ethernet126/1/21"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/22",
+              "value": "Ethernet126/1/22"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/23",
+              "value": "Ethernet126/1/23"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/24",
+              "value": "Ethernet126/1/24"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/25",
+              "value": "Ethernet126/1/25"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/26",
+              "value": "Ethernet126/1/26"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/27",
+              "value": "Ethernet126/1/27"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/28",
+              "value": "Ethernet126/1/28"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/29",
+              "value": "Ethernet126/1/29"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/3",
+              "value": "Ethernet126/1/3"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/30",
+              "value": "Ethernet126/1/30"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/31",
+              "value": "Ethernet126/1/31"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/32",
+              "value": "Ethernet126/1/32"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/33",
+              "value": "Ethernet126/1/33"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/34",
+              "value": "Ethernet126/1/34"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/35",
+              "value": "Ethernet126/1/35"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/36",
+              "value": "Ethernet126/1/36"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/37",
+              "value": "Ethernet126/1/37"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/38",
+              "value": "Ethernet126/1/38"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/39",
+              "value": "Ethernet126/1/39"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/4",
+              "value": "Ethernet126/1/4"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/40",
+              "value": "Ethernet126/1/40"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/41",
+              "value": "Ethernet126/1/41"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/42",
+              "value": "Ethernet126/1/42"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/43",
+              "value": "Ethernet126/1/43"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/44",
+              "value": "Ethernet126/1/44"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/45",
+              "value": "Ethernet126/1/45"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/46",
+              "value": "Ethernet126/1/46"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/47",
+              "value": "Ethernet126/1/47"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/48",
+              "value": "Ethernet126/1/48"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/5",
+              "value": "Ethernet126/1/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/6",
+              "value": "Ethernet126/1/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/7",
+              "value": "Ethernet126/1/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/8",
+              "value": "Ethernet126/1/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet126/1/9",
+              "value": "Ethernet126/1/9"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/10",
+              "value": "Ethernet2/10"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/11",
+              "value": "Ethernet2/11"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/12",
+              "value": "Ethernet2/12"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/13",
+              "value": "Ethernet2/13"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/14",
+              "value": "Ethernet2/14"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/15",
+              "value": "Ethernet2/15"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/16",
+              "value": "Ethernet2/16"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/5",
+              "value": "Ethernet2/5"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/6",
+              "value": "Ethernet2/6"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/7",
+              "value": "Ethernet2/7"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/8",
+              "value": "Ethernet2/8"
+            },
+            {
+              "selected": false,
+              "text": "Ethernet2/9",
+              "value": "Ethernet2/9"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1",
+              "value": "port-channel1"
+            },
+            {
+              "selected": false,
+              "text": "port-channel100",
+              "value": "port-channel100"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1011",
+              "value": "port-channel1011"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1013",
+              "value": "port-channel1013"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1015",
+              "value": "port-channel1015"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1016",
+              "value": "port-channel1016"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1017",
+              "value": "port-channel1017"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1019",
+              "value": "port-channel1019"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1020",
+              "value": "port-channel1020"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1022",
+              "value": "port-channel1022"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1023",
+              "value": "port-channel1023"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1024",
+              "value": "port-channel1024"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1025",
+              "value": "port-channel1025"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1026",
+              "value": "port-channel1026"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1027",
+              "value": "port-channel1027"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1029",
+              "value": "port-channel1029"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1030",
+              "value": "port-channel1030"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1031",
+              "value": "port-channel1031"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1032",
+              "value": "port-channel1032"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1033",
+              "value": "port-channel1033"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1034",
+              "value": "port-channel1034"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1035",
+              "value": "port-channel1035"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1041",
+              "value": "port-channel1041"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1042",
+              "value": "port-channel1042"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1051",
+              "value": "port-channel1051"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1060",
+              "value": "port-channel1060"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1061",
+              "value": "port-channel1061"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1062",
+              "value": "port-channel1062"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1063",
+              "value": "port-channel1063"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1064",
+              "value": "port-channel1064"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1065",
+              "value": "port-channel1065"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1066",
+              "value": "port-channel1066"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1067",
+              "value": "port-channel1067"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1068",
+              "value": "port-channel1068"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1069",
+              "value": "port-channel1069"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1070",
+              "value": "port-channel1070"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1071",
+              "value": "port-channel1071"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1072",
+              "value": "port-channel1072"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1073",
+              "value": "port-channel1073"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1074",
+              "value": "port-channel1074"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1075",
+              "value": "port-channel1075"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1076",
+              "value": "port-channel1076"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1081",
+              "value": "port-channel1081"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1083",
+              "value": "port-channel1083"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1084",
+              "value": "port-channel1084"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1125",
+              "value": "port-channel1125"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1128",
+              "value": "port-channel1128"
+            },
+            {
+              "selected": false,
+              "text": "port-channel1129",
+              "value": "port-channel1129"
+            },
+            {
+              "selected": false,
+              "text": "port-channel121",
+              "value": "port-channel121"
+            },
+            {
+              "selected": false,
+              "text": "port-channel122",
+              "value": "port-channel122"
+            },
+            {
+              "selected": false,
+              "text": "port-channel123",
+              "value": "port-channel123"
+            },
+            {
+              "selected": false,
+              "text": "port-channel124",
+              "value": "port-channel124"
+            },
+            {
+              "selected": false,
+              "text": "port-channel125",
+              "value": "port-channel125"
+            },
+            {
+              "selected": false,
+              "text": "port-channel126",
+              "value": "port-channel126"
+            },
+            {
+              "selected": false,
+              "text": "port-channel250",
+              "value": "port-channel250"
+            },
+            {
+              "selected": false,
+              "text": "port-channel251",
+              "value": "port-channel251"
+            }
+          ],
+          "query": "show tag values with key = \"if_name\" where \"hostname\" =~ /$Devices/",
+          "refresh": 0,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 0,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-6h",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "AT Dashboard at-vie01a-sd/sc",
+    "uid": "zcExC_t7z"
+  }
+}

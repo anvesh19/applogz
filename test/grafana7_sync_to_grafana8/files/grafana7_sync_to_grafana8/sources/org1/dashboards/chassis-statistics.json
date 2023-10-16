@@ -1,0 +1,2250 @@
+{
+  "meta": {
+    "type": "db",
+    "canSave": true,
+    "canEdit": true,
+    "canAdmin": true,
+    "canStar": true,
+    "slug": "chassis-statistics",
+    "url": "/d/O5c-dFzMk/chassis-statistics",
+    "hasAcl": false,
+    "isFolder": false,
+    "folderId": 8,
+    "folderTitle": "Juniper",
+    "folderUrl": "/dashboards/f/2uJ7cFeGz/juniper",
+    "provisioned": false,
+    "provisionedExternalId": ""
+  },
+  "dashboard": {
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "type": "dashboard"
+        }
+      ]
+    },
+    "editable": true,
+    "gnetId": null,
+    "graphTooltip": 0,
+    "id": 10,
+    "iteration": 1646915193717,
+    "links": [],
+    "panels": [
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 0,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 2,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "[[tag_component_name]]:[[tag_property_name]]",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/properties/property/state/value\"::string) FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" = 'Chassis' AND \"/components/component/properties/property/@name\" =~ /allocated|capacity|maximum/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$device$/\", \"/components/component/properties/property/@name\", \"/components/component/@name\" fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=",
+                "value": "Chassis"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/allocated|capacity|maximum|usage/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Chassis Power Zones $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1404",
+            "format": "watt",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1405",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 12,
+          "y": 0
+        },
+        "hiddenSeries": false,
+        "id": 3,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "hide": false,
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/properties/property/state/value\"::string) FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /PEM/ AND \"/components/component/properties/property/@name\" = 'power-dc-output' AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/components/component/@name\", \"/components/component/properties/property/@name\", \"/^$device$/\" fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$psu$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=",
+                "value": "power-dc-output"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "PSU DC Output $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1605",
+            "format": "watt",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1606",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 6,
+          "y": 6
+        },
+        "hiddenSeries": false,
+        "id": 10,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"property_value\") FROM \"autogen\".\"jti_components\" WHERE (\"component_name\" =~ /PDU/ AND \"property_name\" = 'power-usage' OR \"property_name\" =~ /power_input/) AND $timeFilter GROUP BY time($__interval), \"component_name\", \"property_name\", \"/^$device$/\" fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/PDU/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=",
+                "value": "power-usage"
+              },
+              {
+                "condition": "OR",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/power_input/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "PEM Intput $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1733",
+            "format": "watt",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1734",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 0,
+          "y": 12
+        },
+        "hiddenSeries": false,
+        "id": 4,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/properties/property/state/value\") FROM \"autogen\".\"jti_components\" WHERE (\"/components/component/@name\" =~ /SFB|CB|Routing Engine|Chassis/ AND \"/components/component/properties/property/@name\" =~ /temperature/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/components/component/@name\", \"/^$device$/\", \"/components/component/properties/property/@name\" fill(null)",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$chassis$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/temperature/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Temperature Chassis/RE/SCB $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1264",
+            "format": "celsius",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1265",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 12,
+          "y": 12
+        },
+        "hiddenSeries": false,
+        "id": 5,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$adc$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/temperature/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Temperature ADC $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "format": "celsius",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 6,
+          "y": 18
+        },
+        "hiddenSeries": false,
+        "id": 11,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$fpc$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/temperature|BT|DDR|CPU Temp/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Temperature FPC $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:3637",
+            "format": "celsius",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:3638",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 0,
+          "y": 24
+        },
+        "hiddenSeries": false,
+        "id": 6,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$chassis$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/cpu-utilization-(idle|total)/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$ukernel_util$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/cpu-utilization-(idle|total)/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "CPU Utilization RE/FPC $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:2278",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:2279",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 12,
+          "y": 24
+        },
+        "hiddenSeries": false,
+        "id": 7,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/routing_engine/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=",
+                "value": "memory-utilization-buffer"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_component_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "device"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_components",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$fpc$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=",
+                "value": "memory-utilization-buffer"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "Memory Utilization RE/FPC $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:2696",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": "0",
+            "show": true
+          },
+          {
+            "$$hashKey": "object:2697",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 0,
+          "y": 30
+        },
+        "hiddenSeries": false,
+        "id": 8,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_linecard_cpu_memory",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$ukernel_util$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/mem-util-.*-utilization/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "uKernel Memory Utilization $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:1876",
+            "format": "percent",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:1877",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      },
+      {
+        "aliasColors": {},
+        "bars": false,
+        "cacheTimeout": null,
+        "dashLength": 10,
+        "dashes": false,
+        "datasource": "juniper1",
+        "fieldConfig": {
+          "defaults": {
+            "custom": {},
+            "links": []
+          },
+          "overrides": []
+        },
+        "fill": 1,
+        "fillGradient": 0,
+        "gridPos": {
+          "h": 6,
+          "w": 12,
+          "x": 12,
+          "y": 30
+        },
+        "hiddenSeries": false,
+        "id": 9,
+        "interval": "",
+        "legend": {
+          "avg": false,
+          "current": false,
+          "hideEmpty": true,
+          "hideZero": true,
+          "max": false,
+          "min": false,
+          "show": true,
+          "total": false,
+          "values": false
+        },
+        "lines": true,
+        "linewidth": 1,
+        "links": [],
+        "nullPointMode": "null",
+        "options": {
+          "alertThreshold": true
+        },
+        "paceLength": 10,
+        "percentage": false,
+        "pluginVersion": "7.4.2",
+        "pointradius": 2,
+        "points": false,
+        "renderer": "flot",
+        "seriesOverrides": [],
+        "spaceLength": 10,
+        "stack": false,
+        "steppedLine": false,
+        "targets": [
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_linecard_cpu_memory",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "A",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$ukernel_util$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/kernel-(ktree|rt)-bytes-allocated/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          },
+          {
+            "alias": "$tag_component_name:$tag_property_name",
+            "groupBy": [
+              {
+                "params": [
+                  "$__interval"
+                ],
+                "type": "time"
+              },
+              {
+                "params": [
+                  "component_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "property_name"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "/^$device$/"
+                ],
+                "type": "tag"
+              },
+              {
+                "params": [
+                  "null"
+                ],
+                "type": "fill"
+              }
+            ],
+            "limit": "",
+            "measurement": "jti_linecard_cpu_memory",
+            "orderByTime": "ASC",
+            "policy": "autogen",
+            "query": "SELECT last(\"/components/component/state/part-no\") AS \"P/N\", last(\"/components/component/state/serial-no\") AS \"Serial\" FROM \"autogen\".\"components\" WHERE (\"/components/component/@name\" =~ /^$component$/ AND \"device\" =~ /^$device$/) AND $timeFilter GROUP BY time($__interval), \"/^$component$/\", \"/^$device$/\" fill(null) LIMIT 1",
+            "rawQuery": false,
+            "refId": "B",
+            "resultFormat": "time_series",
+            "select": [
+              [
+                {
+                  "params": [
+                    "property_value"
+                  ],
+                  "type": "field"
+                },
+                {
+                  "params": [],
+                  "type": "last"
+                }
+              ]
+            ],
+            "tags": [
+              {
+                "key": "component_name",
+                "operator": "=~",
+                "value": "/^$ukernel_util$/"
+              },
+              {
+                "condition": "AND",
+                "key": "property_name",
+                "operator": "=~",
+                "value": "/allocations-failed/"
+              },
+              {
+                "condition": "AND",
+                "key": "device",
+                "operator": "=~",
+                "value": "/^$device$/"
+              }
+            ]
+          }
+        ],
+        "thresholds": [],
+        "timeFrom": null,
+        "timeRegions": [],
+        "timeShift": null,
+        "title": "uKernel Memory Details $device",
+        "tooltip": {
+          "shared": true,
+          "sort": 2,
+          "value_type": "individual"
+        },
+        "type": "graph",
+        "xaxis": {
+          "buckets": null,
+          "mode": "time",
+          "name": null,
+          "show": true,
+          "values": []
+        },
+        "yaxes": [
+          {
+            "$$hashKey": "object:2077",
+            "format": "decbytes",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          },
+          {
+            "$$hashKey": "object:2078",
+            "format": "short",
+            "label": null,
+            "logBase": 1,
+            "max": null,
+            "min": null,
+            "show": true
+          }
+        ],
+        "yaxis": {
+          "align": false,
+          "alignLevel": null
+        }
+      }
+    ],
+    "refresh": "5m",
+    "schemaVersion": 27,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "nl-ams04a-ri3",
+            "value": "nl-ams04a-ri3"
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_components with key = device;",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "device",
+          "options": [],
+          "query": "show tag values from jti_components with key = device;",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "routing_engine0",
+              "routing_engine1"
+            ],
+            "value": [
+              "routing_engine0",
+              "routing_engine1"
+            ]
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_components with key = \"component_name\" where component_name =~ /SFB|CB|routing_engine|Chassis|SIB|PDU|Fan/;\n",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "chassis",
+          "options": [],
+          "query": "show tag values from jti_components with key = \"component_name\" where component_name =~ /SFB|CB|routing_engine|Chassis|SIB|PDU|Fan/;\n",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_components with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /ADC[0-9]{1,2}$/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "adc",
+          "options": [],
+          "query": "show tag values from jti_components with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /ADC[0-9]{1,2}$/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "FPC0"
+            ],
+            "value": [
+              "FPC0"
+            ]
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_components with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /FPC[0-9]{1,}$/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "fpc",
+          "options": [],
+          "query": "show tag values from jti_components with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /FPC[0-9]{1,}$/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "FPC0:CPU",
+            "value": "FPC0:CPU"
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_components with key = component_name where device =~ /^$device$/ and component_name =~ /FPC[0-9]{1,2}:CPU$/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": false,
+          "name": "fpc_cpu",
+          "options": [],
+          "query": "show tag values from jti_components with key = component_name where device =~ /^$device$/ and component_name =~ /FPC[0-9]{1,2}:CPU$/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": true,
+            "text": [
+              "All"
+            ],
+            "value": [
+              "$__all"
+            ]
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_components with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /PSM|PEM/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": true,
+          "label": null,
+          "multi": true,
+          "name": "psu",
+          "options": [],
+          "query": "show tag values from jti_components with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /PSM|PEM/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        },
+        {
+          "allValue": null,
+          "current": {
+            "selected": false,
+            "text": "FPC0:CPU0",
+            "value": "FPC0:CPU0"
+          },
+          "datasource": "juniper1",
+          "definition": "show tag values from jti_linecard_cpu_memory with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /FPC[0-9]{1,2}:CPU[0-9]{1,2}/",
+          "description": null,
+          "error": null,
+          "hide": 0,
+          "includeAll": false,
+          "label": null,
+          "multi": true,
+          "name": "ukernel_util",
+          "options": [],
+          "query": "show tag values from jti_linecard_cpu_memory with key = \"component_name\"  where device =~ /^$device$/ and component_name =~ /FPC[0-9]{1,2}:CPU[0-9]{1,2}/",
+          "refresh": 1,
+          "regex": "",
+          "skipUrlSync": false,
+          "sort": 1,
+          "tagValuesQuery": "",
+          "tags": [],
+          "tagsQuery": "",
+          "type": "query",
+          "useTags": false
+        }
+      ]
+    },
+    "time": {
+      "from": "now-24h",
+      "to": "now"
+    },
+    "timepicker": {
+      "refresh_intervals": [
+        "5s",
+        "10s",
+        "30s",
+        "1m",
+        "5m",
+        "15m",
+        "30m",
+        "1h",
+        "2h",
+        "1d"
+      ],
+      "time_options": [
+        "5m",
+        "15m",
+        "1h",
+        "6h",
+        "12h",
+        "24h",
+        "2d",
+        "7d",
+        "30d"
+      ]
+    },
+    "timezone": "",
+    "title": "Chassis Statistics",
+    "uid": "O5c-dFzMk"
+  }
+}

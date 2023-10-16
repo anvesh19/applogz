@@ -1,0 +1,25 @@
+---
+package_name: "{{ base_package_name + '==' + package_version
+                  if package_version is defined else base_package_name }}"
+
+base_service_name: "{{ base_package_name }}"
+service_user: observer
+service_group: observer
+service_home: "/home/{{ service_user }}"
+service_env: prod
+
+base_dir: "{{ service_home }}/{{ service_env }}/{{ base_service_name }}"
+venv_dir: "{{ base_dir }}/venv"
+
+systemd_units_dir: /etc/systemd/system
+systemd_env_dir: "{{ base_dir }}"
+systemd_service_name: "{{ base_service_name }}@{{ service_env }}.service"
+systemd_timer_name: "{{ base_service_name }}@{{ service_env }}.timer"
+systemd_environment_file: "{{ base_dir }}/{{ base_service_name }}.env"
+
+venv_python_binary: /usr/bin/python3
+venv_command: "{{ venv_python_binary }} -m venv"
+venv_python_version: 3.9
+venv_site_packages: "{{ venv_dir }}/lib/python{{ venv_python_version }}/site-packages"
+
+pip_extra_args: "--extra-index-url https://pypi.sdil.aorta.net/simple"

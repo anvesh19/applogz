@@ -1,0 +1,65 @@
+---
+- name: Install logrotate (deb)
+  apt:
+    name: logrotate
+  when:
+    ansible_facts['os_family'] == "Debian"
+  tags:
+    - logrotate_deb
+
+- name: Install logrotate (rpm)
+  yum:
+    name: logrotate
+  when:
+    ansible_facts['os_family'] == "RedHat"
+  tags:
+    - logrotate_rpm
+
+- name: Copy rsyslog file to /etc/logrotate.d/
+  template:
+    src: logrotate.j2
+    dest: /etc/logrotate.d/rsyslog
+    owner: root
+    group: root
+    mode: 0644
+  when: ansible_distribution == 'Debian'
+
+- name: Copy logrotate config
+  copy:
+    src: logrotate.conf
+    dest: /etc/
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy custom logrotate service
+  copy:
+    src: logrotate.service
+    dest: "{{ timer_custom_location }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Copy custom logrotate timer
+  copy:
+    src: logrotate.timer
+    dest: "{{ timer_custom_location }}"
+    owner: root
+    group: root
+    mode: 0644
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: yes
+
+- name: Enable custom logrotate service
+  systemd:
+    name: logrotate.service
+    enabled: yes
+    state: started
+
+- name: Enable custom logrotate timer
+  systemd:
+    name: logrotate.timer
+    enabled: yes
+    state: started

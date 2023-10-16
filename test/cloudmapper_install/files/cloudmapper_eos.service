@@ -1,0 +1,9 @@
+[Unit]
+Description=Script that execute cloudmapper which will collect AWS data and copy on place what is using that data 
+
+[Service]
+ExecStart=/home/ansible/cloudmapper_eos.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=cloudmapper
+User=ansible

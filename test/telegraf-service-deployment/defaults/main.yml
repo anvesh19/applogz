@@ -1,0 +1,11 @@
+---
+telegraf_user: telegraf
+telegraf_config_dir: /etc/telegraf
+telegraf_subconfig_dir: telegraf.d
+telegraf_custom_dir: /opt/telegraf_custom
+telegraf_subconfig_templates_dir: '{{ role_path }}/templates/telegraf.d'
+telegraf_config_templates_dir: '{{ role_path }}/templates/telegraf_conf'
+telegraf_custom_files_dir: '{{ role_path }}/files/custom'
+influx_apt_key: 05CE15085FC09D18E99EFB22684A14CF2582E0C5
+influx_apt_url: "https://repos.influxdata.com/influxdb.key"
+

@@ -1,0 +1,9 @@
+[Unit]
+Description=Script that will collect swarm stack from swarm cluster nfs and store in git
+
+[Service]
+ExecStart=/home/ansible/swarm_stacks_backup.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=swarm_stacks_backup
+User=ansible

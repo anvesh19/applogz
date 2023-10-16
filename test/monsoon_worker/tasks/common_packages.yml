@@ -1,0 +1,7 @@
+---
+- name: Install OS packages for monsoon_worker
+  package:
+    name: "{{ item }}"
+    state: latest
+  with_items: "{{ common_packages }}"
+

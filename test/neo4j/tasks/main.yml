@@ -1,0 +1,43 @@
+---
+- name: Install OpenJDK
+  apt:
+    pkg: "openjdk-{{ jdk_version }}-jre"
+    state: present
+    update_cache: yes
+
+- name: Add gpg key to apt
+  apt_key:
+    url: "https://debian.neo4j.com/neotechnology.gpg.key"
+    state: present
+  environment:
+    https_proxy: "{{ http_proxy }}"
+
+- name: Copy source list
+  copy:
+    src: neo4j.list
+    dest: /etc/apt/sources.list.d/neo4j.list
+
+- name: Install neo4j
+  apt:
+    pkg: "neo4j={{ neo4j_version }}"
+    state: present
+    update_cache: yes
+
+- name: Fix directory rights
+  file:
+    path: "{{ item }}"
+    state: directory
+    recurse: yes
+    owner: neo4j
+    group: neo4j
+  with_items:
+    - "/var/log/neo4j"
+    - "/var/lib/neo4j"
+    - "/etc/neo4j"
+
+- name: Enalbe systemd module
+  systemd:
+    service: neo4j
+    enabled: yes
+    state: restarted
+    daemon_reexec: yes

@@ -1,0 +1,146 @@
+---
+- name: Check for available consul hosts
+  fail:
+    msg: "consul_servers group is absent and variable are not defined"
+  when: groups['consul_servers'] is not defined and consul_servers is not defined
+
+- name: Create consul group
+  group:
+    name: consul
+    state: present
+
+- name: Create consul user
+  user:
+    name: consul
+    group: consul
+    createhome: yes
+
+- name: Install necessary packages
+  package:
+    name: unzip
+    state: present
+
+- name: Create consul config-directory
+  file:
+    path: "{{ consul_data_dir }}/{{ item }}"
+    state: directory
+    owner: consul
+    group: consul
+    mode: 0755
+  loop:
+      - var
+      - etc
+      - bin
+
+- name: Consul leave cluster before upgrade
+  command: "{{ consul_data_dir }}/bin/consul leave"
+  ignore_errors: yes
+  when: consul_upgrade is defined and consul_upgrade == "yes"
+
+- name: Consul leave cluster before upgrade old manually deployed
+  command: "/usr/local/bin/consul leave"
+  ignore_errors: yes
+  when: consul_upgrade is defined and consul_upgrade == "yes"
+
+- name: Delete old consul binary old manaully deployed
+  file:
+    path: "/usr/local/bin/consul"
+    state: absent
+  when: consul_upgrade is defined and consul_upgrade == "yes"
+
+- name: Delete old consul binary
+  file:
+    path: "{{ consul_data_dir }}/bin/consul"
+    state: absent
+  when: consul_upgrade is defined and consul_upgrade == "yes"
+
+- name: Check consul binary exists
+  stat:
+    path: "{{ consul_data_dir }}/bin/consul"
+  register: consul_binary_exists
+
+- name: Download binary
+  get_url:
+    url: "{{ consul_download_url }}"
+    dest: "{{ consul_data_dir }}/"
+  when: consul_upgrade is defined and consul_upgrade == "yes" or consul_binary_exists.stat.exists == False
+  register: new_binary_downloaded
+
+- name: Extract tgz
+  unarchive:
+    src: "{{ consul_data_dir }}/consul_{{ consul_version }}_linux_amd64.zip"
+    dest: "{{ consul_data_dir }}/bin/"
+    owner: consul
+    group: consul
+    mode: 0755
+    remote_src: yes
+  when: new_binary_downloaded.changed
+  notify: Restart consul
+
+- name: Cleanup
+  file:
+    path: "{{ consul_data_dir }}/consul_{{ consul_version }}_linux_amd64.zip"
+    state: absent
+  when: new_binary_downloaded.changed
+
+- name: Create symlink to binary path
+  file:
+    src: "{{ consul_data_dir }}/bin/consul"
+    dest: "/usr/bin/consul"
+    owner: consul
+    group: consul
+    state: link
+
+- name: Copy consul service
+  copy:
+    src: consul.service
+    dest: /etc/systemd/system/consul.service
+    owner: consul
+    group: consul
+    mode: 0644
+
+- name: Copy consul configuration
+  template:
+    src: consul-config.json.j2
+    dest: "{{ consul_data_dir }}/etc/consul-config.json"
+    owner: consul
+    group: consul
+    mode: 0644
+  register: config_change_server
+
+- name: Test consul configuration file
+  command: "{{ consul_data_dir }}/bin/consul validate {{ consul_data_dir }}/etc/"
+  when: config_change_server.changed
+  notify: Restart consul
+
+- name: Collect firewalld status
+  service_facts:
+  when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7"
+
+- name: Open ports for consul in firewalld when it is running
+  firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    immediate: yes
+  with_items:
+    - "8300/tcp"
+    - "8301/tcp"
+    - "8301/udp"
+    - "8302/tcp"
+    - "8302/udp"
+  when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7" and ansible_facts.services['firewalld.service'] is defined and ansible_facts.services['firewalld.service']['state'] == "running"
+
+- name: Open ports for consul in firewalld when it is stopped
+  firewalld:
+    port: "{{ item }}"
+    state: enabled
+    permanent: yes
+    offline: yes
+  with_items:
+    - "8300/tcp"
+    - "8301/tcp"
+    - "8301/udp"
+    - "8302/tcp"
+    - "8302/udp"
+  when: ansible_facts['distribution'] == "CentOS" and ansible_facts['distribution_major_version'] == "7" and ansible_facts.services['firewalld.service'] is defined and ansible_facts.services['firewalld.service']['state'] != "running"

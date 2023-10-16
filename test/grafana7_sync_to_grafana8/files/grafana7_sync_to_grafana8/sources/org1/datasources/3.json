@@ -1,0 +1,27 @@
+{
+  "id": 3,
+  "uid": "TkcHDUXGk",
+  "orgId": 1,
+  "name": "LG F5 Datasource",
+  "type": "f5-datasource",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "https://observer.sdil.aorta.net",
+  "password": "",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "basicAuthPassword": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {
+    "tlsAuthWithCACert": true,
+    "tlsSkipVerify": true
+  },
+  "secureJsonFields": {
+    "tlsCACert": true
+  },
+  "version": 5,
+  "readOnly": false
+}

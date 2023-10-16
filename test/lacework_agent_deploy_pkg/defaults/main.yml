@@ -1,0 +1,2 @@
+lacework_server_url: https://api.fra.lacework.net
+lacework_agent_pkg_state: latest

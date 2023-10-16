@@ -1,0 +1,8 @@
+---
+- name: reload systemctl
+  become: yes
+  command: systemctl daemon-reload
+
+- name: reload service
+  become: yes
+  command: systemctl restart monsoon_worker.service

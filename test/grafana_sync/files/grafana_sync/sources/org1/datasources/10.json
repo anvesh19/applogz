@@ -1,0 +1,20 @@
+{
+  "id": 10,
+  "uid": "7atmHCO4k",
+  "orgId": 1,
+  "name": "Loki-ECX",
+  "type": "loki",
+  "typeLogoUrl": "",
+  "access": "proxy",
+  "url": "http://loki:3100/",
+  "user": "",
+  "database": "",
+  "basicAuth": false,
+  "basicAuthUser": "",
+  "withCredentials": false,
+  "isDefault": false,
+  "jsonData": {},
+  "secureJsonFields": {},
+  "version": 4,
+  "readOnly": false
+}

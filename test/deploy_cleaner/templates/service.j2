@@ -1,0 +1,11 @@
+[Unit]
+Description=Cleaner script to delete or archive outdated files
+After=network.target
+
+[Service]
+WorkingDirectory=/opt/infrastructure/cleaner
+EnvironmentFile=/opt/infrastructure/cleaner/{{ item.target }}.env
+ExecStart=/bin/bash {{ item.target }}_cleaner.sh
+StandardOutput=syslog
+StandardError=syslog
+SyslogIdentifier=%N

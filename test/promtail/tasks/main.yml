@@ -1,0 +1,81 @@
+---
+- name: Gather package facts
+  package_facts:
+    manager: auto
+
+- name: Create promtail group
+  group:
+    name: promtail
+    state: present
+
+- name: Create promtail user
+  user:
+    name: promtail
+    group: promtail
+    home: "{{ promtail_home_dir }}"
+    createhome: yes
+    groups: systemd-journal
+    append: yes
+
+- name: Install necessary packages
+  package:
+    name: unzip
+    state: present
+
+- name: Create promtail directory
+  file:
+    path: "{{ promtail_home_dir }}/{{ item }}"
+    state: directory
+    owner: promtail
+    group: promtail
+    mode: 0755
+  loop:
+      - etc
+      - bin
+      - tmp
+
+- name: Download binary
+  get_url:
+    url: "{{ promtail_download_url }}"
+    dest: "{{ promtail_home_dir }}/tmp"
+
+
+- name: Extract zip
+  unarchive:
+    src: "{{ promtail_home_dir }}/tmp/promtail-linux-amd64.zip"
+    dest: "{{ promtail_home_dir }}/bin/"
+    owner: promtail
+    group: promtail
+    mode: 0755
+    remote_src: yes
+
+- name: Cleanup
+  file:
+    path: "{{ promtail_home_dir }}/tmp/promtail-linux-amd64.zip"
+    state: absent
+
+- name: Copy promtail service
+  copy:
+    src: promtail.service
+    dest: /etc/systemd/system/promtail.service
+    owner: promtail
+    group: promtail
+    mode: 0644
+
+- name: Copy promtail configuration
+  template:
+    src: promtail.yaml.j2
+    dest: "{{ promtail_home_dir }}/etc/config.yaml"
+    owner: promtail
+    group: promtail
+    mode: 0644
+
+- name: Reload systemd
+  systemd:
+    daemon_reload: true
+
+- name: Enable promtail unit
+  systemd:
+    name: promtail.service
+    enabled: true
+    state: restarted

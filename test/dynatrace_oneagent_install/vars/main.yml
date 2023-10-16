@@ -1,0 +1,7 @@
+---
+dynatrace_oneagent_install_dir: "{{ dynatrace_oneagent_install_args.INSTALL_PATH | default('/opt/dynatrace/oneagent') }}"
+dynatrace_oneagent_install_artifact: "{{ dynatrace_oneagent_install_dir }}/agent/agent.state"
+dynatrace_oneagent_install_cmd: "sh {{ dynatrace_oneagent_install_script }}"
+dynatrace_oneagent_uninstall_cmd: "sh {{ dynatrace_oneagent_install_dir }}/agent/uninstall.sh"
+dynatrace_oneagent_install_url_key: unix
+dynatrace_oneagent_service_name: oneagent

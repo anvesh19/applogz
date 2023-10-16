@@ -1,0 +1,10 @@
+[Unit]
+Description={{ base_package_name|default('A service') }} {{ package_version|default(omit) }} Timer
+
+[Timer]
+OnCalendar={{ systemd_timer_oncalendar }}
+Persistent=True
+Unit={{ systemd_service_name }} 
+
+[Install]
+WantedBy=multi-user.target

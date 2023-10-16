@@ -1,0 +1,10 @@
+[Unit]
+Description=Timer to trigger Cleaner script
+
+[Timer]
+OnCalendar={{ item.frequency }}
+Persistent=True
+Unit=%N.service
+
+[Install]
+WantedBy=multi-user.target

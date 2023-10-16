@@ -1,0 +1,14 @@
+- name: Set Monsoon directory permissions
+  file:
+    path: "{{ monsoon_target_root }}"
+    owner: "{{ monsoon_user }}"
+    group: "{{ monsoon_user }}"
+    recurse: yes
+
+- name: Create environment file
+  template:
+    src: "templates/monsoon_env.j2"
+    dest: "{{ monsoon_target_root }}/environments/scripts/monsoon_env"
+    owner: "{{ monsoon_user }}"
+    group: "{{ monsoon_user }}"
+    mode: 0600

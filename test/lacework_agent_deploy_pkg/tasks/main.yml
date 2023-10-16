@@ -1,0 +1,26 @@
+---
+- name: Install on Debian
+  ansible.builtin.include_tasks: debian.yml
+  when: ansible_os_family == "Debian"
+
+- name: Install on RedHat
+  ansible.builtin.include_tasks: redhat.yml
+  when: ansible_os_family == "RedHat"
+
+- name: Get token from Vault
+  ansible.builtin.set_fact:
+    lacework_access_token: >-
+      {{ lookup('hashi_vault', 'secret=obs-devops/data/lacework/prod/agent token={{ access_token }} url=https://obs-vault.sdil.aorta.net').token }}
+    cacheable: true
+  no_log: true
+
+- name: Wait until /var/lib/lacework/config/ is created
+  ansible.builtin.wait_for:
+    path: /var/lib/lacework/config/
+
+- name: Ensure config file is present
+  become: true
+  ansible.builtin.template:
+    src: config.json.j2
+    dest: /var/lib/lacework/config/config.json
+    mode: "644"
